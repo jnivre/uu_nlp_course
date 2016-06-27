@@ -1,0 +1,179 @@
+
+\documentclass[11pt]{article}
+%\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+%\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\usepackage[round]{natbib}
+\setlength{\bibsep}{0.0pt}
+\usepackage{color}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+\usepackage{tikz-dependency}
+\usepackage{enumitem}
+%\usepackage{times}
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+ 
+ 
+
+% See the ``Article customise'' template for come common customisations
+\newcommand{\refeq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\reffig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reftab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refsec}[1]{\textsection\ref{sec:#1}}
+\newcommand{\newsec}[2]{\section{#1}\label{sec:#2}\noindent}
+\newcommand{\newsubsec}[2]{\subsection{#1}\label{sec:#2}\noindent}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} 
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} 
+
+\makeatletter         
+\def\@maketitle{   % custom maketitle 
+\begin{center}%
+{\bfseries \@title}%
+{\bfseries \@author}%
+\end{center}%
+\smallskip \hrule \bigskip }
+
+% custom section 
+\renewcommand{\section}{\@startsection
+{section}%                   % the name
+{1}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+% custom subsection 
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{1.5ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}%
+}\makeatother
+
+%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
+%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 5: Part-of-Speech Tagging}}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\maketitle
+%\tableofcontents
+%\vspace{3mm}
+\vspace{-2mm}
+\newsec{Introduction}{intro}%
+In this assignment, we are going to train and evaluate a statistical part-of-speech tagger for English. We will make use of HunPoS, an open-source implementation of the
+standard HMM tagging model, which is installed on our Linux system. 
+
+\newsec{Data}{data}%
+The data sets we are going to use come from the English Web Treebank.\footnote{The English Web Treebank (https://catalog.ldc.upenn.edu/LDC2012T13)
+contains syntactically annotated texts taken from sources such as weblogs, reviews, question-answers, newsgroups, and email. 
+We use the version distributed by the Universal Dependencies project (http://universaldependencies.github.io/docs/).} The training set {\tt ewt-train-wt.txt} contains sentences like the following, separated by blank lines:
+\begin{quote}
+\begin{tt}
+\begin{tabular}{ll}
+But          &CONJ\\
+in            &ADP\\
+my            &PRON\\
+view          &NOUN\\
+it            &PRON\\
+is            &VERB\\
+highly        &ADV\\
+significant   &ADJ\\
+.             &PUNCT\\
+\end{tabular}
+\end{tt}
+\end{quote}
+Each line contains a word and its part-of-speech, separated by a tab. The tag set consists of 17 coarse-grained categories taken from the Unviersal Dependencies project and listed in the following table.
+	\begin{quote}
+	\renewcommand{\tabcolsep}{4pt}
+	\begin{tabular}{|ll|ll|ll|}
+	\hline
+	\multicolumn{2}{|l|}{{\bf Open class words}} & \multicolumn{2}{l|}{{\bf Closed class words}} & \multicolumn{2}{l|}{{\bf Other}} \\
+	\hline
+	ADJ & adjective & ADP & preposition/postposition & PUNCT & punctuation\\
+	ADV & adverb & AUX & auxiliary verb & SYM & symbol \\
+	INTJ & interjection & CONJ & coordinating conjunction & X & unspecified \\
+	NOUN & noun & DET & determiner & & \\
+	PROPN & proper noun & NUM & numeral & & \\
+	VERB & verb & PART & particle  & & \\
+	 & & PRON & pronoun & & \\
+	 & & SCONJ & subordinating conjunction & & \\
+	\hline
+	\end{tabular}
+	\end{quote}
+The development set, which will be used to evaluate the tagger, comes in two versions: {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;
+{\tt ewt-dev-wt.txt} contains both words and tags and will be used for comparison when evaluating the output of the tagger.
+All the files needed for the assignment can be found in {\tt /local/kurs/nlp/tagging/}.
+
+\newsec{Train a tagger}{train}%
+To train a tagger using {\tt ewt-train-wt.txt}, you need to run a command like:
+\begin{verbatim}
+hunpos-train mytagger < ewt-train-wt.txt
+\end{verbatim}
+The trained tagger will be stored in the file {\tt mytagger} (or whatever name you choose for your tagger).
+
+\newsec{Run a tagger}{run}%
+Once you have trained a tagger, you can run it on the development set as follows:
+\begin{verbatim}
+hunpos-tag mytagger < ewt-dev-w.txt > ewt-dev-out.txt
+\end{verbatim}
+The tagged output will be stored in the file {\tt ewt-dev-out.txt}.
+
+\newsec{Evaluate a tagger}{eval}%
+To evaluate the output of the tagger, you run the evaluation script {\tt score.py}:
+\begin{verbatim}
+python3 score.py tag ewt-dev-wt.txt ewt-dev-out.txt
+\end{verbatim}
+In addition to reporting the overall \emph{accuracy} (the percentage of tokens that were tagged correctly), the script prints a table showing
+the precision and recall for different part-of-speech tags. For example, the precision for the NOUN tag is the percentage of words tagged as nouns that are really nouns.
+The recall is instead the percentage of real nouns that are also tagged as nouns.
+
+\newsec{Tune a tagger}{tune}%
+The HunPoS implementation of HMM tagging has a few parameters that can be tuned for better tagging. In particular, the {\tt -t} flag can be used to set the number of
+tags that are taken as context in the contextual probabilities. The default is {\tt -t $\!\!$2}, which means that we train a trigram model. See what happens if you instead use {\tt -t $\!\!$1} or
+{\tt -t $\!\!$3} when training the tagger. This means using a command like:
+\begin{verbatim}
+hunpos-train mytagger -t 1 < ewt-train-wt.txt
+\end{verbatim}
+If you want to explore other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}
+
+\newsec{Error analysis}{error}%
+Once you have tuned the tagger, you should perform a manual error analysis where you go through at least 5 sentences and comment on the errors made by the tagger.
+Are the mistagged words genuinely ambiguous? Why do you think they were mistagged? Is it possible that some of the words are mistagged in the gold standard instead?
+
+\newsec{Submit the assignment}{submit}%
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+\begin{itemize}[noitemsep,topsep=0.2cm]
+\item The output of {\tt score.py} for your final best model (with information about parameters used).
+\item A short discussion based on your manual error analysis.
+\end{itemize}
+
+\end{document}

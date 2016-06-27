@@ -1,0 +1,155 @@
+
+\documentclass[11pt]{article}
+%\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+%\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\usepackage[round]{natbib}
+\setlength{\bibsep}{0.0pt}
+\usepackage{color}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+\usepackage{tikz-dependency}
+\usepackage{enumitem}
+%\usepackage{times}
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+\usepackage{fancyvrb}
+ 
+
+% See the ``Article customise'' template for come common customisations
+\newcommand{\refeq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\reffig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reftab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refsec}[1]{\textsection\ref{sec:#1}}
+\newcommand{\newsec}[2]{\section{#1}\label{sec:#2}\noindent}
+\newcommand{\newsubsec}[2]{\subsection{#1}\label{sec:#2}\noindent}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} 
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} 
+
+\makeatletter         
+\def\@maketitle{   % custom maketitle 
+\begin{center}%
+{\bfseries \@title}%
+{\bfseries \@author}%
+\end{center}%
+\smallskip \hrule \bigskip }
+
+% custom section 
+\renewcommand{\section}{\@startsection
+{section}%                   % the name
+{1}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+% custom subsection 
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{1.5ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}%
+}\makeatother
+
+%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
+%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 12: Semantic Role Labeling}}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\maketitle
+%\tableofcontents
+%\vspace{3mm}
+\vspace{-2mm}
+\newsec{Introduction}{intro}%
+In this assignment, we are going to do PropBank style semantic annotation and study inter-annotator agreement. We are going to focus on one polysemous verb, the verb {\em count}, which occurs exactly 10 times in the 
+training set of the English web treebank. All files needed are available from {\tt /local/kurs/nlp/semantics/}.
+
+
+\newsec{Study the lexicon}{lex}%
+The lexical entry for the verb {\em count} can be found in the file {\tt count.senses}. It is organized by 
+(numbered) senses, with the first sense being {\tt count.01}:
+
+\input{code/count.01}
+This sense is nicknamed {\tt enumerate} and has two roles: ARG0 = the counter; ARG1 = the thing(s) counted.
+In the example given, the ARG0 role is filled by a chain of coreferring NPs (some of which are empty traces)
+ending in {\tt Sybil Harrington}, while the ARG1 role is filled by the NP {\tt her pennies}. A simpler example would be: 
+\begin{Verbatim}[fontsize=\small,xleftmargin=\parindent]
+[ARG0 Sybil Harrington] doesn't count.01 [ARG1 her pennies].
+\end{Verbatim}
+Study the rest of {\tt count.senses} and then answer the following questions:
+\begin{enumerate}[noitemsep,topsep=0.2cm]
+\item How many senses are there altogether?
+\item Construct one example of your own for each sense.
+\end{enumerate}
+
+\newsec{Annotate some data}{annotate}%
+The file {\tt count.instances} contains all the sentences in the training set of the English web treebank that
+contains the verb lemma {\tt count}. (The file format is the CoNLL-X format that you previously used in the
+dependency parsing assignment.) Your task is to annotate each sentence in the following way:
+\begin{enumerate}[noitemsep,topsep=0.2cm]
+\item Annotate the verb with the relevant sense.
+\item Annotate all words in an argument with the relevant argument label.
+\end{enumerate}
+We will keep things simple and simply add the relevant label 
+in the last column of the CoNLL format.\footnote{In general, it is much better to use a dedicated annotation
+tool to prevent typographical errors when editing the file.}
+Thus, here is what the annotation of a hypothetical examle should look like:
+\begin{Verbatim}[fontsize=\small,xleftmargin=\parindent]
+1    We       we       PRON     PRON     _    2    nsubj    _    A0
+2    count    count    VERB     VERB     _    0    root     _    count.03
+3    on       on       ADP      ADP      _    4    case     _    A1
+4    you      you      PRON     PRON     _    2    nmod     _    A1
+5    .        .        PUNCT    PUNCT    _    0    punct    _    _
+\end{Verbatim}
+Note that your task is restricted to the annotation of predicate senses (like {\tt count.03}) and core
+argument roles (numbered roles like {\tt A0}, {\tt A1} and {\tt A2}). You do not need to annotate modifier
+roles like {\tt AM-TMP} and {\tt AM-LOC}.
+
+\newsec{Compare your annotations}{compare}%
+Team up with a classmate (or two) and compare your respective annotations. {\bf NB:} Make sure 
+to save a copy of your original annotation before starting to compare and discuss them.
+Answer the following questions:
+\begin{enumerate}[noitemsep,topsep=0.2cm]
+\item What percentage of verb senses did you agree on? Give examples of disagreement (if any).
+\item What percentrage of argument {\em roles} did you agree on? Give examples.
+\item What percentrage of argument {\em spans} did you agree on? Give examples.
+\end{enumerate}
+After identifying all disagreements, your final task is to resolve them so that
+you can submit a joint solution.
+
+\newsec{Submit the assignment}{submit}%
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+\begin{itemize}[noitemsep,topsep=0.2cm]
+\item Answers to all questions in Section~\ref{sec:lex} and Section~\ref{sec:compare}.
+\item Your annotated files before and after comparison with a classmate.
+\end{itemize}
+
+\end{document}

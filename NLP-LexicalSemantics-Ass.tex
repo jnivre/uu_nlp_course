@@ -1,0 +1,226 @@
+
+\documentclass[11pt]{article}
+%\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+%\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\usepackage[round]{natbib}
+\setlength{\bibsep}{0.0pt}
+\usepackage{color}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+\usepackage{tikz-dependency}
+\usepackage{enumitem}
+%\usepackage{times}
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+\usepackage{array}
+ 
+
+% See the ``Article customise'' template for come common customisations
+\newcommand{\refeq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\reffig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reftab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refsec}[1]{\textsection\ref{sec:#1}}
+\newcommand{\newsec}[2]{\section{#1}\label{sec:#2}\noindent}
+\newcommand{\newsubsec}[2]{\subsection{#1}\label{sec:#2}\noindent}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} 
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} 
+
+\makeatletter         
+\def\@maketitle{   % custom maketitle 
+\begin{center}%
+{\bfseries \@title}%
+{\bfseries \@author}%
+\end{center}%
+\smallskip \hrule \bigskip }
+
+% custom section 
+\renewcommand{\section}{\@startsection
+{section}%                   % the name
+{1}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+% custom subsection 
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{1.5ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}%
+}\makeatother
+
+%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
+%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 11: Word Sense Disambiguation}}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\maketitle
+%\tableofcontents
+%\vspace{3mm}
+\vspace{-2mm}
+\newsec{Introduction}{intro}%
+In this assignment, we are going to explore the use of machine learning for word sense disambiguation.
+More precisely, we will use NLTK to build Naive Bayes classifiers to disambiguate selected words
+using data from Senseval-2. All files are available in {\tt /local/kurs/nlp/semantics/}.
+
+\paragraph{Acknowledgment:} Thanks to Alex Lascarides for letting us reuse
+and modify an older assignment, including the code in {\tt wsd\_code.py}.
+
+\newsec{Data}{data}%
+The Senseval-2 corpus consists of text from a mixture of places, including the British National Corpus and the Wall Street Journal section of the Penn Treebank. Each word in the corpus is tagged with its part of speech, and the senses of the following target words are also annotated: the noun {\em interest}; the verb {\em serve}; and the adjective {\em hard}. The senses used to annotate each target word come from \ldots \textcolor{red}{FIX THIS!} \ldots and WordNet and are shown in the table below.\footnote{These are subsets of the full set of senses defined in WordNet,
+which is why the numbering of senses is not (always) contiguous.}
+
+\begin{center}
+\scalebox{0.8}{
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll>{\raggedright}p{8.5cm}p{8cm}}
+\textbf{Word} & \textbf{Sense} & \textbf{Definition} & \textbf{Example} \\
+\hline
+interest &interest$_1$ &readiness to give attention&``an interest in music" \\
+&interest$_2$ &quality of causing attention to be given to&``they said nothing of great interest" \\
+&interest$_3$ &activity, etc. that one gives attention to&``she has many interests'' \\
+&interest$_4$ &advantage, advancement or favor & ``in the interest of safety" \\
+&interest$_5$ &a share in a company or business&``they have interests all over the world" \\
+&interest$_6$ &money paid for the use of money&``how much interest do you pay on your mortgage?"\\
+\hline
+hard &hard$_1$ &not easy; requiring great physical or mental effort to accomplish or comprehend or endure &``a hard task" \\
+&hard$_2$ &dispassionate &``a hard bargainer" \\
+&hard$_3$ &resisting weight or pressure &``a hard rock" \\
+\hline
+serve &serve$_2$ &do duty or hold offices; serve in a specific function & ``she served in Congress for two terms" \\
+&serve$_6$ &provide (usually but not necessarily) food & ``we serve meals for the homeless" \\
+&serve$_{10}$ &work for or be a servant to & ``may I serve you?" \\
+&serve$_{12}$ &be sufficient; be adequate, either in quality or quantity & ``nothing else will serve" \\
+\end{tabular}
+}
+\end{center}
+Let us now start exploring the sense-tagged data using the Python interpreter. Copy the file {\tt wsd\_code.py} from {\tt /local/kurs/nlp/semantics/} to your working directory and start the Python interpreter with the command {\tt python3}.
+\begin{center}
+\fbox{
+\scalebox{0.95}{
+\lstinputlisting{code/explore_senses.py}
+}}
+\end{center}
+The session above shows how to use the method {\tt senses()} to list the possible senses of the word \emph{hard} and how
+to retrieve the set of all sense-tagged instances of this word. After using the method {\tt instances()}, the value of {\tt hard} is a list containing all the instances of \emph{hard} in the corpus, and we can retrieve the first instance as {\tt hard[0]}. An instance has
+four different attributes:
+\begin{enumerate}[topsep=0.2cm,noitemsep]
+\item {\tt word} specifies the target word together with its syntactic category; for example,  {\tt hard-a} 
+means that the word is {\em hard} and that its category is {\em adjective};
+\item {\tt position} gives its position within the sentence (starting with position 0);
+\item {\tt context} represents the sentence as a list of pairs, each consisting of a token and its tag; 
+\item {\tt senses} is a tuple, each item in the tuple being a sense for the target word; typically, this tuple consists of only one argument, 
+but there are a few examples in the corpus where there is more than one, representing the fact that the annotator couldn't decide which sense to assign to the word; for simplicity, we are going to ignore any non-first arguments to the attribute {\tt senses}
+\end{enumerate}
+Make sure you understand the representation of instances. Look at a few more instances of \emph{hard} and then do 
+the same for \emph{interest} and \emph{serve} (by replacing {\tt 'hard.pos'} with {\tt 'interest.pos'} and {\tt 'serve.pos'}, respectively).
+
+\newsec{Baseline classifiers}{baseline}%
+Before we build sense classifiers for \emph{interest}, \emph{hard} and \emph{serve}, we need to establish baselines for comparison.
+Two commonly used baselines are the \emph{random} baseline and the \emph{majority} baseline. The random baseline is the accuracy that we can expect from guessing senses randomly. 
+\begin{enumerate}[topsep=0.2cm,noitemsep]
+\item What is the random baseline for \emph{hard} given our current sense inventory?
+\item Is the random baseline the same for \emph{interest} and \emph{serve}? Why (not)?
+\end{enumerate}
+The majority baseline is the accuracy we obtain if we always guess the most frequent sense. We can derive the majority baseline
+for \emph{hard} using NLTK methods as follows:
+\begin{center}
+\fbox{
+\scalebox{0.9}{
+\lstinputlisting{code/majority_baseline.py}
+}}
+\end{center}
+We use the method {\tt nltk.FreqDist()} to compute the distribution of different senses of \emph{hard} in the Senseval 
+corpus. The output is stored in the variable {\tt hard\_dist} and shows that {\tt 'HARD1'} has 3455 occurrences, while {\tt 'HARD2'} 
+and {\tt 'HARD3'} occur only 502 and 376 times, respectively. Hence, by always guessing that \emph{hard} has the first sense,
+we reach an accuracy (on this sample) equal to 3455 / (3455 + 502 + 376) = 0.797, or 79.7\%.
+\begin{enumerate}[topsep=0.2cm,noitemsep]
+\setcounter{enumi}{2}
+\item Compute the majority baselines for \emph{interest} and \emph{serve}, respectively.
+\end{enumerate}
+\newsec{Naive Bayes classifiers}{naive}%
+We are now going to compare the performance of different classifiers that perform word sense disambiguation, using
+the method {\tt wsd\_classifier()}, which must have at least the following arguments specified by you:
+\begin{enumerate}[topsep=0.2cm,noitemsep]
+\item a trainer, in this case {\tt NaiveBayesClassifier.train};
+\item a target word: {\tt 'hard.pos'}, {\tt 'interest.pos'} or {\tt 'serve.pos};
+\item one of two feature representations:
+\begin{itemize}[noitemsep,topsep=0.1cm]
+\item {\tt wsd\_word\_features}:
+a bag-of-words representation defined over the 300 most frequent words that co-occur with the target word in the training corpus
+(after filtering out stop words);
+\item {\tt wsd\_context\_features}:
+a collocational feature representation consisting of 3 preceding and 3 succeeding word-tag pairs;
+\end{itemize}
+\end{enumerate}
+The method splits the data available for a target word into a {\em training set} and a {\em test set}, trains a Naive Bayes
+classifier on the training set, and evaluates its accuracy on the test set. Here is how you use the method to evaluate
+the bag-of-words model for the target word \emph{hard}:
+\begin{center}
+\fbox{
+\scalebox{0.8}{
+\lstinputlisting{code/naive_bayes.py}
+}}
+\end{center}
+You should do the following:
+\begin{enumerate}[noitemsep,topsep=0.2cm]
+\item Evaluate both feature representations for all three target words.
+\item Compare the results for different classifiers, including your baselines.
+\end{enumerate}
+
+\newsec{Error analysis}{submit}%
+After analyzing the performance of a classifier, it is useful to perform an error analysis. By providing additional arguments
+to {\tt wsd\_classifier()}, you can get a confusion matrix as well as a printout of all the errors.
+\begin{center}
+\fbox{
+\scalebox{0.55}{
+\lstinputlisting{code/error.py}
+}}
+\end{center}
+The relevant arguments are {\tt confusion\_matrix=True} and {\tt log=True}, but note that you must also insert the argument
+{\tt distance=3} to get the right interpretation. The errors are printed to an external file called {\tt errors.txt}. Do an error analysis
+of the best performing classifier for each target word, answering the following questions:
+\begin{enumerate}
+\item Using the confusion matrix, identify which sense is the hardest one for the model to estimate.
+\item Look in {\tt errors.txt} for examples where that hardest word sense is the correct label. 
+Do you see any patterns or systematic errors? If so, can you think of a way to adapt the feature representation to improve the model?
+\end{enumerate}
+\newsec{Submit the assignment}{submit}%
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+\begin{itemize}[noitemsep,topsep=0.2cm]
+\item A table summarizing the results for four classifiers (random, majority, bag-of-words, collocation) and three target words
+(\emph{hard}, \emph{interest}, \emph{serve}).
+\item An error analysis for the best classifier for each target word.
+\end{itemize}
+
+\end{document}

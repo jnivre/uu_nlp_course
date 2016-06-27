@@ -1,0 +1,15 @@
+>>> import treebank_grammar as tg
+>>> g = tg.extract_simple_pcfg(1000)
+>>> tg.print_grammar(g, "PP")
+PP -> ADJ ADP NP [0.00413394]
+PP -> ADJ ADV PP PUNCT ADV PP [0.000413394]
+PP -> ADJ NP [0.000413394]
+PP -> ADP ADJP [0.000413394]
+PP -> ADP ADP NP [0.00289376]
+PP -> ADP ADVP [0.00289376]
+PP -> ADP FRAG [0.000413394]
+PP -> ADP NP [0.827615]
+PP -> ADP NP ADVP [0.000413394]
+PP -> ADP NP NP [0.000413394]
+PP -> ADP NP PP [0.00124018]
+...
