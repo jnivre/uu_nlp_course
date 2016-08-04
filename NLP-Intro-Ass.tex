@@ -87,12 +87,20 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-In many languages, word boundaries are marked by spaces. However, relying on whitespace alone seldom gives an adequate tokenization. In this assignment, you will 
-inspect the output of a tokenizer that only segments tokens separated by whitespace, discuss the shortcomings of this approach, and start to think about how they
-can be overcome. In the process, you will get acquainted with the Python programming language (if you haven't used it before).
-All the files needed for the assignment are in {\tt /local/kurs/nlp/basic/}.
+\vspace{-2mm} \newsec{Introduction}{intro}%
+In many languages, word boundaries are marked by spaces. However,
+relying on whitespace alone seldom gives an adequate tokenization. In
+this assignment, you will inspect the output of a tokenizer that only
+segments tokens separated by whitespace, discuss the shortcomings of
+this approach, and start to think about how they can be overcome. In
+the process, you will get acquainted with the Python programming
+language (if you haven't used it before).  All the files needed for
+the assignment are in {\tt /local/kurs/nlp/basic1/}. Start by copying
+them into your home directory:\\
+{\tt cd}\\
+{\tt mkdir NLP\_Assignment\_1}\\
+{\tt cp /local/kurs/nlp/basic1/* NLP\_Assignment\_1}\\
+{\tt cd NLP\_Assignment\_1}
 
 \newsec{Tokenize some text}{tokenize}%
 The file {\tt tokenizer0.py} contains the simplest possible tokenizer:
@@ -101,35 +109,52 @@ The file {\tt tokenizer0.py} contains the simplest possible tokenizer:
 \lstinputlisting{code/tokenizer0.py}
 }
 \end{center}
-The first line imports the {\tt re} module (for regular expressions) and the {\tt sys} module (for reading from stdin). The main program consists of two nested for loops: 
-For each line in the input file, split the line into tokens at (one or more) whitespace characters ({\tt {$\backslash$}s+}), and print each token.
-To run the tokenizer on the file {\tt dev1-raw.txt} and print the result to the (new) file {\tt dev1-tok.txt}, run the following command:
+The first line imports the {\tt re} module (for regular expressions)
+and the {\tt sys} module (for reading from stdin). The main program
+consists of two nested {\tt for} loops: For each line in the input
+file, split the line into tokens at (one or more) whitespace
+characters ({\tt {$\backslash$}s+}), and print each token.  To run the
+tokenizer on the file {\tt dev1-raw.txt} and print the result to the
+(new) file {\tt dev1-tok.txt}, run the following command:
 \begin{verbatim}
     python3 tokenizer0.py < dev1-raw.txt > dev1-tok.txt
 \end{verbatim}
-Check that {\tt dev1-tok.txt} contains a sequence of tokens, one on each line, and you're good to go.
+Check that {\tt dev1-tok.txt} contains a sequence of tokens, one on
+each line, and you're good to go.
 
 \paragraph{Note on Python versions:} 
-We will in general use version 3 of Python in this course. 
-Depending on what is the default version on your system, this may require that you replace {\tt python3} by simply {\tt python} in the above command. 
+We will in general use version 3 of Python in this course. Depending
+on the default version on your system, this may require that you
+replace {\tt python3} by simply {\tt python} in the above command.
 Ask your teacher if you are uncertain.
 
 \newsec{Analyze the result}{analyse}%
-Go through the output file and try to identify problems in the tokenization. Use your intuition about what units are convenient for further linguistic analysis
-and try to find arguments for why a particular segmentation may lead to problems, for example, when we perform a grammatical analysis or try
-to look up words in a lexicon. (We are going to make this more precise next time, but it is useful for you to create your own opinion first.)
-Most problems you encounter will be either cases of \emph{oversplitting}, where the tokenizer has split what should have been one token into 
-several tokens, or \emph{undersplitting}, where the tokenizer has failed to split a string into multiple tokens. Try to categorize different cases of oversplitting
-and undersplitting and think about how they could be eliminated.
+Go through the output file and try to identify problems in the
+tokenization. Use your intuition about what units are convenient for
+further linguistic analysis and try to find arguments for why a
+particular segmentation may lead to problems, for example, when we
+perform a grammatical analysis or try to look up words in a
+lexicon. (We are going to make this more precise next time, but it is
+useful for you to create your own opinion first.)  Most problems you
+encounter will be either cases of \emph{oversplitting}, where the
+tokenizer has split what should have been one token into several
+tokens, or \emph{undersplitting}, where the tokenizer has failed to
+split a string into multiple tokens. Try to categorize different cases
+of oversplitting and undersplitting and think about how they could be
+eliminated.
 
 \newsec{Correct the tokenization}{correct}%
-When you have identified the tokenization errors, you should correct them manually using a text editor. You should correct at least the first ten lines
-of the text in {\tt dev1-raw.txt} (ending just before the word ``Pacific'').
+When you have identified the tokenization errors, you should correct
+them manually using a text editor. You should correct at least the
+first ten lines of the text in {\tt dev1-raw.txt} (ending just before
+the word ``Pacific'').
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se} {\bf before midnight November 11}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se} {\bf before 20:00h November 10}: 
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item Tokenized text corresponding to the first 10 lines of {\tt dev1-raw.txt}.
+\item Tokenized text corresponding to the first 10 lines of {\tt
+    dev1-raw.txt} as a text file named according to the pattern {\tt
+    yourlastname\_assignment0.txt}. % No other file format (.doc, .xls, .ods, etc.) will be accepted.
 \end{itemize}
 
 %\bigskip

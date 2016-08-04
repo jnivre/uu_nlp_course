@@ -87,22 +87,37 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-In this assignment, we are going to refine a tokenizer to handle phenomena such as punctuation, abbreviations, contractions, and words containing non-alphabetic characters.
-We are also going to add a simple mechanism for sentence segmentation. We are going to use the same text as last time when developing the tokenizer, but in the end we
-are also going to evaluate it on a previously unseen (but similar) text. All the files needed for the assignment are in {\tt /local/kurs/nlp/basic/}.
+\vspace{-2mm} \newsec{Introduction}{intro}%
+In this assignment, we are going to refine a tokenizer to handle
+phenomena such as punctuation, abbreviations, contractions, and words
+containing non-alphabetic characters. We will also add a simple
+mechanism for sentence segmentation. For development of the tokenizer,
+we use the same text as in Assignment 1 when we manually screened and
+corrected the output of the simple tokenizer. As soon as we are
+satisfied with the performance of the tokenizer on this text, we will
+then evaluate it on a previously unseen (but similar) text. All the
+files needed for the assignment are in {\tt
+  /local/kurs/nlp/basic2/}. Again, start by making copies into your home
+directory (see Assignment 1 for details).
 
 \newsec{The gold standard}{gold}%
-The file {\tt dev1-gold.txt} contains the correct tokenization of the text in {\tt dev1-raw.txt} according to the widely adopted Penn Treebank standard. 
-Have a look at the tokenized text and make sure that you understand the principles
-by which it has been tokenized. Most of the tokens are either regular words or punctuation marks, but note the following:
+The file {\tt dev1-gold.txt} contains the correct tokenization of the
+text in {\tt dev1-raw.txt} according to the widely adopted Penn
+Treebank standard.  Have a look at the tokenized text and make sure
+that you understand the principles by which it has been
+tokenized. Most of the tokens are either regular words or punctuation
+marks, but note the following:
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item Numerical expressions like {\tt 3.8} are treated as single tokens.
-\item Logograms like {\tt \%} and {\tt \$} are treated as separate tokens.
-\item Contractions like {\tt it's} and {\tt don't} are split into two tokens -- but how? 
-\item Straight quotation marks ({\tt "}) have been changed to opening ({\tt ``}) or closing ({\tt ''}) quotation marks.
-%\item An end-of-sentence period ({\tt .}) has been inserted in two places -- can you find them?
+\item Numerical expressions like {\tt 3.8} are treated as single
+  tokens.
+\item Logograms like {\tt \%} and {\tt \$} are treated as separate
+  tokens.
+\item Contractions like {\tt it's} and {\tt don't} are split into two
+  tokens -- but how?
+\item Straight quotation marks ({\tt "}) have been changed to opening
+  ({\tt ``}) or closing ({\tt ''}) quotation marks.
+  % \item An end-of-sentence period ({\tt .}) has been inserted in two
+  %   places -- can you find them?
 \end{itemize}
 
 \newsec{A pattern-matching tokenizer}{tokenize}%
@@ -112,65 +127,132 @@ The file {\tt tokenizer1.py} contains a very simple tokenizer:
 \lstinputlisting{code/tokenizer1.py}
 }
 \end{center}
-The main difference compared to the whitespace tokenizer used in Exercise 1 is that we are now trying to define what a valid token looks like, instead of just using whitespace
-to find token boundaries. Therefore, we use the Python method {\tt re.findall} instead of {\tt re.split}. This method takes as arguments a regular expression and a string, and returns
-a list of all the matches found in the string. The matching is done from left to right and greedily tries to find the largest possible match each time. Let us consider the regular 
-expression used in {\tt tokenizer1.py}:
+The main difference compared to the whitespace tokenizer used in
+Assignment 1 is that we are now trying to define what a valid token
+looks like, instead of just using whitespace to find token
+boundaries. Therefore, we use the Python method {\tt re.findall}
+instead of {\tt re.split}. This method takes as arguments a regular
+expression and a string, and returns a list of all the matches found
+in the string. The matching is done from left to right and greedily
+tries to find the largest possible match each time. Let us consider
+the regular expression used in {\tt tokenizer1.py}:
 \begin{center}
 \fbox{
 \lstinputlisting{code/tok1.py}
 }
 \end{center}
-The regular expression, enclosed in double quotes ({\tt "}), is a simple union expression, where the first part is a character set containing the most common punctuation marks
-({\tt [,;:.!?$\backslash$"]}), and the second part is an expression ({\tt $\backslash$w+}) matching any non-empty sequence of alpha-numeric characters. Note that the double
-quotes must be escaped in the set of punctuation marks. Why? 
-%In addition, there are two pairs of round brackets in the regular expression, one enclosing the entire disjunction, 
-%and one enclosing an empty string at the end of the second part. These brackets are completely superfluous as far as the matching is concerned. They are only there to guarantee 
-%that the behavior of the program will not change if you later feel the need to add your own brackets for grouping. (Unless you are especially interested in the inner workings of Python, 
-%you can completely ignore this technicality for now as long as you don't remove the brackets.)
+The regular expression, enclosed in double quotes ({\tt "}), is a
+simple union expression, where the first part is a character set
+containing the most common punctuation marks ({\tt
+  [,;:.!?$\backslash$"]}), and the second part is an expression ({\tt
+  $\backslash$w+}) matching any non-empty sequence of alpha-numeric
+characters. Note that the double quotes must be escaped in the set of
+punctuation marks. Why?
+% In addition, there are two pairs of round brackets in the regular
+% expression, one enclosing the entire disjunction, and one enclosing
+% an empty string at the end of the second part. These brackets are
+% completely superfluous as far as the matching is concerned. They are
+% only there to guarantee that the behavior of the program will not
+% change if you later feel the need to add your own brackets for
+% grouping. (Unless you are especially interested in the inner
+% workings of Python, you can completely ignore this technicality for
+% now as long as you don't remove the brackets.)
 
-%\paragraph{Note on Python versions:} In this and following exercises, we will use version 3 of Python because it assumes the Unicode text encoding as default. On most systems,
-%this means that you should type {\tt python3}, instead of simply {\tt python}, when running a Python program. Make sure that you can get {\tt tokenizer1.py} to run on your system
-%before proceeding further and consult the teacher otherwise.
+% \paragraph{Note on Python versions:} In this and following
+% exercises, we will use version 3 of Python because it assumes the
+% Unicode text encoding as default. On most systems, this means that
+% you should type {\tt python3}, instead of simply {\tt python}, when
+% running a Python program. Make sure that you can get {\tt
+% tokenizer1.py} to run on your system before proceeding further and
+% consult the teacher otherwise.
 
-\newsec{Refine the tokenizer}{refine}%
-Run {\tt tokenizer1.py} on {\tt dev1-raw.txt} and compare the output to {\tt dev1-gold.txt} using the linux command {\tt diff}. This gives you a list of the problems you have to fix.
-Your task is to modify the regular expression used for matching in order to eliminate as many of the problems as possible. A good strategy is to concentrate on one type of token at a time,
-and add a new subexpression to the disjunction, specifically designed to handle that token type. Note that Python processes the regular expression form left to right, which means
-that earlier subexpressions will take priority over later subexpressions if they have overlapping matches. (The two subexpressions in the original expression never have
-overlapping matches. Why?) If you need help, consult the Python documentation at {\tt https://docs.python.org/3/howto/regex.html}. If you want to measure the exact precision and recall on the token level, you can use {\tt score-tokens.py} as follows:
+\newsec{Refine the tokenizer (10 P)}{refine}%
+Run {\tt tokenizer1.py} on {\tt dev1-raw.txt}, and compare the output
+to {\tt dev1-gold.txt} using the Linux command {\tt diff}: \\
+
+\noindent
+{\tt python3 tokenizer1.py dev1-raw.txt > dev1-tok.txt}\\
+
+\noindent
+{\tt diff dev1-gold.txt dev1-tok.txt}\\
+
+\clearpage
+\noindent
+This gives you a list of the problems you have to fix. The left column
+corresponds to the gold standard token and the right column
+corresponds to the token given by the tokenizer. Your task is to
+modify the regular expression used for matching in order to eliminate
+as many of the problems as possible. A good strategy is to concentrate
+on one type of token at a time, and add a new subexpression to the
+disjunction, specifically designed to handle that token type. Note
+that Python processes the regular expression form left to right, which
+means that earlier subexpressions will take priority over later
+subexpressions if they have overlapping matches. (The two
+subexpressions in the original expression never have overlapping
+matches. Why?) If you need help, consult the Python documentation at
+{\tt https://docs.python.org/3/howto/regex.html}. If you want to
+measure the exact precision and recall on the token level, you can use
+{\tt score-tokens.py} as follows:
 \begin{verbatim}
     python3 score-tokens.py dev1-gold.txt dev1-tok.txt
 \end{verbatim}
 
 
-\paragraph{Note on quotation marks:} In order to match the gold tokenization exactly, you would not only have to segment the text correctly but in addition replace
-any token of the form ({\tt "}) by either ({\tt ``}) or ({\tt ''}). For the purpose of this assignment, you can ignore any errors that only concern the form of quotation marks,
-which is also what the evaluation script {\tt score-tokens.py} does.
+\paragraph{Note on quotation marks:} In order to match the gold
+tokenization exactly, you would not only have to segment the text
+correctly but in addition replace any token of the form ({\tt "}) by
+either ({\tt ``}) or ({\tt ''}). For the purpose of this assignment,
+you can ignore any errors that only concern the form of quotation
+marks, which is also what the evaluation script {\tt score-tokens.py}
+does.
 
-\paragraph{Note on Python regular expression matching:} The original regular expression is surrounded by a single pair of round brackets, and each match returned
-by {\tt findall} (in the variable {\tt token}) is a string matching the entire regular expression. When you refine the expression, you may have to add internal brackets to get the right grouping of subexpressions. This will change the behavior of the program and each match will now return a tuple of strings matching the different bracketings, where the first 
-element is always the string matching the entire regular expression. In this case, you therefore have to change {\tt print(token)} to {\tt print(token[0])} to get the right output.
+\paragraph{Note on Python regular expression matching:} The original
+regular expression is surrounded by a single pair of round brackets,
+and each match returned by {\tt findall} (in the variable {\tt token})
+is a string matching the entire regular expression. When you refine
+the expression, you may have to add internal brackets to get the right
+grouping of subexpressions. This will change the behavior of the
+program and each match will now return a tuple of strings matching the
+different bracketings, where the first element is always the string
+matching the entire regular expression. In this case, you therefore
+have to change {\tt print(token)} to {\tt print(token[0])} to get the
+right output.
  
-\newsec{Add sentence segmentation}{sent}%
-The final task is to add sentence segmentation to the tokenization process. In general, this is a rather hard problem, but for the sentences in {\tt dev1-raw.txt} it should not be too difficult to come up with something reasonable. It is customary to mark sentence boundaries by a blank line, so you just need to come up with rules for inserting a blank line after each sentence (including the last one). When you have done this, you can compare your output to {\tt dev1-gold-sent.txt}, which is identical to {\tt dev1-gold.txt} except that sentence boundaries have been inserted.
+\newsec{Add sentence segmentation (5 P)}{sent}%
+The final task is to add sentence segmentation to the tokenization
+process. In general, this is a rather hard problem, but for the
+sentences in {\tt dev1-raw.txt} it should not be too difficult to come
+up with something reasonable. It is customary to mark sentence
+boundaries by a blank line, so you just need to come up with rules for
+inserting a blank line after each sentence (including the last
+one). When you have done this, you can compare your output to {\tt
+  dev1-gold-sent.txt}, which is identical to {\tt dev1-gold.txt}
+except that sentence boundaries have been inserted.
 
-\paragraph{Note on sentence-final abbreviations:} When an abbreviation such as {\tt e.g.} occurs at the end of a sentence, orthographic conventions prescribe 
-that there is no final stop ({\tt .}) to end the sentence. According to the Penn Treebank standard, however, the final stop should be restored as part
-of the sentence segmentation process, which means that an additional token is inserted in this case. For the purpose of this assignment, you can ignore 
-this complication.
+\paragraph{Note on sentence-final abbreviations:} When an abbreviation
+such as {\tt e.g.} occurs at the end of a sentence, orthographic
+conventions prescribe that there is no final stop ({\tt .}) to end the
+sentence. According to the Penn Treebank standard, however, the final
+stop should be restored as part of the sentence segmentation process,
+which means that an additional token is inserted in this case. For the
+purpose of this assignment, you can ignore this complication.
 
-\newsec{Evaluate the system}{eval}%
-When you are confident that you have made all the improvements possible, let the teacher know and you will get a fresh text called {\tt dev2-raw.txt} to run your tokenizer on.
-Compare the output of your system against {\tt dev2-gold-sent.txt} and discuss the result.
+\newsec{Evaluate the system (5 P)}{eval}%
+When you are confident that you have made all the improvements
+possible, let the teacher know and you will get a fresh text called
+{\tt dev2-raw.txt} to run your tokenizer on.  Compare the output of
+your system against {\tt dev2-gold-sent.txt} and discuss the result.
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}.\\In order
+to pass you must achieve at least 75\% of the points (= 15/20). 
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item A refined tokenizer with at least 95\% precision and recall on {\tt dev1-raw.txt}\\
-(Submit as a text file named according to the pattern: {\tt yourname-tokenizer1.py})
-\item A short report on what what happened when you ran your tokenizer on {\tt dev2-raw.txt}\\
-(Submit as a text file or pdf document named according to the pattern {\tt yourname-nlp2.(txt|pdf)})\\
+(Submit as a text file named according to the pattern: {\tt yourlastname-tokenizer1.py})
+\item The output file after running your tokenizer on {\tt dev2-raw.txt} ({\tt yourlastname-tok.txt})
+\item A short report on what happened when you ran your tokenizer on {\tt dev2-raw.txt}\\
+(Submit as a text file or pdf document named according to the pattern {\tt yourlastname-nlp2.(txt|pdf)})
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above, and get precision \textbf{and} recall of your tokenizer over 98\% on dev2-raw.txt.
 \end{itemize}
 
 \end{document}
