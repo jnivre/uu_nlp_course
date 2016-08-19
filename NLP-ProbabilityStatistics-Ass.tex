@@ -87,24 +87,31 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-In this assignment, we are going to start using statistical inference to build probability models from data. 
-We will use an English text corpus to estimate bigram probabilities and then use probability
-theory to derive various related probabilities. Next time, we will explore the use of $n$-gram models 
-for the problem of language modeling. All the files needed for the assignment are in {\tt /local/kurs/nlp/ngram/}.
+\vspace{-2mm} \newsec{Introduction}{intro}%
+In this assignment, we are going to start using statistical inference
+to build probability models from data.  We will use an English text
+corpus to estimate bigram probabilities and then use probability
+theory to derive various related probabilities. Next time, we will
+explore the use of $n$-gram models for the problem of language
+modeling. All the files needed for the assignment are in {\tt
+  /local/kurs/nlp/ngram/}. Make copies of the files into your home
+directory.
 
 \newsec{Data and preprocessing}{data}%
-Our statistical sample will be three collections of short stories about Sherlock Holmes by Arthur Conan Doyle,\footnote{The collections
-are {\em The Adventures of Sherlock Holmes}, {\em The Memoirs of Sherlock Holmes}, and {\em The Return of Sherlock Holmes}.}
-available as plain text in the file {\tt holmes.txt}. As usual, we will start by tokenizing the text and segmenting it into sentences. 
-You could in principle use your own tokenizer, but to make sure that everyone has the same version of the text it is better to use
-{\tt tokenizer5.py}, which takes some special properties of this text into account.
+Our statistical sample will be three collections of short stories
+about Sherlock Holmes by Arthur Conan Doyle,\footnote{The collections
+  are {\em The Adventures of Sherlock Holmes}, {\em The Memoirs of
+    Sherlock Holmes}, and {\em The Return of Sherlock Holmes}.}
+available as plain text in the file {\tt holmes.txt}. We will start by
+tokenizing the text and segmenting it into sentences.  You could in
+principle use your own tokenizer, but to make sure that everyone has
+the same version of the text it is better to use {\tt tokenizer5.py},
+which takes some special properties of this text into account.
 
-\newsec{Extract bigram frequencies}{bigrams}%
-Estimation of probabilities is always based on frequency data, and we will start by computing the
-frequency of \emph{word bigrams} in our corpus. This is what the Python program {\tt bigrams.py}
-does.
+\newsec{Extract bigram frequencies (7 P)}{bigrams}%
+Estimation of probabilities is always based on frequency data, and we
+will start by computing the frequency of \emph{word bigrams} in our
+corpus. This is what the Python program {\tt bigrams.py} does.
 
 \begin{center}
 \fbox{
@@ -113,13 +120,14 @@ does.
 \end{center}
 \newpage
 \noindent
-The program reads from {\tt stdin} and prints to {\tt stdout}, so in order to count the bigrams in the text you
-need to run something like:
+The program reads from {\tt stdin} and prints to {\tt stdout}, so in
+order to count the bigrams in the text you need to run something like:
 \begin{verbatim}
     python3 bigrams.py < holmes-tokens.txt > holmes-bigrams.txt
 \end{verbatim}
-The output consists of all bigrams found in the text, sorted alphabetically with one bigram on 
-each line, followed by its frequency. 
+The output consists of all bigrams found in the text, sorted
+alphabetically with one bigram on each line, followed by its
+frequency.
 
 %\paragraph{Note on programming:} 
 %If you don't want to use {\tt bigrams.py}, you can write your own program, 
@@ -127,68 +135,101 @@ each line, followed by its frequency.
 %as described in Ken Church's classic tutorial {\em Unix for Poets}.%
 %\footnote{http://stp.lingfil.uu.se/~ch/ist2014/UnixforPoets.pdf}
 
-\paragraph{Note on sentence boundaries:} If you look closely at {\tt bigrams.py} (or its output), 
-you can see that the two special tokens {\tt <s>} and {\tt <e>} are inserted at sentence boundaries
-to mark the {\em start} and {\em end} of a sentence, respectively. This is necessary to get a properly
-normalized language model eventually, but for now you just need to be aware of it.
+\paragraph{Note on sentence boundaries:} If you look closely at {\tt
+  bigrams.py} (or its output), you can see that the two special tokens
+{\tt <s>} and {\tt <e>} are inserted at sentence boundaries to mark
+the {\em start} and {\em end} of a sentence, respectively. This is
+necessary to get a properly normalized language model eventually, but
+for now you just need to be aware of it.
 
 \vspace{0.3cm}
 \noindent
-Have a look at the bigram frequencies derived from the Holmes corpus and try to answer the following questions 
-before you go on to the next section:
+Have a look at the bigram frequencies derived from the Holmes corpus
+and try to answer the following questions before you go on to the next
+section:
 \begin{enumerate}
-\item How many bigram {\em tokens} are there in the corpus? % wc holmes-tok.txt = 132961
+\item (1 P) How many bigram {\em tokens} are there in the corpus? % wc holmes-tok.txt = 132961
 How many bigram {\em types}? % wc holmes-bi.txt = 50132
-\item What is the most frequent bigram in the corpus? % sort -k 3 -r -n holmes-bi.txt = . <e>
+\item (1 P) What is the most frequent bigram in the corpus? % sort -k 3 -r -n holmes-bi.txt = . <e>
 What is the most frequent bigram that does not involve punctuation or one of the special tokens {\tt <s>} and {\tt <e>}? % of the
-\item What is the frequency of the bigram ``Sherlock Holmes''? % grep 'Sherlock.Holmes' holmes-bi.txt = 94
+\item (1 P) What is the frequency of the bigram ``Sherlock Holmes''? % grep 'Sherlock.Holmes' holmes-bi.txt = 94
 What about ``Holmes Sherlock''? % grep 'Holmes.Sherlock' holmes-bi.txt = 0
-\item How many bigrams only occur once? % grep '[^0-9]1$' holmes-bi.txt | wc = 36763
-\item How many bigrams do not occur at all (assuming that the entire vocabulary is made up of tokens that occur at least once in the corpus)?
+\item (1 P) How many bigrams only occur once? % grep '[^0-9]1$' holmes-bi.txt | wc = 36763
+\item (3 P) How many bigrams do not occur at all (assuming that the entire vocabulary is made up of tokens that occur at least once in the corpus)?
 % grep -v '^$' holmes-tok.txt | sort | uniq | wc = 8806 ; (8806 + 2)^2 - (2 * 8808) = 77 563 248
 \end{enumerate}
 
-\paragraph{Note on linux commands:} The frequencies needed to answer these questions can be computed by a modified version
-of {\tt bigrams.py}. In most cases, however, it is easier to just use standard unix/linux commands like {\tt wc}, {\tt grep}, and {\tt sort}.
-If you are unsure how to do this, check out Appendix~\ref{sec:unix}.
+\paragraph{Note on linux commands:} The frequencies needed to answer
+these questions can be computed by a modified version of {\tt
+  bigrams.py}. In most cases, however, it is easier to just use
+standard unix/linux commands like {\tt wc}, {\tt grep}, and {\tt
+  sort}.  If you are unsure how to do this, check out
+Appendix~\ref{sec:unix}.
 
-\newsec{Maximum likelihood estimation}{mle}%
-The next step is to use the frequency counts to estimate a probability distribution over bigrams, that is,
-the joint distribution $P(w_1, w_2)$, where $w_1$ and $w_2$ are the first and second word of a bigram, respectively.
-We will use the maximum likelihood estimate (MLE). Start by discussing the following questions:
+\newsec{Maximum likelihood estimation (9 P)}{mle}%
+The next step is to use the frequency counts to estimate a probability
+distribution over bigrams, that is, the joint distribution $P(w_1,
+w_2)$, where $w_1$ and $w_2$ are the first and second word of a
+bigram, respectively.  We will use the maximum likelihood estimate
+(MLE). Start by discussing the following questions:
 \begin{enumerate}[itemsep=0pt]
-\item What does it mean that an estimate is MLE? % Maximizes probability of corpus
-\item Let $|W|$ be the number of words in our vocabulary, and let $P(w_1, w_2) = \frac{1}{|W|^2}$ for all $(w_1, w_2)$.\\
-Why is this not an MLE for our corpus? % Too much probability to rare bigrams, not enough to frequent bigrams
-\item What is the MLE of $P(\mbox{Sherlock}_1, \mbox{Holmes}_2)$ for our corpus? % 94 / 132961
-\item What is the MLE of $P(\mbox{Holmes}_1, \mbox{Sherlock}_2)$? % 0
+\item (2 P) What does it mean that an estimate is MLE? % Maximizes probability of corpus
+\item (2 P) Let $|W|$ be the number of words in our vocabulary, and let $P(w_1, w_2) = \frac{1}{|W|^2}$ for all $(w_1, w_2)$.\\
+  Why is this not an MLE for our
+  corpus? % Too much probability to rare bigrams, not enough to frequent bigrams
+\item (1 P) What is the MLE of $P(\mbox{Sherlock}_1, \mbox{Holmes}_2)$ for
+  our corpus? % 94 / 132961
+\item (1 P) What is the MLE of $P(\mbox{Holmes}_1, \mbox{Sherlock}_2)$? % 0
 \end{enumerate}
-When you have convinced yourselves that you can answer these questions, go ahead and compute the MLE
-for all word bigrams occurring in our corpus. For this you need to modify {\tt bigrams.py} so that it prints
-the bigram probability estimate instead of the bigram frequency as the last element on each line.
+When you have convinced yourselves that you can answer these
+questions, go ahead and compute the MLE for all word bigrams occurring
+in our corpus. For this you need to modify {\tt bigrams.py} so that it
+prints the bigram probability estimate instead of the bigram frequency
+as the last element on each line (3 P).
 
-\newsec{More probability estimates}{refine}%
-Given your estimates of the joint bigram probabilities, you should be able to derive estimates for the following:
+\newsec{More probability estimates (4 P)}{refine}%
+Given your estimates of the joint bigram probabilities, you should be
+able to derive estimates for the following:
 \begin{enumerate}[itemsep=0pt]
-\item The marginal probability $P(w_1)$
-\item The conditional probability $P(w_2 | w_1)$
+\item (2 P) The marginal probability $P(w_1)$
+\item (2 P) The conditional probability $P(w_2 | w_1)$
 \end{enumerate}
-As long as you can describe how these estimates are derived, you don't need to write programs that
-actually compute them (but you are of course welcome to do so if you wish).
+To pass the assignment, it is sufficient to describe how these
+estimates are derived, you do not neccessarily have to write programs
+that acutally compute them.
+%As long as you can describe how these estimates are derived, you don't
+%need to write programs that actually compute them (but you are of
+%course welcome to do so if you wish).
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se} {\bf before
+  20:00h November 19th}.\\In order to pass you must provide answers to
+all exercises and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item Answers to all the questions in Sections 3--5\\
-(Submit as text/pdf named {\tt yourname-nlp3.(txt|pdf)})
+\item Answers to all the questions in Sections 3--5, including not
+  only the results, but also a (possibly very short) description
+  (commands/reasoning) of how you got to these
+  results.\\ % last year we had a lot of answers that just gave the
+             % numbers and it was hard to judge whether or not the
+             % student had thought right (and just miss-calculated) or
+             % whether the thought was wrong. This makes a large
+             % difference and facilitates the grading for us.
+  (Submit as text/pdf named {\tt yourlastname-nlp3.(txt|pdf)})
 \item A program that computes bigram probabilities and its output for {\tt holmes.txt}\\
-(Subit as text files named {\tt yourname-bigrams.py} and {\tt yourname-bigrams.txt})
+  (Submit as text files named {\tt yourlastname-bigrams.py} and {\tt
+    yourlastname-bigrams.txt})
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18
+  points in the exercises above, and submit and additional version of
+  your program {\tt bigram.py}, which prints also the marginal and
+  conditional probabilities ({\tt
+    yourlastname-marginal-conditional.py}).
 \end{itemize}
 
 \appendix
 \newsec{Useful unix/linux commands}{unix}%
 \begin{itemize}
-\item To count the number of lines, words, and characters in a file, use {\tt wc}:
+\item To count the number of lines, words, and characters in a file,
+  use {\tt wc}:
 \begin{verbatim}
 prompt$ wc holmes-tokens.txt
   132961  126113  587964 holmes-tokens.txt
