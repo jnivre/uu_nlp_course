@@ -138,27 +138,45 @@ the log probability was $-$178072 and the perplexity (ppl) was 133.086.\footnote
 is computed without end-of-sentence tokens and can be ignored for now.} Remember that perplexity, as well as the related
 entropy measure, tells us how surprised or confused the model is when seeing the test data, so lower perplexity is better.
 
-\newsec{Explore different test sets}{sets}%
-Our first test set is drawn from the same author and the same genre as our training set. What happens if we apply the model
-to the other two test sets? What happens if we apply the model to the training set itself? Discuss the results of these experiments.
+\newsec{Explore different test sets (10 P)}{sets}%
+Our first test set is drawn from the same author and the same genre as
+our training set. What happens if we apply the model to the other two
+test sets? What happens if we apply the model to the training set
+itself? Discuss the results of these experiments.
 
-\newsec{Explore different language models}{models}%
-Our first language model was a bigram model with simple additive smoothing. What happens if we change the $n$-gram order?
-Explore at least unigrams and trigrams on all three test sets with the same smoothing method. Decide which model works
-best and switch the smoothing method for this model to Kneser-Ney smoothing (a type of backoff smoothing). Discuss the results of 
-these experiments.
+\newsec{Explore different language models (10 P)}{models}%
+Our first language model was a bigram model with simple additive
+smoothing. What happens if we change the $n$-gram order?  Explore at
+least unigrams and trigrams on all three test sets with the same
+smoothing method. Decide which model works best and switch the
+smoothing method for this model to Kneser-Ney smoothing (a type of
+backoff smoothing). Discuss the results of these experiments.
 
-\paragraph{Note on SRILM options:} To change the $n$-gram order, simply change {\tt -order\,2} to {\tt -order\,$n$} (for whatever $n$ you want to try).
-Please note that the $n$-gram order used for testing cannot be higher than the $n$-gram order used for training (but it can be lower). To change
-smoothing method, replace {\tt -addsmooth\,0.01} by {\tt -kndiscount} (for Kneser-Ney discounting). If you want to explore further options, consult the
-SRILM manual at {\small 
-{\tt http://www.speech.sri.com/projects/srilm/manpages/ngram-count.1.html}}. 
+\paragraph{Note on SRILM options:} To change the $n$-gram order,
+simply change {\tt -order\,2} to {\tt -order\,$n$} (for whatever $n$
+you want to try).  Please note that the $n$-gram order used for
+testing cannot be higher than the $n$-gram order used for training
+(but it can be lower). To change smoothing method, replace {\tt
+  -addsmooth\,0.01} by {\tt -kndiscount} (for Kneser-Ney
+discounting). If you want to explore further options, consult the
+SRILM manual at {\small {\tt
+    http://www.speech.sri.com/projects/srilm/manpages/ngram-count.1.html}}.
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}
+\textbf{before 20:00h November 19th}. In order to pass you must
+provide answers to all exercises and achieve at least 15/20 points.
+
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item A table with perplexity results for all the models you tested on the three test sets.
-\item A short discussion of what conclusions you can draw from these results.
+\item A table with perplexity results for all the models you tested on
+  the three test sets (Sections 5+6).
+\item A short discussion of what conclusions you can draw from these
+  results (Sections 5+6).
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18
+  points in the exercises above, and additionally describe the
+  Kneser-Ney smoothing in a bit more detail (in your own words) and
+  how this relates to the results you got in the exercises above.
+
 \end{itemize}
 
 
