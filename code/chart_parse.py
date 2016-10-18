@@ -1,4 +1,4 @@
->>> import treebank-grammar as tg
+>>> import treebank_grammar as tg
 >>> g = tg.extract_simple_pcfg(1000)
 >>> import nltk.parse as np
 >>> c = np.ChartParser(g)
