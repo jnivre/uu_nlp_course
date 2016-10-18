@@ -156,14 +156,36 @@ In addition to reporting the overall \emph{accuracy} (the percentage of tokens t
 %the precision for the NOUN tag is the percentage of words tagged as nouns that are really nouns.
 %The recall is instead the percentage of real nouns that are also tagged as nouns.
 
-\newsec{Tune a tagger (10 P)}{tune}%
+\newsec{Use a shellscript (3 P)}{shell}%
+Shellscripts are used to run several command lines after each other in one single script. We introduce their usage here, because you will run the three commands that were introduced in the previous three sections, namely \emph{train}, \emph{run} and \emph{score} a tagger several times in order to find an optimal setting for your tagger in the next exercise. Shellscripts allow you to better keep track of different parameter settings you used and the results these settings gave. In \texttt{/local/kurs/nlp/tagging/} we give you a shellscript named baseline\_script.sh. Have a look at the script and try to understand what it does. Then run it using the following command:\\
+\texttt{sh baseline\_script.sh}
+%
+%\begin{verbatim}
+%#!/usr/bin/bash
+%
+%# name of the current tagger experiment
+%EXP=baseline
+%
+%# train tagger
+%hunpos-train $EXP_tagger < ewt-train-wt.txt
+%
+%# run tagger
+%hunpos-tag $EXP_tagger < ewt-dev-w.txt > ewt-dev-$EXP.txt
+%
+%# score tagger
+%pythong3 score.py tag ewt-dev-wt.txt ewt-dev-$EXP.txt > result_$EXP.txt
+%
+%\end{verbatim}
+
+\newsec{Tune a tagger (7 P)}{tune}%
 The HunPoS implementation of HMM tagging has a few parameters that can be tuned for better tagging. In particular, the {\tt -t} flag can be used to set the number of
 tags that are taken as context in the contextual probabilities. The default is {\tt -t $\!\!$2}, which means that we train a trigram model. See what happens if you instead use {\tt -t $\!\!$1} or
-{\tt -t $\!\!$3} when training the tagger. This means using a command like:
+{\tt -t $\!\!$3} when training the tagger. This means you copy the shellscript into a new file (e.g. using \texttt{cp baseline\_script.sh t1\_script.sh}, rename the experiment (e.g. 'T1' instead of 'baseline')\footnote{It is most helpful if you give the script file and the experiment within the script the same name and if that name correlated with the parameter setting.} and add the parameter \texttt{-t 1} to the training command in the script:
 \begin{verbatim}
-hunpos-train mytagger -t 1 < ewt-train-wt.txt
+hunpos-train $EXP_tagger -t 1 < ewt-train-wt.txt
 \end{verbatim}
-If you want to explore other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}
+For other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}\\
+For each new parameter setting you try, copy the shellscript, and \textbf{(important!)} rename the experiment at the top of the script (otherwise old results will be overwritten!).
 
 \newsec{Error analysis (7 P)}{error}%
 Once you have tuned the tagger, you should perform a manual error analysis where you go through at least 5 sentences and comment on the errors made by the tagger.
@@ -173,10 +195,12 @@ Are the mistagged words genuinely ambiguous? Why do you think they were mistagge
 Submit the following to {\tt nlp-course@stp.lingfil.uu.se} \textbf{before 20:00h November 25th}. In order to pass you must provide answers to all exercises and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item The output of {\tt score.py} when run on the data as is (exercise 5)
-\item Explain which parameters you used in your final best mode (exercise 6)
-\item The output of {\tt score.py} for your final best model (exercise 6).
-\item A short discussion based on your manual error analysis (exercise 7, max 1 page).
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above, and additionally describe two more parameter settings you used on your way to find the best model, give their scores and short explanations as to why you think they perform worse than the final model (max 1 additional page).
+\item The shellscript you used for your final best model (exercise 6)
+\item The output of {\tt score.py} for your final best model (exercise 7).
+\item  Explain which parameters you used in your final best model (exercise 7)
+and give us a short discussion based on your manual error analysis (exercise 8, max 1 page).
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above. In addition, dive deeper into shell scripting and submit us a more sophisticated shell script which uses at least input variables to modify the parameters in the script and/or loops to run different parameter settings within one script.
+%\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above, and additionally describe two more parameter settings you used on your way to find the best model, give their scores and short explanations as to why you think they perform worse than the final model (max 1 additional page).
 \end{itemize}
 
 \end{document}
