@@ -129,7 +129,7 @@ Each line contains a word and its part-of-speech, separated by a tab. The tag se
 	\hline
 	\end{tabular}
 	\end{quote}
-The development set, which will be used to evaluate the tagger, comes in two versions: {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;
+The development set, which will be used to evaluate the tagger, comes in two versions:\\ {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;\\
 {\tt ewt-dev-wt.txt} contains both words and tags and will be used for comparison when evaluating the output of the tagger.
 All the files needed for the assignment can be found in {\tt /local/kurs/nlp/tagging/}.
 
@@ -147,16 +147,16 @@ hunpos-tag mytagger < ewt-dev-w.txt > ewt-dev-out.txt
 \end{verbatim}
 The tagged output will be stored in the file {\tt ewt-dev-out.txt}.
 
-\newsec{Evaluate a tagger}{eval}%
+\newsec{Evaluate a tagger (3 P)}{eval}%
 To evaluate the output of the tagger, you run the evaluation script {\tt score.py}:
 \begin{verbatim}
 python3 score.py tag ewt-dev-wt.txt ewt-dev-out.txt
 \end{verbatim}
-In addition to reporting the overall \emph{accuracy} (the percentage of tokens that were tagged correctly), the script prints a table showing
-the precision and recall for different part-of-speech tags. For example, the precision for the NOUN tag is the percentage of words tagged as nouns that are really nouns.
-The recall is instead the percentage of real nouns that are also tagged as nouns.
+In addition to reporting the overall \emph{accuracy} (the percentage of tokens that were tagged correctly), the script prints a table showing the precision and recall for different part-of-speech tags. To give an example, say the precision for the NOUN tag is X\%. This means that X\% of all words that have been tagged as a noun are in fact nouns. Now say the recall is Y\%. This means that Y\% of all real nouns in the text have been correctly tagged as nouns by our tagger.
+%the precision for the NOUN tag is the percentage of words tagged as nouns that are really nouns.
+%The recall is instead the percentage of real nouns that are also tagged as nouns.
 
-\newsec{Tune a tagger}{tune}%
+\newsec{Tune a tagger (10 P)}{tune}%
 The HunPoS implementation of HMM tagging has a few parameters that can be tuned for better tagging. In particular, the {\tt -t} flag can be used to set the number of
 tags that are taken as context in the contextual probabilities. The default is {\tt -t $\!\!$2}, which means that we train a trigram model. See what happens if you instead use {\tt -t $\!\!$1} or
 {\tt -t $\!\!$3} when training the tagger. This means using a command like:
@@ -165,15 +165,18 @@ hunpos-train mytagger -t 1 < ewt-train-wt.txt
 \end{verbatim}
 If you want to explore other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}
 
-\newsec{Error analysis}{error}%
+\newsec{Error analysis (7 P)}{error}%
 Once you have tuned the tagger, you should perform a manual error analysis where you go through at least 5 sentences and comment on the errors made by the tagger.
-Are the mistagged words genuinely ambiguous? Why do you think they were mistagged? Is it possible that some of the words are mistagged in the gold standard instead?
+Are the mistagged words genuinely ambiguous? Why do you think they were mistagged? Is it possible that some of the words are mistagged in the gold standard?
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se} \textbf{before 20:00h November 25th}. In order to pass you must provide answers to all exercises and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item The output of {\tt score.py} for your final best model (with information about parameters used).
-\item A short discussion based on your manual error analysis.
+\item The output of {\tt score.py} when run on the data as is (exercise 5)
+\item Explain which parameters you used in your final best mode (exercise 6)
+\item The output of {\tt score.py} for your final best model (exercise 6).
+\item A short discussion based on your manual error analysis (exercise 7, max 1 page).
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above, and additionally describe two more parameter settings you used on your way to find the best model, give their scores and short explanations as to why you think they perform worse than the final model (max 1 additional page).
 \end{itemize}
 
 \end{document}
