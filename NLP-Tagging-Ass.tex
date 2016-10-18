@@ -87,15 +87,22 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-In this assignment, we are going to train and evaluate a statistical part-of-speech tagger for English. We will make use of HunPoS, an open-source implementation of the
-standard HMM tagging model, which is installed on our Linux system. 
+\vspace{-2mm} \newsec{Introduction}{intro}%
+In this assignment, we are going to train and evaluate a statistical
+part-of-speech tagger for English. We will make use of HunPoS, an
+open-source implementation of the standard HMM tagging model, which is
+installed on our Linux system.
 
 \newsec{Data}{data}%
-The data sets we are going to use come from the English Web Treebank.\footnote{The English Web Treebank (https://catalog.ldc.upenn.edu/LDC2012T13)
-contains syntactically annotated texts taken from sources such as weblogs, reviews, question-answers, newsgroups, and email. 
-We use the version distributed by the Universal Dependencies project (http://universaldependencies.github.io/docs/).} The training set {\tt ewt-train-wt.txt} contains sentences like the following, separated by blank lines:
+The data sets we are going to use come from the English Web
+Treebank.\footnote{The English Web Treebank
+  (https://catalog.ldc.upenn.edu/LDC2012T13) contains syntactically
+  annotated texts taken from sources such as weblogs, reviews,
+  question-answers, newsgroups, and email.  We use the version
+  distributed by the Universal Dependencies project
+  (http://universaldependencies.github.io/docs/).} The training set
+{\tt ewt-train-wt.txt} contains sentences like the following,
+separated by blank lines:
 \begin{quote}
 \begin{tt}
 \begin{tabular}{ll}
@@ -111,7 +118,9 @@ significant   &ADJ\\
 \end{tabular}
 \end{tt}
 \end{quote}
-Each line contains a word and its part-of-speech, separated by a tab. The tag set consists of 17 coarse-grained categories taken from the Unviersal Dependencies project and listed in the following table.
+Each line contains a word and its part-of-speech, separated by a
+tab. The tag set consists of 17 coarse-grained categories taken from
+the Unviersal Dependencies project and listed in the following table.
 	\begin{quote}
 	\renewcommand{\tabcolsep}{4pt}
 	\begin{tabular}{|ll|ll|ll|}
@@ -129,19 +138,24 @@ Each line contains a word and its part-of-speech, separated by a tab. The tag se
 	\hline
 	\end{tabular}
 	\end{quote}
-The development set, which will be used to evaluate the tagger, comes in two versions:\\ {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;\\
-{\tt ewt-dev-wt.txt} contains both words and tags and will be used for comparison when evaluating the output of the tagger.
-All the files needed for the assignment can be found in {\tt /local/kurs/nlp/tagging/}.
+        The development set, which will be used to evaluate the tagger, comes in two versions:\\ {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;\\
+        {\tt ewt-dev-wt.txt} contains both words and tags and will be
+        used for comparison when evaluating the output of the tagger.
+        All the files needed for the assignment can be found in {\tt
+          /local/kurs/nlp/tagging/}.
 
-\newsec{Train a tagger}{train}%
-To train a tagger using {\tt ewt-train-wt.txt}, you need to run a command like:
+        \newsec{Train a tagger}{train}%
+        To train a tagger using {\tt ewt-train-wt.txt}, you need to
+        run a command like:
 \begin{verbatim}
 hunpos-train mytagger < ewt-train-wt.txt
 \end{verbatim}
-The trained tagger will be stored in the file {\tt mytagger} (or whatever name you choose for your tagger).
+The trained tagger will be stored in the file {\tt mytagger} (or
+whatever name you choose for your tagger).
 
 \newsec{Run a tagger}{run}%
-Once you have trained a tagger, you can run it on the development set as follows:
+Once you have trained a tagger, you can run it on the development set
+as follows:
 \begin{verbatim}
 hunpos-tag mytagger < ewt-dev-w.txt > ewt-dev-out.txt
 \end{verbatim}
@@ -152,7 +166,13 @@ To evaluate the output of the tagger, you run the evaluation script {\tt score.p
 \begin{verbatim}
 python3 score.py tag ewt-dev-wt.txt ewt-dev-out.txt
 \end{verbatim}
-In addition to reporting the overall \emph{accuracy} (the percentage of tokens that were tagged correctly), the script prints a table showing the precision and recall for different part-of-speech tags. To give an example, say the precision for the NOUN tag is X\%. This means that X\% of all words that have been tagged as a noun are in fact nouns. Now say the recall is Y\%. This means that Y\% of all real nouns in the text have been correctly tagged as nouns by our tagger.
+In addition to reporting the overall \emph{accuracy} (the percentage
+of tokens that were tagged correctly), the script prints a table
+showing the precision and recall for different part-of-speech tags. To
+give an example, say the precision for the NOUN tag is X\%. This means
+that X\% of all words that have been tagged as a noun are in fact
+nouns. Now say the recall is Y\%. This means that Y\% of all real
+nouns in the text have been correctly tagged as nouns by our tagger.
 %the precision for the NOUN tag is the percentage of words tagged as nouns that are really nouns.
 %The recall is instead the percentage of real nouns that are also tagged as nouns.
 
@@ -178,29 +198,54 @@ Shellscripts are used to run several command lines after each other in one singl
 %\end{verbatim}
 
 \newsec{Tune a tagger (7 P)}{tune}%
-The HunPoS implementation of HMM tagging has a few parameters that can be tuned for better tagging. In particular, the {\tt -t} flag can be used to set the number of
-tags that are taken as context in the contextual probabilities. The default is {\tt -t $\!\!$2}, which means that we train a trigram model. See what happens if you instead use {\tt -t $\!\!$1} or
-{\tt -t $\!\!$3} when training the tagger. This means you copy the shellscript into a new file (e.g. using \texttt{cp baseline\_script.sh t1\_script.sh}, rename the experiment (e.g. 'T1' instead of 'baseline')\footnote{It is most helpful if you give the script file and the experiment within the script the same name and if that name correlated with the parameter setting.} and add the parameter \texttt{-t 1} to the training command in the script:
+The HunPoS implementation of HMM tagging has a few parameters that can
+be tuned for better tagging. In particular, the {\tt -t} flag can be
+used to set the number of tags that are taken as context in the
+contextual probabilities. The default is {\tt -t $\!\!$2}, which means
+that we train a trigram model. See what happens if you instead use
+{\tt -t $\!\!$1} or {\tt -t $\!\!$3} when training the tagger. This
+means you copy the shellscript into a new file (e.g. using \texttt{cp
+  baseline\_script.sh t1\_script.sh}, rename the experiment (e.g. 'T1'
+instead of 'baseline')\footnote{It is most helpful if you give the
+  script file and the experiment within the script the same name and
+  if that name correlated with the parameter setting.} and add the
+parameter \texttt{-t 1} to the training command in the script:
 \begin{verbatim}
 hunpos-train $EXP_tagger -t 1 < ewt-train-wt.txt
 \end{verbatim}
 For other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}\\
-For each new parameter setting you try, copy the shellscript, and \textbf{(important!)} rename the experiment at the top of the script (otherwise old results will be overwritten!).
+For each new parameter setting you try, copy the shellscript, and
+\textbf{(important!)} rename the experiment at the top of the script
+(otherwise old results will be overwritten!).
 
 \newsec{Error analysis (7 P)}{error}%
-Once you have tuned the tagger, you should perform a manual error analysis where you go through at least 5 sentences and comment on the errors made by the tagger.
-Are the mistagged words genuinely ambiguous? Why do you think they were mistagged? Is it possible that some of the words are mistagged in the gold standard?
+Once you have tuned the tagger, you should perform a manual error
+analysis where you go through at least 5 sentences and comment on the
+errors made by the tagger.  Are the mistagged words genuinely
+ambiguous? Why do you think they were mistagged? Is it possible that
+some of the words are mistagged in the gold standard?
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se} \textbf{before 20:00h November 25th}. In order to pass you must provide answers to all exercises and achieve at least 15/20 points.
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}
+\textbf{before 20:00h November 25th}. In order to pass you must
+provide answers to all exercises and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item The output of {\tt score.py} when run on the data as is (exercise 5)
 \item The shellscript you used for your final best model (exercise 6)
 \item The output of {\tt score.py} for your final best model (exercise 7).
 \item  Explain which parameters you used in your final best model (exercise 7)
 and give us a short discussion based on your manual error analysis (exercise 8, max 1 page).
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above. In addition, dive deeper into shell scripting and submit us a more sophisticated shell script which uses at least input variables to modify the parameters in the script and/or loops to run different parameter settings within one script.
-%\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above, and additionally describe two more parameter settings you used on your way to find the best model, give their scores and short explanations as to why you think they perform worse than the final model (max 1 additional page).
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18
+  points in the exercises above. In addition, dive deeper into shell
+  scripting and submit us a more sophisticated shell script which uses
+  at least input variables to modify the parameters in the script
+  and/or loops to run different parameter settings within one script.
+  % \item \textbf{[VG]} In order to get the grade VG, reach at least
+  %   18 points in the exercises above, and additionally describe two
+  %   more parameter settings you used on your way to find the best
+  %   model, give their scores and short explanations as to why you
+  %   think they perform worse than the final model (max 1 additional
+  %   page).
 \end{itemize}
 
 \end{document}
