@@ -154,8 +154,11 @@ This command can be broken down into two parts, where the first is:
 java -jar -Xmx2g maltparser-1.8.1.jar
 \end{verbatim}
 \end{small}
-This tells the Java Virtual Machine on your computer to run MaltParser with a heapspace of 2GB. (The heapspace is set by the flag {\tt -Xmx2g}. If you forget this flag, the process will probably run out of memory.)
-The rest of the command consists of specific MaltParser parameters:
+This tells the Java Virtual Machine on your computer to run MaltParser
+with a heapspace of 2GB. (The heapspace is set by the flag {\tt
+  -Xmx2g}. If you forget this flag, the process will probably run out
+of memory.)  The rest of the command consists of specific MaltParser
+parameters:
 
 \vspace{0.2cm}
 \noindent
@@ -167,39 +170,51 @@ The rest of the command consists of specific MaltParser parameters:
 
 \vspace{0.2cm}
 \noindent
-Training a model should take somewhere between 10 seconds and a few minutes, depending on the size of the training set. If it takes longer (or crashes), notify the lab instructor.\footnote{%
-MaltParser has a large number of options that can be used to tune the parser. For more information, see the MaltParser website.}
+Training a model should take somewhere between 10 seconds and a few
+minutes, depending on the size of the training set. If it takes longer
+(or crashes), notify the lab instructor.\footnote{%
+  MaltParser has a large number of options that can be used to tune
+  the parser. For more information, see the MaltParser website.}
 
 \newsec{Parse some new data}{parse}%
-To parse a new set of sentences using the trained parser, run a command like the following:
+To parse a new set of sentences using the trained parser, run a
+command like the following:
 \begin{footnotesize}
 \begin{verbatim}
 java -jar -Xmx2g maltparser-1.8.1.jar -c myparser -m parse -i ewt-dev.conll -o out.conll
 \end{verbatim}
 \end{footnotesize} 
-The first part of the command is the same as for training, telling the JVM to run MaltParser, but the MaltParser parameters are slightly different:
+The first part of the command is the same as for training, telling the
+JVM to run MaltParser, but the MaltParser parameters are slightly
+different:
 
 \vspace{0.2cm}
 \noindent
-\begin{tabular}{lp{15cm}}
-{\tt -c} &The name of the parsing model, which has to be trained beforehand. 
-For example, if we specify {\tt myparser}, the model saved as {\tt myparser.mco} will be used. \\
-{\tt -m} &The processing mode. This should be parse when you are parsing new data. \\
-{\tt -i}	 &The input file to be parsed ({\tt ewt-dev.conll} in our example).\\
-{\tt -o} &The output file where parses will be saved 
-({\tt out.conll} in our example).\\
+\begin{tabular}{lp{15cm}} {\tt -c} &The name of the parsing model,
+  which has to be trained beforehand.
+  For example, if we specify {\tt myparser}, the model saved as {\tt myparser.mco} will be used. \\
+  {\tt -m} &The processing mode. This should be parse when you are parsing new data. \\
+  {\tt -i}	 &The input file to be parsed ({\tt ewt-dev.conll} in our example).\\
+  {\tt -o} &The output file where parses will be saved
+  ({\tt out.conll} in our example).\\
 \end{tabular}
 
 \newsec{Evaluate the parser}{eval}%
-To evaluate the parse results, you first need an evaluation tool. We are going to use {\tt MaltEval.jar}, 
-which you can copy from {\tt /local/kurs/nlp/syntax/}. You can then evaluate your parser by running:
+To evaluate the parse results, you first need an evaluation tool. We
+are going to use {\tt MaltEval.jar}, which you can copy from {\tt
+  /local/kurs/nlp/syntax/}. You can then evaluate your parser by
+running:
 \begin{small}
 \begin{verbatim}
 java -jar -Xmx2g MaltEval.jar -g ewt-dev.conll -s out.conll
 \end{verbatim}
 \end{small}
-The output given is the labeled attachment score (LAS) and the number of tokens included in the evaluation. There are a number of flags that can be used to get more output from MaltEval. For example, to get precision and recall for different dependency relations, add the flag:\footnote{For more information about the options
-available, see the MaltEval user guide, available on the MaltParser website.}
+The output given is the labeled attachment score (LAS) and the number
+of tokens included in the evaluation. There are a number of flags that
+can be used to get more output from MaltEval. For example, to get
+precision and recall for different dependency relations, add the
+flag:\footnote{For more information about the options available, see
+  the MaltEval user guide, available on the MaltParser website.}
 \begin{small}
 \begin{verbatim}
 --GroupBy Deprel:all
@@ -207,22 +222,30 @@ available, see the MaltEval user guide, available on the MaltParser website.}
 \end{small}
 
 \newsec{Do an error analysis}{err}%
-MaltEval can also be used to visualize dependency trees with color coding of parse errors. To visualize the parse trees produced earlier, run:
+MaltEval can also be used to visualize dependency trees with color
+coding of parse errors. To visualize the parse trees produced earlier,
+run:
 \begin{small}
 \begin{verbatim}
 java -jar -Xmx2g MaltEval.jar -g en-ud-dev.conllu -s en-ud-dev-parsed.conllu -v 1
 \end{verbatim}
 \end{small}
-Use the buttons next to the list of the sentences at the bottom to navigate either to the next or previous sentence or to the next or previous parse error. 
+Use the buttons next to the list of the sentences at the bottom to
+navigate either to the next or previous sentence or to the next or
+previous parse error.
 %You can also use the search tool to search for different linguistic phenomena specified by particular part-of-speech tags or dependency labels. For example, to search for sentences containing an instance of the {\tt dobj} relation, select {\tt Gold-standard} from the menu 
 %{\tt Search in:}, select {\tt Deprel} from the menu {\tt Search by:}, select {\tt dobj} from the menu 
 %{\tt Search for:}, and push the {\tt Search} button.
 Go through 5 sentences and discuss the parse errors you see.
 
 \newsec{Submit the assignment}{sub}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}
+\textbf{before 20:00h December 9th}. In order to pass you must provide
+answers to all questions and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item An error analysis based on (at least) 5 sentences.
+\item \textbf{[VG]}: In order to get the grade VG, reach at least 18
+  points in the exercises above.
 \end{itemize}
 
 \end{document}
