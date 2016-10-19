@@ -87,41 +87,50 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-In this assignment, we are going to do PropBank style semantic annotation and study inter-annotator agreement. We are going to focus on one polysemous verb, the verb {\em count}, which occurs exactly 10 times in the 
-training set of the English web treebank. All files needed are available from {\tt /local/kurs/nlp/semantics/}.
+\vspace{-2mm} \newsec{Introduction}{intro}%
+In this assignment, we are going to do PropBank style semantic
+annotation and study inter-annotator agreement. We are going to focus
+on one polysemous verb, the verb {\em count}, which occurs exactly 10
+times in the training set of the English web treebank. All files
+needed are available from {\tt /local/kurs/nlp/semantics/}.
 
 
-\newsec{Study the lexicon}{lex}%
-The lexical entry for the verb {\em count} can be found in the file {\tt count.senses}. It is organized by 
-(numbered) senses, with the first sense being {\tt count.01}:
+\newsec{Study the lexicon (4 P)}{lex}%
+The lexical entry for the verb {\em count} can be found in the file
+{\tt count.senses}. It is organized by (numbered) senses, with the
+first sense being {\tt count.01}:
 
-\input{code/count.01}
-This sense is nicknamed {\tt enumerate} and has two roles: ARG0 = the counter; ARG1 = the thing(s) counted.
-In the example given, the ARG0 role is filled by a chain of coreferring NPs (some of which are empty traces)
-ending in {\tt Sybil Harrington}, while the ARG1 role is filled by the NP {\tt her pennies}. A simpler example would be: 
+\input{code/count.01} This sense is nicknamed {\tt enumerate} and has
+two roles: ARG0 = the counter; ARG1 = the thing(s) counted.  In the
+example given, the ARG0 role is filled by a chain of coreferring NPs
+(some of which are empty traces) ending in {\tt Sybil Harrington},
+while the ARG1 role is filled by the NP {\tt her pennies}. A simpler
+example would be:
 \begin{Verbatim}[fontsize=\small,xleftmargin=\parindent]
 [ARG0 Sybil Harrington] doesn't count.01 [ARG1 her pennies].
 \end{Verbatim}
-Study the rest of {\tt count.senses} and then answer the following questions:
+Study the rest of {\tt count.senses} and then answer the following
+questions:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item How many senses are there altogether?
-\item Construct one example of your own for each sense.
+\item (2 P) How many senses are there altogether?
+\item (2 P) Construct one example of your own for each sense.
 \end{enumerate}
 
-\newsec{Annotate some data}{annotate}%
-The file {\tt count.instances} contains all the sentences in the training set of the English web treebank that
-contains the verb lemma {\tt count}. (The file format is the CoNLL-X format that you previously used in the
-dependency parsing assignment.) Your task is to annotate each sentence in the following way:
+\newsec{Annotate some data (4 P)}{annotate}%
+The file {\tt count.instances} contains all the sentences in the
+training set of the English web treebank that contains the verb lemma
+{\tt count}. (The file format is the CoNLL-X format that you
+previously used in the dependency parsing assignment.) Your task is to
+annotate each sentence in the following way:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item Annotate the verb with the relevant sense.
-\item Annotate all words in an argument with the relevant argument label.
+\item (2 P) Annotate the verb with the relevant sense.
+\item (2 P) Annotate all words in an argument with the relevant argument label.
 \end{enumerate}
-We will keep things simple and simply add the relevant label 
-in the last column of the CoNLL format.\footnote{In general, it is much better to use a dedicated annotation
-tool to prevent typographical errors when editing the file.}
-Thus, here is what the annotation of a hypothetical examle should look like:
+We will keep things simple and simply add the relevant label in the
+last column of the CoNLL format.\footnote{In general, it is much
+  better to use a dedicated annotation tool to prevent typographical
+  errors when editing the file.}  Thus, here is what the annotation of
+a hypothetical examle should look like:
 \begin{Verbatim}[fontsize=\small,xleftmargin=\parindent]
 1    We       we       PRON     PRON     _    2    nsubj    _    A0
 2    count    count    VERB     VERB     _    0    root     _    count.03
@@ -129,27 +138,35 @@ Thus, here is what the annotation of a hypothetical examle should look like:
 4    you      you      PRON     PRON     _    2    nmod     _    A1
 5    .        .        PUNCT    PUNCT    _    0    punct    _    _
 \end{Verbatim}
-Note that your task is restricted to the annotation of predicate senses (like {\tt count.03}) and core
-argument roles (numbered roles like {\tt A0}, {\tt A1} and {\tt A2}). You do not need to annotate modifier
-roles like {\tt AM-TMP} and {\tt AM-LOC}.
+Note that your task is restricted to the annotation of predicate
+senses (like {\tt count.03}) and core argument roles (numbered roles
+like {\tt A0}, {\tt A1} and {\tt A2}). You do not need to annotate
+modifier roles like {\tt AM-TMP} and {\tt AM-LOC}.
 
-\newsec{Compare your annotations}{compare}%
-Team up with a classmate (or two) and compare your respective annotations. {\bf NB:} Make sure 
-to save a copy of your original annotation before starting to compare and discuss them.
-Answer the following questions:
+\newsec{Compare your annotations (12 P)}{compare}%
+Team up with a classmate (or two) and compare your respective
+annotations. {\bf NB:} Make sure to save a copy of your original
+annotation before starting to compare and discuss them.  Answer the
+following questions:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item What percentage of verb senses did you agree on? Give examples of disagreement (if any).
-\item What percentrage of argument {\em roles} did you agree on? Give examples.
-\item What percentrage of argument {\em spans} did you agree on? Give examples.
+\item (4 P) What percentage of verb senses did you agree on? Give
+  examples of disagreement (if any).
+\item (4 P) What percentrage of argument {\em roles} did you agree on?
+  Give examples.
+\item (4 P) What percentrage of argument {\em spans} did you agree on?
+  Give examples.
 \end{enumerate}
-After identifying all disagreements, your final task is to resolve them so that
-you can submit a joint solution.
+After identifying all disagreements, your final task is to resolve
+them so that you can submit a joint solution.
 
 \newsec{Submit the assignment}{submit}%
-Submit the following to {\tt nlp-course@stp.lingfil.uu.se}: 
+Submit the following to {\tt nlp-course@stp.lingfil.uu.se}
+\textbf{before 20:00h December 16th}.
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item Answers to all questions in Section~\ref{sec:lex} and Section~\ref{sec:compare}.
-\item Your annotated files before and after comparison with a classmate.
+\item Answers to all questions in Section~\ref{sec:lex} and
+  Section~\ref{sec:compare}.
+\item Your annotated files before and after comparison with a
+  classmate.
 \end{itemize}
 
 \end{document}
