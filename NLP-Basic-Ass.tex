@@ -171,28 +171,28 @@ Run {\tt tokenizer1.py} on {\tt dev1-raw.txt}, and compare the output
 to {\tt dev1-gold.txt} using the Linux command {\tt diff}: \\
 
 \noindent
-{\tt python3 tokenizer1.py dev1-raw.txt > dev1-tok.txt}\\
+{\tt python3 tokenizer1.py < dev1-raw.txt > dev1-tok.txt}\\
 
 \noindent
-{\tt diff dev1-gold.txt dev1-tok.txt}\\
+{\tt vimdiff dev1-gold.txt dev1-tok.txt}\\
 
 \clearpage
 \noindent
-This gives you a list of the problems you have to fix. The left column
-corresponds to the gold standard token and the right column
-corresponds to the token given by the tokenizer. Your task is to
-modify the regular expression used for matching in order to eliminate
-as many of the problems as possible. A good strategy is to concentrate
-on one type of token at a time, and add a new subexpression to the
-disjunction, specifically designed to handle that token type. Note
-that Python processes the regular expression form left to right, which
-means that earlier subexpressions will take priority over later
-subexpressions if they have overlapping matches. (The two
-subexpressions in the original expression never have overlapping
-matches. Why?) If you need help, consult the Python documentation at
-{\tt https://docs.python.org/3/howto/regex.html}. If you want to
-measure the exact precision and recall on the token level, you can use
-{\tt score-tokens.py} as follows:
+This gives you a list of the problems you have to fix. (You can exit
+vimdiff by typing ``:q'') The left column corresponds to the gold
+standard token and the right column corresponds to the token given by
+the tokenizer. Your task is to modify the regular expression used for
+matching in order to eliminate as many of the problems as possible. A
+good strategy is to concentrate on one type of token at a time, and
+add a new subexpression to the disjunction, specifically designed to
+handle that token type. Note that Python processes the regular
+expression form left to right, which means that earlier subexpressions
+will take priority over later subexpressions if they have overlapping
+matches. (The two subexpressions in the original expression never have
+overlapping matches. Why?) If you need help, consult the Python
+documentation at {\tt https://docs.python.org/3/howto/regex.html}. If
+you want to measure the exact precision and recall on the token level,
+you can use {\tt score-tokens.py} as follows:
 \begin{verbatim}
     python3 score-tokens.py dev1-gold.txt dev1-tok.txt
 \end{verbatim}
@@ -218,7 +218,7 @@ matching the entire regular expression. In this case, you therefore
 have to change {\tt print(token)} to {\tt print(token[0])} to get the
 right output.
  
-\newsec{Add sentence segmentation (5 P)}{sent}%
+\newsec{Add sentence segmentation (3 P)}{sent}%
 The final task is to add sentence segmentation to the tokenization
 process. In general, this is a rather hard problem, but for the
 sentences in {\tt dev1-raw.txt} it should not be too difficult to come
@@ -237,7 +237,7 @@ stop should be restored as part of the sentence segmentation process,
 which means that an additional token is inserted in this case. For the
 purpose of this assignment, you can ignore this complication.
 
-\newsec{Evaluate the system (5 P)}{eval}%
+\newsec{Evaluate the system (7 P)}{eval}%
 When you are confident that you have made all the improvements
 possible, let the teacher know and you will get a fresh text called
 {\tt dev2-raw.txt} to run your tokenizer on.  Compare the output of
@@ -248,13 +248,16 @@ Upload the following to {\it Studentportalen} {\bf before 20:00h
   November 11th.}\\In order to pass you must provide answers to all
 exercises and achieve at least 75\% of the points (15/20 points).
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item A refined tokenizer with at least 95\% precision and recall on {\tt dev1-raw.txt} (to be written in Python: \texttt{.py})\\
+\item A refined tokenizer with at least 95\% precision and recall on {\tt dev1-raw.txt} (written in Python: \texttt{.py})
 \item The output file after running your tokenizer on {\tt
     dev2-raw.txt} (in \texttt{.txt} format)
-\item A short report on what happened when you ran your tokenizer on {\tt dev2-raw.txt}\\ (Submit a \texttt{.pdf} document written in \LaTeX)
+\item A comparison of the output of your tokenizer on {\tt
+    dev2-raw.txt} with {\tt dev2-gold-sent.txt}, discuss the
+  differences (ca. 1/2 page, submit a \texttt{.pdf} document written
+  in \LaTeX\ using submission.tex from Assignment 0)
 \item \textbf{[VG]} In order to get the grade VG, reach at least 18
   points in the exercises above, and get precision \textbf{and} recall
-  of your tokenizer over 98\% on dev2-raw.txt.
+  of your tokenizer over 98\% on dev1-raw.txt.
 \end{itemize}
 
 \end{document}
