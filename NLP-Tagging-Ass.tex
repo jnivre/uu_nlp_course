@@ -205,11 +205,12 @@ contextual probabilities. The default is {\tt -t $\!\!$2}, which means
 that we train a trigram model. See what happens if you instead use
 {\tt -t $\!\!$1} or {\tt -t $\!\!$3} when training the tagger. This
 means you copy the shellscript into a new file (e.g. using \texttt{cp
-  baseline\_script.sh t1\_script.sh}, rename the experiment (e.g. 'T1'
-instead of 'baseline')\footnote{It is most helpful if you give the
-  script file and the experiment within the script the same name and
-  if that name correlated with the parameter setting.} and add the
-parameter \texttt{-t 1} to the training command in the script:
+  baseline\_script.sh t1\_script.sh}, rename the experiment in the
+beginning of the shellscript (e.g. 'T1' instead of
+'baseline')\footnote{It is most helpful if you give the script file
+  and the experiment within the script the same name and if that name
+  correlated with the parameter setting.} and add the parameter
+\texttt{-t 1} to the training command in the script:
 \begin{verbatim}
 hunpos-train $EXP_tagger -t 1 < ewt-train-wt.txt
 \end{verbatim}
@@ -230,11 +231,16 @@ Upload the following to {\it Studentportalen}
 \textbf{before 20:00h November 25th}. In order to pass you must
 provide answers to all exercises and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item The output of {\tt score.py} when run on the data as is (Section 5, \texttt{.txt} format)
-\item The shellscript you used for your final best model (Section 6, \texttt{.sh} format)
-\item The output of {\tt score.py} for your final best model (Section 7, \texttt{.txt} format).
-\item  Explain which parameters you used in your final best model (Section 7)
-and give us a short discussion based on your manual error analysis (Section 8, max 1 page, \texttt{.pdf} written in \LaTeX).
+\item The output of {\tt score.py} when run on the data as is (Section
+  5, \texttt{.txt} format)
+\item The shellscript you used for your final best model (Section 6,
+  \texttt{.sh} format)
+\item The output of {\tt score.py} for your final best model (Section
+  7, \texttt{.txt} format).
+\item Explain which parameters you used in your final best model
+  (Section 7) and give us a short discussion based on your manual
+  error analysis (Section 8, max 1 page, \texttt{.pdf} written in
+  \LaTeX using \texttt{submission.tex} we gave you in Assignment 0).
 \item \textbf{[VG]} In order to get the grade VG, reach at least 18
   points in the exercises above. In addition, dive deeper into shell
   scripting and submit us a more sophisticated shell script which uses
