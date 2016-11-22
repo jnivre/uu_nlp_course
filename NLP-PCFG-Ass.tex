@@ -1,4 +1,3 @@
-
 \documentclass[11pt]{article}
 %\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 \usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
@@ -15,6 +14,12 @@
 %\usepackage{times}
 
 \usepackage[procnames]{listings}
+\usepackage{qtree}
+\lstset{
+    basicstyle=\itshape,
+    xleftmargin=3em,
+    literate={->}{$\rightarrow$}{2}
+}
 \usepackage{color}
  
  
@@ -157,6 +162,25 @@ Try to parse the following sentences with the probabilistic parser:
 - Are you happy with the most probable parse tree for
 \ref{first}--\ref{last}? Discuss!
 
+\newsec{Parse a sentence manually with CKY (optional but required for \textbf{[VG]})}{cky}
+Given the following grammar and lexicon
+\begin{lstlisting}
+S -> NP VP
+VP -> V NP
+VP -> V NP PP
+NP -> NP PP
+PP -> P NP
+NP -> Jane
+NP -> paper
+NP -> scissors
+V -> cuts
+P -> with
+\end{lstlisting}
+Carry out CKY chart parsing by hand, listing all possible parses for the
+sentence: \textit{Jane cuts paper with scissors}\\
+You may either draw the chart or list all the steps (you can hand-draw the chart and add it as a picture to the assignment if you like). (Hint: you may need to modify the grammar, see the textbook for details).
+
+
 \newsec{Submit the assignment}{sub}%
 Upload the following to {\it Studentportalen}
 \textbf{before 20:00h December 9th}. In order to pass you must provide
@@ -166,7 +190,7 @@ answers to all questions and achieve at least 15/20 points.
   Section~\ref{sec:chart}--\ref{sec:web} (\texttt{.pdf} format written
   in \LaTeX).
 \item \textbf{[VG]} In order to get the grade VG reach at least 18
-  points in the exercises above.
+    points in the exercises above as well as do exercise~\ref{sec:cky}.
 \end{itemize}
 
 \end{document}
