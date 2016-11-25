@@ -87,16 +87,22 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-Full morphological analysis and lemmatization normally presupposes a comprehensive lexicon. In this assignment, we will investigate a lexicon-free method for lemmatization of English
-based on rule-based stemming techniques. 
+\vspace{-2mm} \newsec{Introduction}{intro}%
+Full morphological analysis and lemmatization normally presupposes a
+comprehensive lexicon. In this assignment, we will investigate a
+lexicon-free method for lemmatization of English based on rule-based
+stemming techniques.
 
 \newsec{Data}{data}%
-We are going to make use of the same data from the English Web Treebank that we used in the tagging assignment. However, since we are using an approach based on
-hand-crafted rules, we just need a development set and not a separate training set. As input to the lemmatizer, we will use the file {\tt ewt-dev-wt.txt}, which contains both words
-and part-of-speech tags, and the task is to predict the base form of the word. The gold standard is provided in the file {\tt ewt-dev-wtl.txt}, which contains words, tags and lemmas.
-All the files needed can be found in {\tt local/kurs/nlp/tagging/}.
+We are going to make use of the same data from the English Web
+Treebank that we used in the tagging assignment. However, since we are
+using an approach based on hand-crafted rules, we just need a
+development set and not a separate training set. As input to the
+lemmatizer, we will use the file {\tt ewt-dev-wt.txt}, which contains
+both words and part-of-speech tags, and the task is to predict the
+base form of the word. The gold standard is provided in the file {\tt
+  ewt-dev-wtl.txt}, which contains words, tags and lemmas.  All the
+files needed can be found in {\tt local/kurs/nlp/tagging/}.
 
 \newsec{Starter code}{code}%
 The file {\tt lemmatizer.py} contains skeleton code for a rule-based lemmatizer:
@@ -105,8 +111,10 @@ The file {\tt lemmatizer.py} contains skeleton code for a rule-based lemmatizer:
 \lstinputlisting{code/lemmatizer1.py}
 }
 \end{center}
-The main program reads the input file line by line and adds a lemma after the word and tag. It uses three simple methods for lemmatization of nouns, verbs and adjectives 
-and otherwise treats the token as its own lemma. The program is run as follows:
+The main program reads the input file line by line and adds a lemma
+after the word and tag. It uses three simple methods for lemmatization
+of nouns, verbs and adjectives and otherwise treats the token as its
+own lemma. The program is run as follows:
 \begin{verbatim}
 python3 lemmatizer.py < ewt-dev-wt.txt > ewt-dev-out.txt
 \end{verbatim}
@@ -116,7 +124,9 @@ python3 score.py lemma ewt-dev-wtl.txt ewt-dev-out.txt
 \end{verbatim}
 
 \newsec{Improve lemmatization (10 P)}{improve}%
-The simple baseline lemmatizer has an accuracy of 80\%. Your task is to improve the accuracy as much as possible by modifying the code. You may expand existing methods,
+The simple baseline lemmatizer has an accuracy of 80\%. Your task is
+to improve the accuracy as much as possible by modifying the code. You
+may expand existing methods,
 add new methods, or modify the main program, as you see fit. To get inspiration, you can consult the sections on stemming in the textbook. To find out which words your lemmatizer still gets wrong, you may use the \texttt{diff} command on the command line:\\
 
 \noindent
@@ -125,9 +135,24 @@ add new methods, or modify the main program, as you see fit. To get inspiration,
 \noindent
 The goal is to reach at least 85\% accuracy on the development set.
 
-\newsec{Error analysis (10 P)}{error}%
-When you are satisfied with the accuracy of your lemmatizer, you should do a manual analysis of remaining errors. Describe at least 5 error types and discuss how they 
-could be tackled in a more sophisticated lemmatizer.
+\newsec{Error analysis (5 P)}{error}%
+When you are satisfied with the accuracy of your lemmatizer, you
+should do a manual analysis of remaining errors. Describe at least 5
+error types and discuss how they could be tackled in a more
+sophisticated lemmatizer.
+
+\newsec{Illustrate an FST (5 P)} %
+LLemmatizers are often implemented as finite-state-transducers
+(FSTs). While this kind of implementation is beyond the scope of this
+course, Chapter 3.5 (FSTs for Morphological Parsing) of our course
+book gives examples of how FSTs can be visualised. Draw an FST based
+on the initial lemmatizer we gave you on the previous page that can
+analyse the following words: \texttt{cats NOUN}, \texttt{jumped VERB},
+\texttt{higher ADJ}. You can either draw the FST 1) with arcs by hand,
+take a picture, transform it to \texttt{.pdf}, or 2) with arcs using a
+drawing program (e.g. xfig or MS Paint) and transform the output into
+\texttt{.pdf} or 3) using the feasible-pair format given at the end of
+Chapter 3.5 in the course book.
 
 \newsec{Submit the assignment}{submit}%
 Upload the following to {\it Studentportalen}, \textbf{before 20:00h
@@ -140,9 +165,13 @@ exercises and achieve at least 15/20 points.
   \texttt{.txt} format).
 \item The ouput of the scoring script for this lemmatizer (Section 4,
   \texttt{.txt} format).
-\item A discussion of at least 5 remaining error types (Section 5,
+\item A discussion of at least 5 remaining error types (Section 5, ca. 1/2 page,
   \texttt{.pdf} format written in \LaTeX).
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18 points in the exercises above and submit a lemmatizer with at least 95\% accurracy.
+\item A drawing of how the FST corresponding to the initial
+  lemmatizer we gave you would look like (Section 6, in \texttt{.pdf} format)
+\item \textbf{[VG]} In order to get the grade VG, reach at least 18
+  points in the exercises above and submit a lemmatizer with at least
+  95\% accurracy. 
 \end{itemize}
 
 \end{document}
