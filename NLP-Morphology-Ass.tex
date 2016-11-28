@@ -102,7 +102,7 @@ lemmatizer, we will use the file {\tt ewt-dev-wt.txt}, which contains
 both words and part-of-speech tags, and the task is to predict the
 base form of the word. The gold standard is provided in the file {\tt
   ewt-dev-wtl.txt}, which contains words, tags and lemmas.  All the
-files needed can be found in {\tt local/kurs/nlp/tagging/}.
+files needed can be found in {\tt /local/kurs/nlp/tagging/}.
 
 \newsec{Starter code}{code}%
 The file {\tt lemmatizer.py} contains skeleton code for a rule-based lemmatizer:
@@ -148,11 +148,9 @@ course, Chapter 3.5 (FSTs for Morphological Parsing) of our course
 book gives examples of how FSTs can be visualised. Draw an FST based
 on the initial lemmatizer we gave you on the previous page that can
 analyse the following words: \texttt{cats NOUN}, \texttt{jumped VERB},
-\texttt{higher ADJ}. You can either draw the FST 1) with arcs by hand,
-take a picture, transform it to \texttt{.pdf}, or 2) with arcs using a
-drawing program (e.g. xfig or MS Paint) and transform the output into
-\texttt{.pdf} or 3) using the feasible-pair format given at the end of
-Chapter 3.5 in the course book.
+\texttt{higher ADJ}. You can either draw the FST 1) by hand, take a
+picture, transform it to \texttt{.pdf}, or 2) using a drawing program
+(e.g. xfig or MS Paint) and transform the output into \texttt{.pdf}.
 
 \newsec{Submit the assignment}{submit}%
 Upload the following to {\it Studentportalen}, \textbf{before 20:00h
@@ -160,15 +158,19 @@ Upload the following to {\it Studentportalen}, \textbf{before 20:00h
 exercises and achieve at least 15/20 points.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item Code for a lemmatizer that achieves at least 85\% accuracy on
-  the development set (Section 4, \texttt{.py} format).
-\item The output-file this lemmatizer produces (Section 4,
-  \texttt{.txt} format).
-\item The ouput of the scoring script for this lemmatizer (Section 4,
-  \texttt{.txt} format).
-\item A discussion of at least 5 remaining error types (Section 5, ca. 1/2 page,
-  \texttt{.pdf} format written in \LaTeX).
-\item A drawing of how the FST corresponding to the initial
-  lemmatizer we gave you would look like (Section 6, in \texttt{.pdf} format)
+  the development set\\ (Section 4, \texttt{firstname.py\footnote{Please
+      substitute \emph{firstname} by your first name (and only your
+      first name), e.g. \texttt{fabienne.py}}} format).
+\item The output-file this lemmatizer produces\\(Section 4,
+  \texttt{firstname\_output.txt}).
+\item The ouput of the scoring script for this lemmatizer\\ (Section 4,
+  \texttt{firstname\_scoring.txt}).
+\item A discussion of at least 5 remaining error types\\ (Section 5,
+  ca. 1/2 page, \texttt{firstname\_discussion.pdf} written in
+  \LaTeX).
+\item A drawing of how the FST corresponding to the initial lemmatizer
+  we gave you would look like\\ (Section 6,
+  \texttt{firstname\_drawing.pdf})
 \item \textbf{[VG]} In order to get the grade VG, reach at least 18
   points in the exercises above and submit a lemmatizer with at least
   95\% accurracy. 
