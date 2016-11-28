@@ -1,5 +1,5 @@
 
-\documentclass[11pt]{article}
+\documentclass[10.9pt]{article}
 %\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 \usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 %\geometry{a4paper} % or letter or a5paper or ... etc
@@ -107,8 +107,10 @@ Journal section of the treebank. We will start by exploring this data
 set using the interactive Python interpreter.
 
 \begin{center}
+\resizebox{0.8\textwidth}{!}{
 \fbox{
 \lstinputlisting{code/explore_tree.py}
+}
 }
 \end{center}
 The above listing shows how to import the treebank from the {\tt
@@ -125,7 +127,7 @@ used to open a graphical viewer that displays the tree as shown below.
 Inspect the first tree (and as many additional trees as you like) and
 make sure that you understand the phrase structure
 representation. Then answer the following questions about the first
-tree: \newpage
+tree: 
 \begin{enumerate}[noitemsep,topsep=0.2cm]
 \item (1 P) What is the symbol on the root node? [Try {\tt t.label()}.]
 \item (1 P) How many leaf nodes are there? List them. [Try {\tt t.leaves()}.]
