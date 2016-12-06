@@ -1,5 +1,5 @@
 
-\documentclass[11pt]{article}
+\documentclass[10.9pt]{article}
 %\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 \usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 %\geometry{a4paper} % or letter or a5paper or ... etc
@@ -141,6 +141,7 @@ This should produce output starting as follows:
 \end{small}
 If you don't get this output, notify the the lab instructor.
 
+\clearpage
 \newsec{Train a parser}{train}%
 To train a parser, run a command like the following:
 \begin{small}
@@ -239,7 +240,13 @@ previous parse error.
 Go through 5 sentences and discuss the parse errors you see.
 
 \newsec{Parse a sentence by hand (optional but required for \textbf{VG})}{handparse}
-In the previous assignment, you were asked to use the CKY algorithm to parse the sentence \textit{Jane cuts paper with scissors}. In this assignment, we ask you to hand parse it with a transition-based parser. First, construct a dependency tree for the sentence. Then, list all the transitions needed to parse it (if your dependency tree is wrong, you will not lose points, what is important is that you know how to construct the parse tree).
+In the previous assignment, you were asked to use the CKY algorithm to
+parse the sentence \textit{Jane cuts paper with scissors}. In this
+assignment, we ask you to hand parse it with a transition-based
+parser. First, construct a dependency tree for the sentence. Then,
+list all the transitions needed to parse it (if your dependency tree
+is wrong, you will not lose points, what is important is that you know
+how to construct the parse tree).
 
 \newsec{Submit the assignment}{sub}%
 Upload the following to {\it Studentportalen} \textbf{before 20:00h
