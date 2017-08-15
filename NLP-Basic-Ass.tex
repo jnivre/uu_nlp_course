@@ -16,6 +16,7 @@
 
 \usepackage[procnames]{listings}
 \usepackage{color}
+\usepackage{todonotes}
  
  
 
@@ -61,9 +62,7 @@
   {\normalfont\normalsize\bfseries}%
 }\makeatother
 
-%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
-%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 2: Tokenization and Sentence Segmentation}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 2: Tokenization and Sentence Segmentation}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -88,17 +87,17 @@
 %\tableofcontents
 %\vspace{3mm}
 \vspace{-2mm} \newsec{Introduction}{intro}%
-In this assignment, we are going to refine a tokenizer to handle
+In this lab, we are going to refine a tokenizer to handle
 phenomena such as punctuation, abbreviations, contractions, and words
 containing non-alphabetic characters. We will also add a simple
 mechanism for sentence segmentation. For development of the tokenizer,
-we use the same text as in Assignment 1 when we manually screened and
+we use the same text as in Lab 1 when we manually screened and
 corrected the output of the simple tokenizer. As soon as we are
 satisfied with the performance of the tokenizer on this text, we will
 then evaluate it on a previously unseen (but similar) text. All the
-files needed for the assignment are in {\tt
+files needed for the lab are in {\tt
   /local/kurs/nlp/basic2/}. Again, start by making copies into your home
-directory (see Assignment 1 for details).
+directory (see Lab 1 for details).
 
 \newsec{The gold standard}{gold}%
 The file {\tt dev1-gold.txt} contains the correct tokenization of the
@@ -128,7 +127,7 @@ The file {\tt tokenizer1.py} contains a very simple tokenizer:
 }
 \end{center}
 The main difference compared to the whitespace tokenizer used in
-Assignment 1 is that we are now trying to define what a valid token
+Lab 1 is that we are now trying to define what a valid token
 looks like, instead of just using whitespace to find token
 boundaries. Therefore, we use the Python method {\tt re.findall}
 instead of {\tt re.split}. This method takes as arguments a regular
@@ -166,42 +165,46 @@ punctuation marks. Why?
 % tokenizer1.py} to run on your system before proceeding further and
 % consult the teacher otherwise.
 
-\newsec{Refine the tokenizer (10 P)}{refine}%
+\newsec{Refine the tokenizer }{refine}%
 Run {\tt tokenizer1.py} on {\tt dev1-raw.txt}, and compare the output
 to {\tt dev1-gold.txt} using the Linux command {\tt diff}: \\
 
 \noindent
-{\tt python3 tokenizer1.py < dev1-raw.txt > dev1-tok.txt}\\
+{\tt python tokenizer1.py < dev1-raw.txt > dev1-tok.txt}\\
 
 \noindent
+{\tt diff dev1-gold.txt dev1-tok.txt}\\
+
+\textbf{Note:} For better visualisation, you may want to try using vimdiff:\\
 {\tt vimdiff dev1-gold.txt dev1-tok.txt}\\
+Note that vimdiff opens an editor which has different key bindings than
+you may be used to. To quit, press :q.\\
 
-\clearpage
+%\clearpage
 \noindent
-This gives you a list of the problems you have to fix. (You can exit
-vimdiff by typing ``:q'') The left column corresponds to the gold
-standard token and the right column corresponds to the token given by
-the tokenizer. Your task is to modify the regular expression used for
-matching in order to eliminate as many of the problems as possible. A
-good strategy is to concentrate on one type of token at a time, and
-add a new subexpression to the disjunction, specifically designed to
-handle that token type. Note that Python processes the regular
-expression form left to right, which means that earlier subexpressions
-will take priority over later subexpressions if they have overlapping
-matches. (The two subexpressions in the original expression never have
-overlapping matches. Why?) If you need help, consult the Python
-documentation at {\tt https://docs.python.org/3/howto/regex.html}. If
-you want to measure the exact precision and recall on the token level,
-you can use {\tt score-tokens.py} as follows:
+This gives you a list of the problems you have to fix.  The left column
+corresponds to the gold standard token and the right column corresponds to the
+token given by the tokenizer. Your task is to modify the regular expression
+used for matching in order to eliminate as many of the problems as possible. A
+good strategy is to concentrate on one type of token at a time, and add a new
+subexpression to the disjunction, specifically designed to handle that token
+type. Note that Python processes the regular expression form left to right,
+which means that earlier subexpressions will take priority over later
+subexpressions if they have overlapping matches. (The two subexpressions in the
+original expression never have overlapping matches. Why?) If you need help,
+consult the Python documentation at {\tt
+https://docs.python.org/3/howto/regex.html}. If you want to measure the exact
+precision and recall on the token level, you can use {\tt score-tokens.py} as
+follows:
 \begin{verbatim}
-    python3 score-tokens.py dev1-gold.txt dev1-tok.txt
+    python score-tokens.py dev1-gold.txt dev1-tok.txt
 \end{verbatim}
 
 
 \paragraph{Note on quotation marks:} In order to match the gold
 tokenization exactly, you would not only have to segment the text
 correctly but in addition replace any token of the form ({\tt "}) by
-either ({\tt ``}) or ({\tt ''}). For the purpose of this assignment,
+either ({\tt ``}) or ({\tt ''}). For the purpose of this lab,
 you can ignore any errors that only concern the form of quotation
 marks, which is also what the evaluation script {\tt score-tokens.py}
 does.
@@ -218,7 +221,7 @@ matching the entire regular expression. In this case, you therefore
 have to change {\tt print(token)} to {\tt print(token[0])} to get the
 right output.
  
-\newsec{Add sentence segmentation (3 P)}{sent}%
+\newsec{Add sentence segmentation }{sent}%
 The final task is to add sentence segmentation to the tokenization
 process. In general, this is a rather hard problem, but for the
 sentences in {\tt dev1-raw.txt} it should not be too difficult to come
@@ -235,29 +238,12 @@ conventions prescribe that there is no final stop ({\tt .}) to end the
 sentence. According to the Penn Treebank standard, however, the final
 stop should be restored as part of the sentence segmentation process,
 which means that an additional token is inserted in this case. For the
-purpose of this assignment, you can ignore this complication.
+purpose of this lab, you can ignore this complication.
 
-\newsec{Evaluate the system (7 P)}{eval}%
+\newsec{Evaluate the system }{eval}%
 When you are confident that you have made all the improvements
 possible, let the teacher know and you will get a fresh text called
 {\tt dev2-raw.txt} to run your tokenizer on.  Compare the output of
 your system against {\tt dev2-gold-sent.txt} and discuss the result.
-
-\newsec{Submit the assignment}{submit}%
-Upload the following to {\it Studentportalen} {\bf before 20:00h
-  November 11th.}\\In order to pass you must provide answers to all
-exercises and achieve at least 75\% of the points (15/20 points).
-\begin{itemize}[noitemsep,topsep=0.2cm]
-\item A refined tokenizer with at least 95\% precision and recall on {\tt dev1-raw.txt} (written in Python: \texttt{.py})
-\item The output file after running your tokenizer on {\tt
-    dev2-raw.txt} (in \texttt{.txt} format)
-\item A comparison of the output of your tokenizer on {\tt
-    dev2-raw.txt} with {\tt dev2-gold-sent.txt}, discuss the
-  differences (ca. 1/2 page, submit a \texttt{.pdf} document written
-  in \LaTeX\ using submission.tex from Assignment 0)
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18
-  points in the exercises above, and get precision \textbf{and} recall
-  of your tokenizer over 98\% on dev1-raw.txt.
-\end{itemize}
 
 \end{document}
