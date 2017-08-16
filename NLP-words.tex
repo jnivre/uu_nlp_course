@@ -1,0 +1,172 @@
+
+\documentclass[11pt]{article}
+%\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+%\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\usepackage[round]{natbib}
+\setlength{\bibsep}{0.0pt}
+\usepackage{color}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+\usepackage{tikz-dependency}
+\usepackage{enumitem}
+%\usepackage{times}
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+\usepackage{todonotes}
+
+\newenvironment{titlemize}[1]{%
+    \paragraph{#1}
+    \begin{itemize}}
+            {\end{itemize}}
+ 
+ 
+
+% See the ``Article customise'' template for come common customisations
+\newcommand{\refeq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\reffig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reftab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refsec}[1]{\textsection\ref{sec:#1}}
+\newcommand{\newsec}[2]{\section{#1}\label{sec:#2}\noindent}
+\newcommand{\newsubsec}[2]{\subsection{#1}\label{sec:#2}\noindent}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} 
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} 
+
+\makeatletter         
+\def\@maketitle{   % custom maketitle 
+\begin{center}%
+{\bfseries \@title}%
+{\bfseries \@author}%
+\end{center}%
+\smallskip \hrule \bigskip }
+
+% custom section 
+\renewcommand{\section}{\@startsection
+{section}%                   % the name
+{1}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+% custom subsection 
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{1.5ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}%
+}\makeatother
+
+%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
+%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 1: Words}}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\maketitle
+%\tableofcontents
+%\vspace{3mm}
+\section{Introduction}
+\indent This assignment involves material from lectures 1 to 4. We recommend
+that you have watched the relevant videos, read the relevant chapters in the
+textbook and made a serious attempt at completing the relevant labs before you
+attempt this assignment.
+\todo[inline]{What do you think about adding: if you feel you have done that
+and still find the instructions unclear, you are welcome to email the course
+teachers and/or attend office hours}
+The assignment is split into 2 sections, one about tokenization, one about
+language modelling and probability and statistics. Each section is worth 10
+points. We expect between half a page and a page for each section. Please do
+not submit more than 4 pages overall. \todo{adjust the question sizes?}
+You answers for each section should be self-contained.
+\section{Tokenization}
+In the videos and the book chapters, you learned about regular expressions (if
+you did not already know all about them before that ;)). In the labs, you got
+to play with regular expressions in the context of tokenization.
+You started with a very simple tokenizer and gradually refined it by looking at
+the errors it was making. Analysing errors is an important part of the job of
+NLP practitioners. In this part of the assignment, we ask you to analyse the
+errors of your tokenizer.
+
+You will receive a new test set {\tt dev2-raw.txt} to run your tokenizer on.  
+If you are not yet satisfied with your tokenizer, you may want to improve it on
+the test set of the lab.
+\todo[inline]{Should they aim for a score? In last year's set-up they were
+encouraged to reach high accuracy. I think it's a good encouragement to have
+but I'm not sure how to implement this in the assignment.}
+Compare the output of your system against {\tt dev2-gold-sent.txt} and discuss
+the result. Are there still cases of under/oversplitting? If so, can you
+identify the reason? Can you identify difficult challenges?
+\todo{Should we add this on kasus at the time of handing in the assignment?}
+
+\section{Language Modelling}
+\indent In Lab 3, you learned about how to use MLE for language modelling.
+Hopefully, in the lab, you saw its limitations. 
+In Lab 4, you experimented with smoothing methods.\\
+\indent Define MLE and discuss its limitations. Explain the principles behind
+smoothing and how they help circumvent the limitations of MLE. Illustrate this
+with examples. (You may take them from the Sherlock Holmes text but use
+different examples than those we asked you to look at in the labs.)\\
+\indent Discuss different smoothing methods and their advantages and
+disadvantages. Use your results table from the lab to illustrate your points.
+
+\section{Grading Criteria}
+\begin{titlemize}{Basic Criteria}
+    \item The problem is clearly stated and the student demonstrates an
+        understanding of the problem.
+    \item The answer is coherent
+    \item The quality of the answer is in understandable English
+\end{titlemize}
+\begin{titlemize}{Additional Criteria}
+    \item The problem is well illustrated
+    \item Solutions to the problem are described
+    \item The student demonstrates extensive knowledge of the textbook chapter
+\end{titlemize}
+
+\begin{titlemize}{Points}
+    \item 1-4: poor on each of the basic criteria
+    \item 5-6: fair on each of the basic criteria
+    \item 7: at least fair on each of the basic criteria and fair on some of
+        the additional criteria
+    \item 8: at least good on each of the basic criteria and at least fair on
+        each of the additional criteria
+    \item 9: at least good on each of the basic criteria and at least fair and
+        most times good or excellent on each of tem the additional criteria
+    \item 10: good or excellent on each of the basic and additional criteria.
+\end{titlemize}
+
+\section{Submit the assignment}
+\todo{ADD ME}
+To pass the assignment, you must have answered both questions, reached at least
+5 points in each question and at least 12 overall.
+To get VG, you should obtain at least 8 in each question and at least 18 points
+overall.
+
+\end{document}
