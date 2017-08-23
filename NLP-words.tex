@@ -20,8 +20,9 @@
 
 \newenvironment{titlemize}[1]{%
     \paragraph{#1}
-    \begin{itemize}}
-            {\end{itemize}}
+    \begin{itemize}
+        \setlength\itemsep{0pt}}
+    {\end{itemize}}
  
  
 
@@ -94,37 +95,35 @@
 %\tableofcontents
 %\vspace{3mm}
 \section{Introduction}
-\indent This assignment involves material from lectures 1 to 4. We recommend
-that you have watched the relevant videos, read the relevant chapters in the
-textbook and made a serious attempt at completing the relevant labs before you
-attempt this assignment.
-\todo[inline]{What do you think about adding: if you feel you have done that
-and still find the instructions unclear, you are welcome to email the course
-teachers and/or attend office hours}
+\indent This assignment involves material from lectures 1 to 4. You should have
+watched the relevant videos, read the relevant chapters in the textbook and
+made a serious attempt at completing the relevant labs before you attempt this
+assignment.
+If you feel you have done that and still find the instructions unclear, you are
+welcome to email the course teachers and/or go to office hours to ask for
+help.
 The assignment is split into 2 sections, one about tokenization, one about
 language modelling and probability and statistics. Each section is worth 10
 points. We expect between half a page and a page for each section. Please do
-not submit more than 4 pages overall. \todo{adjust the question sizes?}
+not submit more than 4 pages overall. 
 You answers for each section should be self-contained.
 \section{Tokenization}
 In the videos and the book chapters, you learned about regular expressions (if
 you did not already know all about them before that ;)). In the labs, you got
 to play with regular expressions in the context of tokenization.
 You started with a very simple tokenizer and gradually refined it by looking at
-the errors it was making. Analysing errors is an important part of the job of
-NLP practitioners. In this part of the assignment, we ask you to analyse the
-errors of your tokenizer.
+the errors it was making. 
+If you have not done so already, try to improve it so that it reaches at least
+95\% precision and recall.  
+Describe your approach to improving it. You may illustrate the problems you
+dealt with by adding snippets of code.
 
 You will receive a new test set {\tt dev2-raw.txt} to run your tokenizer on.  
-If you are not yet satisfied with your tokenizer, you may want to improve it on
-the test set of the lab.
-\todo[inline]{Should they aim for a score? In last year's set-up they were
-encouraged to reach high accuracy. I think it's a good encouragement to have
-but I'm not sure how to implement this in the assignment.}
+Write down your expectation of how good you think your tokenizer is going to be
+before running it.  
 Compare the output of your system against {\tt dev2-gold-sent.txt} and discuss
 the result. Are there still cases of under/oversplitting? If so, can you
 identify the reason? Can you identify difficult challenges?
-\todo{Should we add this on kasus at the time of handing in the assignment?}
 
 \section{Language Modelling}
 \indent In Lab 3, you learned about how to use MLE for language modelling.
@@ -134,8 +133,9 @@ In Lab 4, you experimented with smoothing methods.\\
 smoothing and how they help circumvent the limitations of MLE. Illustrate this
 with examples. (You may take them from the Sherlock Holmes text but use
 different examples than those we asked you to look at in the labs.)\\
-\indent Discuss different smoothing methods and their advantages and
-disadvantages. Use your results table from the lab to illustrate your points.
+\indent Describe and compare different smoothing methods.  Illustrate your
+answer with results from experiments you made in the lab. You may use the table
+you produced during the lab.
 
 \section{Grading Criteria}
 \begin{titlemize}{Basic Criteria}
