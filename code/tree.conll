@@ -1,9 +1,8 @@
-1     The          the	      DET	DET    _      2      det       _      _
-2     tape         tape       NOUN	NOUN   _      5      nsubj     _      _
-3     was          be         VERB	VERB   _      5      cop       _      _
-4     a	           a          DET	DET    _      5      det       _      _
-5     way          way        NOUN	NOUN   _      0      root      _      _
-6     to           to         PART	PART   _      7      mark      _      _
-7     signal       signal     VERB	VERB   _      5      acl       _      _
-8     priorities   priority   NOUN      NOUN   _      7      dobj      _      _
-9     .            .          PUNCT	PUNCT  _      5      punct     _      _
+1    This          this          DET      DET      _    2     det       _    _ 
+2    department    department    NOUN     NOUN     _    4     nsubj     _    _ 
+3    now           now	         ADV      ADV      _    4     advmod    _    _ 
+4    faces         face	         VERB     VERB     _    0     root      _    _ 
+5    new           new	         ADJ      ADJ      _    6     amod      _    _ 
+6    challenges    challenge     NOUN     NOUN     _    4     obj       _    _ 
+7    .		   .	         PUNCT    PUNCT    _    4     punct     _    _ 
+
