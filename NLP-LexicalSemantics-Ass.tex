@@ -63,7 +63,7 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 11: Word Sense Disambiguation}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 11: Word Sense Disambiguation}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -89,12 +89,12 @@
 %\vspace{3mm}
 \vspace{-2mm}
 \newsec{Introduction}{intro}%
-In this assignment, we are going to explore the use of machine learning for word sense disambiguation.
+In this lab, we are going to explore the use of machine learning for word sense disambiguation.
 More precisely, we will use NLTK to build Naive Bayes classifiers to disambiguate selected words
 using data from Senseval-2. All files are available in {\tt /local/kurs/nlp/semantics/}.
 
 \paragraph{Acknowledgment:} Thanks to Alex Lascarides for letting us reuse
-and modify an older assignment, including the code in {\tt wsd\_code.py}.
+and modify an older lab, including the code in {\tt wsd\_code.py}.
 
 \newsec{Data}{data}%
 The Senseval-2 corpus consists of text from a mixture of places, including the British National Corpus and the Wall Street Journal section of the Penn Treebank. Each word in the corpus is tagged with its part of speech, and the senses of the following target words are also annotated: the noun {\em interest}; the verb {\em serve}; and the adjective {\em hard}. The senses used to annotate each target word come from \ldots \textcolor{red}{FIX THIS!} \ldots and WordNet and are shown in the table below.\footnote{These are subsets of the full set of senses defined in WordNet,
