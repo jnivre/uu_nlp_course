@@ -1,0 +1,98 @@
+
+\documentclass[11pt]{article}
+%\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+%\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\usepackage[round]{natbib}
+\setlength{\bibsep}{0.0pt}
+\usepackage{color}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+\usepackage{tikz-dependency}
+\usepackage{enumitem}
+%\usepackage{times}
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+ 
+ 
+
+% See the ``Article customise'' template for come common customisations
+\newcommand{\refeq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\reffig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reftab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refsec}[1]{\textsection\ref{sec:#1}}
+\newcommand{\newsec}[1]{\section{#1}\noindent}
+%\newcommand{\newsec}[2]{\section{#1}\label{sec:#2}\noindent}
+\newcommand{\newsubsec}[2]{\subsection{#1}\label{sec:#2}\noindent}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} 
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} 
+
+\makeatletter         
+\def\@maketitle{   % custom maketitle 
+\begin{center}%
+{\bfseries \@title}%
+{\bfseries \@author}%
+\end{center}%
+\smallskip \hrule \bigskip }
+
+% custom section 
+\renewcommand{\section}{\@startsection
+{section}%                   % the name
+{1}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+% custom subsection 
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{1.5ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}%
+}\makeatother
+
+%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
+%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 4: Semantics}}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\maketitle
+%\tableofcontents
+%\vspace{3mm}
+
+\newsec{Formerly known as: Lexical Semantics (FC)}%
+
+
+\newsec{Formerly known as: Compositional Semantics (MDL)}%
+
+
+\end{document}
