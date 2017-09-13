@@ -1,0 +1,13 @@
+# Grammar
+S -> S Punct
+S -> NP VP
+NP -> Pronoun | Det Noun
+VP -> Verb PP PP
+PP -> Prep NP
+# Lexicon
+Noun -> 'BBC' | 'decade'
+Verb -> 'worked'
+Pronoun -> 'He'
+Det -> 'the' | 'a'
+Prep -> 'for'
+Punct -> '.'
