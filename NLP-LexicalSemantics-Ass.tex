@@ -1,4 +1,3 @@
-
 \documentclass[11pt]{article}
 %\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 \usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
@@ -132,7 +131,7 @@ serve &serve$_2$ &do duty or hold offices; serve in a specific function & ``she 
 \end{tabular}
 }
 \end{center}
-Let us now start exploring the sense-tagged data using the Python interpreter. Copy the file {\tt wsd\_code.py} from {\tt /local/kurs/nlp/semantics/} to your working directory and start the Python interpreter with the command {\tt python3}.
+Let us now start exploring the sense-tagged data using the Python interpreter. Copy the file {\tt wsd\_code.py} from {\tt /local/kurs/nlp/semantics/} to your working directory and start the Python interpreter with the command {\tt python}.
 \begin{center}
 \fbox{
 \scalebox{0.95}{
@@ -153,16 +152,16 @@ but there are a few examples in the corpus where there is more than one, represe
 Make sure you understand the representation of instances. Look at a few more instances of \emph{hard} and then do 
 the same for \emph{interest} and \emph{serve} (by replacing {\tt 'hard.pos'} with {\tt 'interest.pos'} and {\tt 'serve.pos'}, respectively).
 
-\newsec{Baseline classifiers (5 P)}{baseline}%
+\newsec{Baseline classifiers }{baseline}%
 Before we build sense classifiers for \emph{interest}, \emph{hard} and
 \emph{serve}, we need to establish baselines for comparison.  Two
 commonly used baselines are the \emph{random} baseline and the
 \emph{majority} baseline. The random baseline is the accuracy that we
 can expect from guessing senses randomly.
 \begin{enumerate}[topsep=0.2cm,noitemsep]
-\item (1 P) What is the random baseline for \emph{hard} given our current
+\item  What is the random baseline for \emph{hard} given our current
   sense inventory?
-\item (2 P) Is the random baseline the same for \emph{interest} and
+\item  Is the random baseline the same for \emph{interest} and
   \emph{serve}? Why (not)?
 \end{enumerate}
 The majority baseline is the accuracy we obtain if we always guess the
@@ -183,10 +182,10 @@ has 3455 occurrences, while {\tt 'HARD2'} and {\tt 'HARD3'} occur only
 equal to 3455 / (3455 + 502 + 376) = 0.797, or 79.7\%.
 \begin{enumerate}[topsep=0.2cm,noitemsep]
 \setcounter{enumi}{2}
-\item (2 P) Compute the majority baselines for \emph{interest} and \emph{serve}, respectively.
+\item  Compute the majority baselines for \emph{interest} and \emph{serve}, respectively.
 \end{enumerate}
 
-\newsec{Naive Bayes classifiers (6 P)}{naive}%
+\newsec{Naive Bayes classifiers }{naive}%
 We are now going to compare the performance of different classifiers
 that perform word sense disambiguation, using the method {\tt
   wsd\_classifier()}, which must have at least the following arguments
@@ -194,7 +193,7 @@ specified by you:
 \begin{enumerate}[topsep=0.2cm,noitemsep]
 \item a trainer, in this case {\tt NaiveBayesClassifier.train};
 \item a target word: {\tt 'hard.pos'}, {\tt 'interest.pos'} or {\tt
-    'serve.pos};
+    'serve.pos'};
 \item one of two feature representations:
 \begin{itemize}[noitemsep,topsep=0.1cm]
 \item {\tt wsd\_word\_features}: a bag-of-words representation defined
@@ -218,11 +217,13 @@ target word \emph{hard}:
 \end{center}
 You should do the following:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item (3 P) Evaluate both feature representations for all three target words.
-\item (3 P) Compare the results for different classifiers, including your baselines.
+\item  Evaluate both feature representations for all three target words.
+\item  Compare the results for different classifiers, including your baselines.
 \end{enumerate}
 
-\newsec{Error analysis (9 P)}{submit}%
+%TODO: move this to the assignment
+%TODO: add exercise about precision and recall to lab
+\newsec{Error analysis }{submit}%
 After analyzing the performance of a classifier, it is useful to
 perform an error analysis. By providing additional arguments to {\tt
   wsd\_classifier()}, you can get a confusion matrix as well as a
@@ -240,9 +241,9 @@ to an external file called {\tt errors.txt}. Do an error analysis of
 the best performing classifier for each target word, answering the
 following questions:
 \begin{enumerate}
-\item (3 P) Using the confusion matrix, identify which sense is the hardest
+\item  Using the confusion matrix, identify which sense is the hardest
   one for the model to estimate.
-\item (6 P) Look in {\tt errors.txt} for examples where that hardest word
+\item  Look in {\tt errors.txt} for examples where that hardest word
   sense is the correct label.  Do you see any patterns or systematic
   errors? If so, can you think of a way to adapt the feature
   representation to improve the model?
