@@ -97,8 +97,16 @@ using data from Senseval-2. All files are available in {\tt /local/kurs/nlp/sema
 and modify an older assignment, including the code in {\tt wsd\_code.py}.
 
 \newsec{Data}{data}%
-The Senseval-2 corpus consists of text from a mixture of places, including the British National Corpus and the Wall Street Journal section of the Penn Treebank. Each word in the corpus is tagged with its part of speech, and the senses of the following target words are also annotated: the noun {\em interest}; the verb {\em serve}; and the adjective {\em hard}. The senses used to annotate each target word come from \ldots \textcolor{red}{FIX THIS!} \ldots and WordNet and are shown in the table below.\footnote{These are subsets of the full set of senses defined in WordNet,
-which is why the numbering of senses is not (always) contiguous.}
+The Senseval-2 corpus consists of text from a mixture of places,
+including the British National Corpus and the Wall Street Journal
+section of the Penn Treebank. Each word in the corpus is tagged with
+its part of speech, and the senses of the following target words are
+also annotated: the noun {\em interest}; the verb {\em serve}; and the
+adjective {\em hard}. The senses used to annotate each target word
+come from the Longman Dictionary of Contemporary English and WordNet
+and are shown in the table below.\footnote{These are subsets of the
+  full set of senses defined in WordNet, which is why the numbering of
+  senses is not (always) contiguous.}
 
 \begin{center}
 \scalebox{0.8}{
@@ -145,16 +153,16 @@ but there are a few examples in the corpus where there is more than one, represe
 Make sure you understand the representation of instances. Look at a few more instances of \emph{hard} and then do 
 the same for \emph{interest} and \emph{serve} (by replacing {\tt 'hard.pos'} with {\tt 'interest.pos'} and {\tt 'serve.pos'}, respectively).
 
-\newsec{Baseline classifiers (5 P)}{baseline}%
+\newsec{Baseline classifiers}{baseline}%
 Before we build sense classifiers for \emph{interest}, \emph{hard} and
 \emph{serve}, we need to establish baselines for comparison.  Two
 commonly used baselines are the \emph{random} baseline and the
 \emph{majority} baseline. The random baseline is the accuracy that we
 can expect from guessing senses randomly.
 \begin{enumerate}[topsep=0.2cm,noitemsep]
-\item (1 P) What is the random baseline for \emph{hard} given our current
+\item What is the random baseline for \emph{hard} given our current
   sense inventory?
-\item (2 P) Is the random baseline the same for \emph{interest} and
+\item Is the random baseline the same for \emph{interest} and
   \emph{serve}? Why (not)?
 \end{enumerate}
 The majority baseline is the accuracy we obtain if we always guess the
@@ -175,7 +183,7 @@ has 3455 occurrences, while {\tt 'HARD2'} and {\tt 'HARD3'} occur only
 equal to 3455 / (3455 + 502 + 376) = 0.797, or 79.7\%.
 \begin{enumerate}[topsep=0.2cm,noitemsep]
 \setcounter{enumi}{2}
-\item (2 P) Compute the majority baselines for \emph{interest} and \emph{serve}, respectively.
+\item Compute the majority baselines for \emph{interest} and \emph{serve}, respectively.
 \end{enumerate}
 
 \newsec{Naive Bayes classifiers (6 P)}{naive}%
