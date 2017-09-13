@@ -1,0 +1,134 @@
+
+\documentclass[11pt]{article}
+%\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+%\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\usepackage[round]{natbib}
+\setlength{\bibsep}{0.0pt}
+\usepackage{color}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+\usepackage{tikz-dependency}
+\usepackage{enumitem}
+%\usepackage{times}
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+\usepackage{todonotes}
+
+\newenvironment{titlemize}[1]{%
+    \paragraph{#1}
+    \begin{itemize}
+        \setlength\itemsep{0pt}}
+    {\end{itemize}}
+ 
+ 
+
+% See the ``Article customise'' template for come common customisations
+\newcommand{\refeq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\reffig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reftab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refsec}[1]{\textsection\ref{sec:#1}}
+\newcommand{\newsec}[2]{\section{#1}\label{sec:#2}\noindent}
+\newcommand{\newsubsec}[2]{\subsection{#1}\label{sec:#2}\noindent}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} 
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} 
+
+\makeatletter         
+\def\@maketitle{   % custom maketitle 
+\begin{center}%
+{\bfseries \@title}%
+{\bfseries \@author}%
+\end{center}%
+\smallskip \hrule \bigskip }
+
+% custom section 
+\renewcommand{\section}{\@startsection
+{section}%                   % the name
+{1}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+% custom subsection 
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}%                       % the indent
+{-0.8\baselineskip}%            % the before skip
+{0.3\baselineskip}%          % the after skip
+{\bfseries\large}}% the style
+
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{1.5ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}%
+}\makeatother
+
+%\title{{\LARGE Universal Parser (UP)}\\[-8mm]
+%\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 3: Syntax}}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\maketitle
+%\tableofcontents
+%\vspace{3mm}
+%\section{Introduction}
+\noindent
+This assignment involves material from lectures 8 to 10. You should have
+watched the relevant videos, read the relevant chapters in the textbooks and
+made a serious attempt to complete the relevant labs before you attempt this
+assignment.
+If you feel you have done that and still find the instructions unclear, you are
+welcome to email the course teachers and/or go to office hours to ask for
+help.
+The assignment is based on the sentences in the \textbf{en10} set, which you
+annotated in Lab 8, parsed in Lab 9 and wrote a grammar for in Lab 10:
+\begin{enumerate}[noitemsep]
+\item He worked for the BBC.
+\item She spoke to CNN Style about the experience.
+\item Global warming has caused a change in the pattern of the rainy seasons.
+\item I also wonder whether the Davis Cup played a part.
+\item The scheme makes money through sponsorship and advertising.
+\item If a Turkish employee quits, then the Turkish work councils come.
+\item A witness told police that the victim had attacked the suspect in April.
+\item Mr Osborne signed up with a US speakers agency after being sacked in July.
+\item The RHS collected comments sent in by schoolchildren and teachers involved in the experiment.
+\item National reaction to the events in Kansas demonstrated how deeply divided the country had become.
+\end{enumerate}
+For this assignment, you should submit answers to the following questions:
+\begin{enumerate}[itemsep=3pt]
+\item Discuss three cases, involving (at least) three different dependency relations, where your annotation in Lab 8 differed from that of another group or from the gold standard. 
+Cite definitions or examples from the UD guidelines to support your conclusion about which annotation is correct in each case. (3 points) 
+\item Discuss three different errors in the output of the parser trained in Lab 9 for the \textbf{en10} sentences. Refer to the UD documentation to explain why they are errors. (3 points)
+\item The parser trained in Lab 9 uses the arc-eager transition system for dependency parsing described in K\"{u}bler et al. Determine the transition sequence used to construct the parse tree for sentence 1. Describe the content of the stack ($S$), buffer ($B$) and arc set ($A$) after each transition. (4 points)
+\item List the grammar you designed in Lab 10 after verifying that it does in fact generate sentences 1--5 with reasonable analyses. Draw all the parse trees that the grammar assigns to sentence 3 and describe the derivation of each tree. (6 points) 
+\item Draw the completed chart for a parse of sentence 1 using the CKY algorithm described in Jurafsky and Martin and explain in which order the cells are filled. (4 points)
+\end{enumerate}
+We expect between half a page and a page in response to each question. Please do not submit more than 5 pages overall. 
+Your answers to each question should be self-contained.
+
+\section*{Grading Criteria}
+\textcolor{red}{TO DO}
+\end{document}
