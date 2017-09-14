@@ -63,7 +63,7 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 12: Semantic Role Labeling}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 12: Semantic Role Labeling}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -88,14 +88,14 @@
 %\tableofcontents
 %\vspace{3mm}
 \vspace{-2mm} \newsec{Introduction}{intro}%
-In this assignment, we are going to do PropBank style semantic
+In this lab, we are going to do PropBank style semantic
 annotation and study inter-annotator agreement. We are going to focus
 on one polysemous verb, the verb {\em count}, which occurs exactly 10
 times in the training set of the English web treebank. All files
 needed are available from {\tt /local/kurs/nlp/semantics/}.
 
 
-\newsec{Study the lexicon (4 P)}{lex}%
+\newsec{Study the lexicon }{lex}%
 The lexical entry for the verb {\em count} can be found in the file
 {\tt count.senses}. It is organized by (numbered) senses, with the
 first sense being {\tt count.01}:
@@ -112,19 +112,19 @@ example would be:
 Study the rest of {\tt count.senses} and then answer the following
 questions:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item (2 P) How many senses are there altogether?
-\item (2 P) Construct one example of your own for each sense.
+\item  How many senses are there altogether?
+\item  Construct one example of your own for each sense.
 \end{enumerate}
 
-\newsec{Annotate some data (4 P)}{annotate}%
+\newsec{Annotate some data }{annotate}%
 The file {\tt count.instances} contains all the sentences in the
 training set of the English web treebank that contains the verb lemma
 {\tt count}. (The file format is the CoNLL-X format that you
-previously used in the dependency parsing assignment.) Your task is to
+previously used in the dependency parsing lab.) Your task is to
 annotate each sentence in the following way:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item (2 P) Annotate the verb with the relevant sense.
-\item (2 P) Annotate all words in an argument with the relevant argument label.
+\item  Annotate the verb with the relevant sense.
+\item  Annotate all words in an argument with the relevant argument label.
 \end{enumerate}
 We will keep things simple and simply add the relevant label in the
 last column of the CoNLL format.\footnote{In general, it is much
@@ -143,30 +143,18 @@ senses (like {\tt count.03}) and core argument roles (numbered roles
 like {\tt A0}, {\tt A1} and {\tt A2}). You do not need to annotate
 modifier roles like {\tt AM-TMP} and {\tt AM-LOC}.
 
-\newsec{Compare your annotations (12 P)}{compare}%
+\newsec{Compare your annotations }{compare}%
 Team up with a classmate (or two) and compare your respective
 annotations. {\bf NB:} Make sure to save a copy of your original
 annotation before starting to compare and discuss them.  Answer the
 following questions:
 \begin{enumerate}[noitemsep,topsep=0.2cm]
-\item (4 P) What percentage of verb senses did you agree on? Give
-  examples of disagreement (if any).
-\item (4 P) What percentrage of argument {\em roles} did you agree on?
-  Give examples.
-\item (4 P) What percentrage of argument {\em spans} did you agree on?
-  Give examples.
+\item  What percentage of verb senses did you agree on? 
+\item  What percentrage of argument {\em roles} did you agree on?
+\item  What percentrage of argument {\em spans} did you agree on?
 \end{enumerate}
 After identifying all disagreements, your final task is to resolve
-them so that you can submit a joint solution.
-
-\newsec{Submit the assignment}{submit}%
-Upload the following to {\it Studentportalen}
-\textbf{before 20:00h December 16th}.
-\begin{itemize}[noitemsep,topsep=0.2cm]
-\item Answers to all questions in Section~\ref{sec:lex} and
-  Section~\ref{sec:compare} (\texttt{.pdf} format written in \LaTeX).
-\item Your annotated files before and after comparison with a
-  classmate (\texttt{.txt} format).
-\end{itemize}
+them: create a file annotated for the whole group.
+%TODO: this is not very clear
 
 \end{document}
