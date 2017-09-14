@@ -1,5 +1,5 @@
 
-\documentclass[11pt]{article}
+\documentclass[10.9pt]{article}
 %\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 \usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 %\geometry{a4paper} % or letter or a5paper or ... etc
@@ -16,13 +16,6 @@
 
 \usepackage[procnames]{listings}
 \usepackage{color}
-\usepackage{todonotes}
-
-\newenvironment{titlemize}[1]{%
-    \paragraph{#1}
-    \begin{itemize}
-        \setlength\itemsep{0pt}}
-    {\end{itemize}}
  
  
 
@@ -70,7 +63,7 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 3: Syntax}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 10: Context-Free Grammar}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -94,41 +87,46 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-%\section{Introduction}
-\noindent
-This assignment involves material from lectures 8 to 10. You should have
-watched the relevant videos, read the relevant chapters in the textbooks and
-made a serious attempt to complete the relevant labs before you attempt this
-assignment.
-If you feel you have done that and still find the instructions unclear, you are
-welcome to email the course teachers and/or go to office hours to ask for
-help.
-The assignment is based on the sentences in the \textbf{en10} set, which you
-annotated in Lab 8, parsed in Lab 9 and wrote a grammar for in Lab 10:
+\vspace{-2mm}
+\newsec{Introduction}{intro}%
+In this lab, we will write a context-free grammar for a small fragment of English and test the grammar using a CFG parser from the NLTK toolkit. All files that are needed are available from {\tt /local/kurs/nlp/syntax/}.
+
+\newsec{Data}{data}%
+As our fragment of English, we will use the first five sentences from the file {\tt en10-anno.conll}, which we annotated in Lab 8 and parsed in Lab 9:
 \begin{enumerate}[noitemsep]
 \item He worked for the BBC for a decade.
 \item She spoke to CNN Style about the experience.
 \item Global warming has caused a change in the pattern of the rainy seasons.
 \item I also wonder whether the Davis Cup played a part.
 \item The scheme makes money through sponsorship and advertising.
-\item If a Turkish employee quits, then the Turkish work councils come.
-\item A witness told police that the victim had attacked the suspect in April.
-\item Mr Osborne signed up with a US speakers agency after being sacked in July.
-\item The RHS collected comments sent in by schoolchildren and teachers involved in the experiment.
-\item National reaction to the events in Kansas demonstrated how deeply divided the country had become.
 \end{enumerate}
-For this assignment, you should submit answers to the following questions:
-\begin{enumerate}[itemsep=3pt]
-\item Discuss three cases, involving (at least) three different dependency relations, where your annotation in Lab 8 differed from that of another group or from the gold standard. 
-Cite definitions or examples from the UD guidelines to support your conclusion about which annotation is correct in each case. (3 points) 
-\item Discuss three different errors in the output of the parser trained in Lab 9 for the \textbf{en10} sentences. Refer to the UD documentation to explain why they are errors. (3 points)
-\item The parser trained in Lab 9 uses the arc-eager transition system for dependency parsing described in K\"{u}bler et al. Determine the transition sequence used to construct the parse tree for sentence 1. Describe the content of the stack ($S$), buffer ($B$) and arc set ($A$) after each transition. (4 points)
-\item List the grammar you designed in Lab 10 after verifying that it does in fact generate sentences 1--5 with reasonable analyses. Draw all the parse trees that the grammar assigns to sentence 3 and describe the derivation of each tree. (6 points) 
-\item Draw the completed chart for a parse of sentence 1 using the CKY algorithm described in Jurafsky and Martin and explain in which order the cells are filled. (4 points)
-\end{enumerate}
-We expect between half a page and a page in response to each question. Please do not submit more than 5 pages overall. 
-Your answers to each question should be self-contained.
 
-\section*{Grading Criteria}
-\textcolor{red}{TO DO}
+\newsec{Write a Grammar}{grammar}%
+Our task is to write a context-free grammar that generates the five sentences with reasonable syntactic analyses. The file {\tt grammar.txt} contains a grammar that covers the first sentence. Extending it will involve adding new terminals, new rules and (probably) new nonterminals. Consult Jurafsky and Martin if you are uncertain about what nonterminals and rules to add.
+
+\begin{center}
+\fbox{
+\lstinputlisting{code/grammar.txt}
+}
+\end{center}
+The grammar format is similar to that used in Figure 9.3 on page 326 of Jurafsky and Martin, but note the following:
+\begin{enumerate}[noitemsep]
+\item The left-hand side of a rule is separated from the right-hand side by an ``arrow'' consisting of two characters ({\tt ->}), which must be surrounded by spaces.
+\item Alternative right-hand sides are separated by a vertical bar ({\tt |}), which must also be surrounded by spaces.
+\item Terminal symbols are enclosed in single quotes ({\tt ' '}).
+\item Comment lines start with the hash symbol ({\tt \#}).
+\end{enumerate}
+
+\newsec{Parse Sentences}{parse}%
+To test your grammar, you can use a simple parser, built on top of the NLTK chart parser. In the Python interpreter, you first import the module {\tt cfg\_parser}, which allows you 
+to read the grammar from the text file. You can then start the interactive parser, which allows you to type in one sentence at a time and prints out all parse trees that the grammar assigns to the sentence, as shown below.
+\begin{center}
+\fbox{
+\lstinputlisting{code/cfg_parser.py}
+}
+\end{center}
+
+\newsec{Discuss Ambiguities}{parse}%
+It is likely that, once you have extended the grammar to cover all sentences, you will get more than one parse tree for some sentences. Check these analyses and discuss whether they all correspond to reasonable interpretations of the sentence. Also discuss whether there are sentences that only receive one analysis but should have several because they are ambiguous.
+
 \end{document}
