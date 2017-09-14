@@ -172,7 +172,7 @@ The next step is to use the frequency counts to estimate a probability
 distribution over bigrams, that is, the joint distribution $P(w_1,
 w_2)$, where $w_1$ and $w_2$ are the first and second word of a
 bigram, respectively.  We will use the maximum likelihood estimate
-(MLE). Start by discussing the following questions:
+(MLE). Start by answering the following questions:
 \begin{enumerate}[itemsep=0pt]
 \item  What does it mean that an estimate is MLE? % Maximizes probability of corpus
 \item  Let $|W|$ be the number of words in our vocabulary, and let $P(w_1, w_2) = \frac{1}{|W|^2}$ for all $(w_1, w_2)$.\\
@@ -195,6 +195,7 @@ able to derive estimates for the following:
 \item  The marginal probability $P(w_1)$
 \item  The conditional probability $P(w_2 | w_1)$
 \end{enumerate}
+Derive these estimates.
 
 \appendix
 \newsec{Useful unix/linux commands}{unix}%
