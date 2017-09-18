@@ -63,7 +63,7 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 6: Hidden Markov Models}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 6: Hidden Markov Models}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -87,35 +87,48 @@
 \maketitle
 %\tableofcontents
 %\vspace{3mm}
-\vspace{-2mm}
-\newsec{Introduction}{intro}%
-In this assignment, we are going to explore the use of Hidden Markov Models for predictive text entry, as used for text messaging on pre-smartphone mobile phones.
-This is an exercise in mathematical modeling and reasoning, so you will not be asked to do any programming or empirical evaluation this time.
+\vspace{-2mm} \newsec{Introduction}{intro}%
+In this assignment, we are going to explore the use of Hidden Markov
+Models for predictive text entry, as used for text messaging on
+pre-smartphone mobile phones.  This is an exercise in mathematical
+modeling and reasoning, so you will not be asked to do any programming
+or empirical evaluation this time.
 
 \newsec{The problem}{problem}%
 Assume we have a keypad that looks like this:
 \begin{center}
 \includegraphics[scale=0.5]{keypad.jpeg}
 \end{center}
-When used to produce text messages on a mobile phone, this device produces a sequence of numbers that can represent multiple sequences of characters. 
-For example, to type the word {\em box}, you would produce the key sequence 269. But the same sequence would be produced also for the word {\em bow}. 
-The predictive text entry problem can be seen as the problem of predicting the most probable word given a sequence of numbers (keys).
-\newsec{Build a model (4 P)}{model}%
-The predictive text entry problem can be seen as a sequence tagging problem, where we are given observable sequence of numbers and are required to
-find hidden sequences of characters. It is therefore a good fit for a Hidden Markov Model. Your first task is to define the model structure.
+When used to produce text messages on a mobile phone, this device
+produces a sequence of numbers that can represent multiple sequences
+of characters.  For example, to type the word {\em box}, you would
+produce the key sequence 269. But the same sequence would be produced
+also for the word {\em bow}.  The predictive text entry problem can be
+seen as the problem of predicting the most probable word given a
+sequence of numbers (keys).
+
+\newsec{Build a model}{model}%
+The predictive text entry problem can be seen as a sequence tagging
+problem, where we are given observable sequence of numbers and are
+required to find hidden sequences of characters. It is therefore a
+good fit for a Hidden Markov Model. Your first task is to define the
+model structure.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item What are the (hidden) states of the model?
 \item What are the output symbols of the model?
 \end{itemize}
 
-\newsec{Estimate probabilities (8 P)}{estimate}%
-Once you have defined the model structure (states and symbols), there are two probability distributions that need to be estimated.
+\newsec{Estimate probabilities}{estimate}%
+Once you have defined the model structure (states and symbols), there
+are two probability distributions that need to be estimated.
 \begin{itemize}[noitemsep,topsep=0.2cm]
-\item How would you estimate the emission probabilities $P(\mbox{symbol}|\mbox{state})$?
-\item How would you estimate the transition probabilities $P(\mbox{new state}|\mbox{previous state})$?
+\item How would you estimate the emission probabilities
+  $P(\mbox{symbol}|\mbox{state})$?
+\item How would you estimate the transition probabilities
+  $P(\mbox{new state}|\mbox{previous state})$?
 \end{itemize}
 
-\newsec{Use model for decoding (8 P)}{decode}%
+\newsec{Use model for decoding}{decode}%
 Given estimates of the probability distribution, the model can be used
 to decode key sequences by finding the most probable word.
 \begin{itemize}[noitemsep,topsep=0.2cm]
@@ -125,19 +138,19 @@ to decode key sequences by finding the most probable word.
   269 in your model?
 \end{itemize}
 \textbf{Note:} You are not supposed to carry out any concrete
-computations here, only show as a matter of principle how to do the
+computations here, only think as a matter of principle how to do the
 computations.
 
-\newsec{Submit the assignment}{submit}%
-Upload the following to {\it Studentportalen} \textbf{before 20:00h
-  November 25th}. In order to pass you must provide answers to all
-exercises and achieve at least 15/20 points:
-\begin{itemize}[noitemsep,topsep=0.2cm]
-\item Well motivated answers to all questions in
-  Section~\ref{sec:model}--\ref{sec:decode} (\texttt{.pdf} format
-  written in \LaTeX, using \texttt{submission.tex} from Assignment 0).
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18
-  points.
-\end{itemize}
+% \newsec{Submit the assignment}{submit}%
+% Upload the following to {\it Studentportalen} \textbf{before 20:00h
+%   November 25th}. In order to pass you must provide answers to all
+% exercises and achieve at least 15/20 points:
+% \begin{itemize}[noitemsep,topsep=0.2cm]
+% \item Well motivated answers to all questions in
+%   Section~\ref{sec:model}--\ref{sec:decode} (\texttt{.pdf} format
+%   written in \LaTeX, using \texttt{submission.tex} from Assignment 0).
+% \item \textbf{[VG]} In order to get the grade VG, reach at least 18
+%   points.
+% \end{itemize}
 
 \end{document}

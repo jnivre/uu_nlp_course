@@ -16,6 +16,7 @@
 
 \usepackage[procnames]{listings}
 \usepackage{color}
+\usepackage{todonotes}
  
  
 
@@ -63,8 +64,8 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 7: Lemmatization}}
-\author{}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 7:
+    Lemmatization}} \author{}
 \date{} % delete this line to display the current date
 
 %%% BEGIN DOCUMENT
@@ -123,57 +124,45 @@ To evaluate the quality of the lemmatization, you can use {\tt score.py} with th
 python3 score.py lemma ewt-dev-wtl.txt ewt-dev-out.txt
 \end{verbatim}
 
-\newsec{Improve lemmatization (10 P)}{improve}%
+\newsec{Improve lemmatization}{improve}%
 The simple baseline lemmatizer has an accuracy of 80\%. Your task is
 to improve the accuracy as much as possible by modifying the code. You
-may expand existing methods,
-add new methods, or modify the main program, as you see fit. To get inspiration, you can consult the sections on stemming in the textbook. To find out which words your lemmatizer still gets wrong, you may use the \texttt{diff} command on the command line:\\
+may expand existing methods, add new methods, or modify the main
+program, as you see fit. To get inspiration, you can consult the
+sections on stemming in the textbook. To find out which words your
+lemmatizer still gets wrong, you may use the \texttt{diff} command on
+the command line:\\
 
 \noindent
 \texttt{diff ewt-dev-wtl.txt ewt-dev-out.txt | less}\\
+\todo{MdL showed the student a different command which they preferred
+  in the end... which was it?}
 
 \noindent
 The goal is to reach at least 85\% accuracy on the development set.
 
-\newsec{Error analysis (5 P)}{error}%
-When you are satisfied with the accuracy of your lemmatizer, you
-should do a manual analysis of remaining errors. Describe at least 5
-error types and discuss how they could be tackled in a more
-sophisticated lemmatizer.
-
-\newsec{Illustrate an FST (5 P)} %
-LLemmatizers are often implemented as finite-state-transducers
-(FSTs). While this kind of implementation is beyond the scope of this
-course, Chapter 3.5 (FSTs for Morphological Parsing) of our course
-book gives examples of how FSTs can be visualised. Draw an FST based
-on the initial lemmatizer we gave you on the previous page that can
-analyse the following words: \texttt{cats NOUN}, \texttt{jumped VERB},
-\texttt{higher ADJ}. You can either draw the FST 1) by hand, take a
-picture, transform it to \texttt{.pdf}, or 2) using a drawing program
-(e.g. xfig or MS Paint) and transform the output into \texttt{.pdf}.
-
-\newsec{Submit the assignment}{submit}%
-Upload the following to {\it Studentportalen}, \textbf{before 20:00h
-  December 2nd}. In order to pass you must provide answers to all
-exercises and achieve at least 15/20 points.
-\begin{itemize}[noitemsep,topsep=0.2cm]
-\item Code for a lemmatizer that achieves at least 85\% accuracy on
-  the development set\\ (Section 4, \texttt{firstname.py\footnote{Please
-      substitute \emph{firstname} by your first name (and only your
-      first name), e.g. \texttt{fabienne.py}}} format).
-\item The output-file this lemmatizer produces\\(Section 4,
-  \texttt{firstname\_output.txt}).
-\item The ouput of the scoring script for this lemmatizer\\ (Section 4,
-  \texttt{firstname\_scoring.txt}).
-\item A discussion of at least 5 remaining error types\\ (Section 5,
-  ca. 1/2 page, \texttt{firstname\_discussion.pdf} written in
-  \LaTeX).
-\item A drawing of how the FST corresponding to the initial lemmatizer
-  we gave you would look like\\ (Section 6,
-  \texttt{firstname\_drawing.pdf})
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18
-  points in the exercises above and submit a lemmatizer with at least
-  95\% accurracy. 
-\end{itemize}
+% \newsec{Submit the assignment}{submit}%
+% Upload the following to {\it Studentportalen}, \textbf{before 20:00h
+%   December 2nd}. In order to pass you must provide answers to all
+% exercises and achieve at least 15/20 points.
+% \begin{itemize}[noitemsep,topsep=0.2cm]
+% \item Code for a lemmatizer that achieves at least 85\% accuracy on
+%   the development set\\ (Section 4, \texttt{firstname.py\footnote{Please
+%       substitute \emph{firstname} by your first name (and only your
+%       first name), e.g. \texttt{fabienne.py}}} format).
+% \item The output-file this lemmatizer produces\\(Section 4,
+%   \texttt{firstname\_output.txt}).
+% \item The ouput of the scoring script for this lemmatizer\\ (Section 4,
+%   \texttt{firstname\_scoring.txt}).
+% \item A discussion of at least 5 remaining error types\\ (Section 5,
+%   ca. 1/2 page, \texttt{firstname\_discussion.pdf} written in
+%   \LaTeX).
+% \item A drawing of how the FST corresponding to the initial lemmatizer
+%   we gave you would look like\\ (Section 6,
+%   \texttt{firstname\_drawing.pdf})
+% \item \textbf{[VG]} In order to get the grade VG, reach at least 18
+%   points in the exercises above and submit a lemmatizer with at least
+%   95\% accurracy. 
+% \end{itemize}
 
 \end{document}
