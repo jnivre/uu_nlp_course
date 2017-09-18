@@ -63,7 +63,7 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 5: Part-of-Speech Tagging}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Lab 5: Part-of-Speech Tagging}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -161,8 +161,9 @@ hunpos-tag mytagger < ewt-dev-w.txt > ewt-dev-out.txt
 \end{verbatim}
 The tagged output will be stored in the file {\tt ewt-dev-out.txt}.
 
-\newsec{Evaluate a tagger (3 P)}{eval}%
-To evaluate the output of the tagger, you run the evaluation script {\tt score.py}:
+\newsec{Evaluate a tagger}{eval}%
+To evaluate the output of the tagger, you run the evaluation script
+{\tt score.py}:
 \begin{verbatim}
 python3 score.py tag ewt-dev-wt.txt ewt-dev-out.txt
 \end{verbatim}
@@ -176,8 +177,17 @@ nouns in the text have been correctly tagged as nouns by our tagger.
 %the precision for the NOUN tag is the percentage of words tagged as nouns that are really nouns.
 %The recall is instead the percentage of real nouns that are also tagged as nouns.
 
-\newsec{Use a shellscript (3 P)}{shell}%
-Shellscripts are used to run several command lines after each other in one single script. We introduce their usage here, because you will run the three commands that were introduced in the previous three sections, namely \emph{train}, \emph{run} and \emph{score} a tagger several times in order to find an optimal setting for your tagger in the next exercise. Shellscripts allow you to better keep track of different parameter settings you used and the results these settings gave. In \texttt{/local/kurs/nlp/tagging/} we give you a shellscript named baseline\_script.sh. Have a look at the script and try to understand what it does. Then run it using the following command:\\
+\newsec{Use a shellscript}{shell}%
+Shellscripts are used to run several command lines after each other in
+one single script. We introduce their usage here, because you will run
+the three commands that were introduced in the previous three
+sections, namely \emph{train}, \emph{run} and \emph{score} a tagger
+several times in order to find an optimal setting for your tagger in
+the next exercise. Shellscripts allow you to better keep track of
+different parameter settings you used and the results these settings
+gave. In \texttt{/local/kurs/nlp/tagging/} we give you a shellscript
+named baseline\_script.sh. Have a look at the script and try to
+understand what it does. Then run it using the following command:
 \texttt{sh baseline\_script.sh}
 %
 %\begin{verbatim}
@@ -197,20 +207,21 @@ Shellscripts are used to run several command lines after each other in one singl
 %
 %\end{verbatim}
 
-\newsec{Tune a tagger (7 P)}{tune}%
+\newsec{Tune a tagger}{tune}%
 The HunPoS implementation of HMM tagging has a few parameters that can
 be tuned for better tagging. In particular, the {\tt -t} flag can be
 used to set the number of tags that are taken as context in the
-contextual probabilities. The default is {\tt -t $\!\!$2}, which means
-that we train a trigram model. See what happens if you instead use
-{\tt -t $\!\!$1} or {\tt -t $\!\!$3} when training the tagger. This
-means you copy the shellscript into a new file (e.g. using \texttt{cp
-  baseline\_script.sh t1\_script.sh}, rename the experiment in the
-beginning of the shellscript (e.g. 'T1' instead of
-'baseline')\footnote{It is most helpful if you give the script file
-  and the experiment within the script the same name and if that name
-  correlated with the parameter setting.} and add the parameter
-\texttt{-t 1} to the training command in the script:
+contextual probabilities. The default is {\tt -t
+  $\!\!$2}, which means that we train a trigram model. See what
+happens if you instead use {\tt -t $\!\!$1} or {\tt -t
+  $\!\!$3} when training the tagger. This means you copy the
+shellscript into a new file (e.g. using \texttt{cp baseline\_script.sh
+  t1\_script.sh}, rename the experiment in the beginning of the
+shellscript (e.g. 'T1' instead of 'baseline')\footnote{It is most
+  helpful if you give the script file and the experiment within the
+  script the same name and if that name correlated with the parameter
+  setting.} and add the parameter \texttt{-t 1} to the training
+command in the script:
 \begin{verbatim}
 hunpos-train $EXP_tagger -t 1 < ewt-train-wt.txt
 \end{verbatim}
@@ -219,40 +230,34 @@ For each new parameter setting you try, copy the shellscript, and
 \textbf{(important!)} rename the experiment at the top of the script
 (otherwise old results will be overwritten!).
 
-\newsec{Error analysis (7 P)}{error}%
-Once you have tuned the tagger, you should perform a manual error
-analysis where you go through at least 5 sentences and comment on the
-errors made by the tagger.  Are the mistagged words genuinely
-ambiguous? Why do you think they were mistagged? Is it possible that
-some of the words are mistagged in the gold standard?
 
-\newsec{Submit the assignment}{submit}%
-Upload the following to {\it Studentportalen}
-\textbf{before 20:00h November 25th}. In order to pass you must
-provide answers to all exercises and achieve at least 15/20 points.
-\begin{itemize}[noitemsep,topsep=0.2cm]
-\item The output of {\tt score.py} when run on the data as is (Section
-  5, \texttt{.txt} format)
-\item The shellscript you used for your final best model (Section 6,
-  \texttt{.sh} format)
-\item The output of {\tt score.py} for your final best model (Section
-  7, \texttt{.txt} format).
-\item Explain which parameters you used in your final best model
-  (Section 7) and give us a short discussion based on your manual
-  error analysis (Section 8, max 1 page, \texttt{.pdf} written in
-  \LaTeX using \texttt{submission.tex} we gave you in Assignment 0).
-\item \textbf{[VG]} In order to get the grade VG, reach at least 18
-  points in the exercises above. In addition, dive deeper into shell
-  scripting and submit us a more sophisticated shell script which uses
-  at least input variables to modify the parameters in the script
-  and/or loops to run different parameter settings within one script
-  (\texttt{.sh} submission format).
-  % \item \textbf{[VG]} In order to get the grade VG, reach at least
-  %   18 points in the exercises above, and additionally describe two
-  %   more parameter settings you used on your way to find the best
-  %   model, give their scores and short explanations as to why you
-  %   think they perform worse than the final model (max 1 additional
-  %   page).
-\end{itemize}
+% \newsec{Submit the assignment}{submit}%
+% Upload the following to {\it Studentportalen}
+% \textbf{before 20:00h November 25th}. In order to pass you must
+% provide answers to all exercises and achieve at least 15/20 points.
+% \begin{itemize}[noitemsep,topsep=0.2cm]
+% \item The output of {\tt score.py} when run on the data as is (Section
+%   5, \texttt{.txt} format)
+% \item The shellscript you used for your final best model (Section 6,
+%   \texttt{.sh} format)
+% \item The output of {\tt score.py} for your final best model (Section
+%   7, \texttt{.txt} format).
+% \item Explain which parameters you used in your final best model
+%   (Section 7) and give us a short discussion based on your manual
+%   error analysis (Section 8, max 1 page, \texttt{.pdf} written in
+%   \LaTeX using \texttt{submission.tex} we gave you in Assignment 0).
+% \item \textbf{[VG]} In order to get the grade VG, reach at least 18
+%   points in the exercises above. In addition, dive deeper into shell
+%   scripting and submit us a more sophisticated shell script which uses
+%   at least input variables to modify the parameters in the script
+%   and/or loops to run different parameter settings within one script
+%   (\texttt{.sh} submission format).
+%   % \item \textbf{[VG]} In order to get the grade VG, reach at least
+%   %   18 points in the exercises above, and additionally describe two
+%   %   more parameter settings you used on your way to find the best
+%   %   model, give their scores and short explanations as to why you
+%   %   think they perform worse than the final model (max 1 additional
+%   %   page).
+% \end{itemize}
 
 \end{document}

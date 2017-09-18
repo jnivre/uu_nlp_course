@@ -75,7 +75,11 @@
 \definecolor{comments}{RGB}{0,0,113}
 \definecolor{red}{RGB}{160,0,0}
 \definecolor{green}{RGB}{0,150,0}
- 
+\definecolor{UUlight}{RGB}{230,230,230}
+\definecolor{UUmedium}{RGB}{190,190,190}
+\definecolor{UUdark}{RGB}{130,130,130}
+\definecolor{UUred}{RGB}{153,0,0}
+
 \lstset{language=Python, 
         basicstyle=\ttfamily\small, 
         keywordstyle=\color{keywords},
@@ -89,48 +93,103 @@
 %\tableofcontents
 %\vspace{3mm}
 
+\noindent This assignment involves material from lectures 5, 6 and
+7. You should have watched the relevant videos, read the relevant
+chapters in the textbook and made a serious attempt at completing the
+relevant labs before you attempt this assignment. If you feel you have
+done that and still find the instructions unclear, you are welcome to
+email the course teachers and/or go to office hours to ask for help.
+The assignment is split into 2 sections, one about lexical semantics,
+one about semantic role labelling. Each section is worth 10 points. We
+expect between half a page and a page for each section. Please do not
+submit more than 4 pages overall.  You answers for each section should
+be self-contained.
+
+\newsec{POS-Tagging}%
+\begin{itemize}
+\item In Lab 5, you have tuned a tagger. Based on the best version of
+  your tagger, you should perform a manual error analysis where you go
+  through at least 5 sentences and comment on the errors made by the
+  tagger. Are the mistagged words genuinely ambiguous? Why do you
+  think they were mistagged? Is it possible that some of the words are
+  mistagged in the gold standard? \textcolor{UUred}{[ca 1/2 page]}.
+\item What tagsets exist for your native language? List the ones you
+  can find (spend not more than 15min on the search) and describe one
+  of them \textcolor{UUred}{[5-10
+    sentences]}. %\\\textbf{\textcolor{blue}{[tagsets $|$
+                            %own web search]}}
+\item Is it neccessary to tokenize text before tagging it? Please
+  motivate your answer and give at least one
+  example. \textcolor{UUred}{[5-10
+    sentences]}. %\\\textbf{\textcolor{blue}{[Read the book]}}
+\item In the HMM lab we have investigated key sequences and produced
+  words. What do these correspond to when using HMMs for POS-tagging?
+  Please give a short motivation for your
+  answer. \textcolor{UUred}{[5-10 sentences]}
+  %\\\textbf{\textcolor{blue}{[HMMs $|$ Back-ref to lab]}}
+\end{itemize}
+
+
 \newsec{Lemmatisation}%
 %What are they supposed to do?
 
 \begin{itemize}
-\item Reflect on the importance of lemmatisation for your native
-  language and at least one foreign language you know.\\
-  \textbf{\textcolor{blue}{$\rightarrow$ [productivity $|$
-      morphological richness]}}
-\item How difficult do you estimate lemmatisation to be for your
-  native language (and why)? \\\textbf{\textcolor{blue}{$\rightarrow$
-      [ambiguity]}}
-\item What is an FST? What is it used for and why is it useful? (ca. 1/2 page)\\
-  \textbf{\textcolor{blue}{$\rightarrow$ [Technical background $|$
-      Read the book, esp. 3.4-3.7]}}
+\item In Lab 7, you have tuned a lemmatizer. Based on the best version
+  of your lemmatizer, you should do a manual analysis of remaining
+  errors. Describe at least 5 error types and discuss how they could
+  be tackled in a more sophisticated lemmatizer \textcolor{UUred}{[ca
+    1/2 page]}.
+\item Lemmatizers are often implemented as finite-state-transducers
+  (FSTs). While this kind of implementation is beyond the scope of
+  this course, Chapter 3.5 (FSTs for Morphological Parsing) of our
+  course book gives examples of how FSTs can be visualised. Draw an
+  FST based on the initial lemmatizer we gave you in Lab 7 (repeated
+  on the last page of this assignment) that can analyse the following
+  words: \texttt{cats NOUN}, \texttt{jumped VERB}, \texttt{higher
+    ADJ}. You can either draw the FST 1) by hand, take a picture,
+  transform it to \texttt{.pdf}, or 2) using a drawing program
+  (e.g. xfig or MS Paint) and transform the output into
+  \texttt{.pdf}. The drawing must be included in your submission, it
+  should \textbf{not} be submitted as a separate file. Please describe
+  your drawing \textcolor{UUred}{[5-10 sentences]}
+\item Why is it more difficult to tag morphologically rich languages?
+  Please reflect and motivate your answer \textcolor{UUred}{[min. 10
+    sentences]}.
 \end{itemize}
+  % \item Reflect on the importance of lemmatisation for your native
+%  language and at least one foreign language you know.\\
+%  \textbf{\textcolor{blue}{$\rightarrow$ [productivity $|$
+%      morphological richness]}}
+%\item How difficult do you estimate lemmatisation to be for your
+%  native language (and why)? \\\textbf{\textcolor{blue}{$\rightarrow$
+%      [ambiguity]}}
+%\item What is an FST? What is it used for and why is it useful? (ca. 1/2 page)\\
+%  \textbf{\textcolor{blue}{$\rightarrow$ [Technical background $|$
+%      Read the book, esp. 3.4-3.7]}}
+%\newsec{Illustrate an FST} %
 
-\newsec{POS-Tagging}%
+%\newsec{Error analysis}{error}%
 
-\begin{itemize}
-\item What tagsets exist in your native language? List the ones you
-  can find and describe one of them (5-10
-  sentences). \\\textbf{\textcolor{blue}{[tagsets $|$ own web search]}}
-\item Is it neccessary to tokenize text before tagging it? Please
-  motivate your answer and give an example. (5-10
-  sentences). \\\textbf{\textcolor{blue}{[Read the book]}}
-\item In the HMM lab we have investigated key sequences and produced
-  words. What do these correspond to when using HMMs for POS-tagging?
-  \\\textbf{\textcolor{blue}{[HMMs $|$ Back-ref to lab]}}
-\end{itemize}
+% \newsec{Summing up}%
 
+% \begin{itemize}
+% \item Why is it more difficult to tag morphologically rich
+%   languages?\\\textbf{\textcolor{blue}{[Morphological Productivity
+%       $\rightarrow$ Unknown words in tag lexicon]}}
+% \item What are the possible advantages/disadvantages of first
+%   performing lemmatisation and then POS-tagging and doing it vice
+%   versa? \\\textbf{\textcolor{blue}{$\rightarrow$ [error propagation
+%       $|$ reduce/enhance ambiguity $|$ out-of-the-box thinking]}}
+% \end{itemize}
 
+\begin{figure}
+\begin{center}
+  \fbox{
+\lstinputlisting{code/lemmatizer1.py}
+}
+\caption{Skeleton code for a rule-based lemmatizer, taken from Lab 7.}
+\end{center}
+\end{figure}
 
-\newsec{Summing up}%
-
-\begin{itemize}
-\item Why is it more difficult to tag morphologically rich
-  languages?\\\textbf{\textcolor{blue}{[Morphological Productivity
-      $\rightarrow$ Unknown words in tag lexicon]}}
-\item What are the possible advantages/disadvantages of first
-  performing lemmatisation and then POS-tagging and doing it vice
-  versa? \\\textbf{\textcolor{blue}{$\rightarrow$ [error propagation
-      $|$ reduce/enhance ambiguity $|$ out-of-the-box thinking]}}
-\end{itemize}
 
 \end{document}
