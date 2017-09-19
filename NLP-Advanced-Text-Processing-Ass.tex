@@ -16,6 +16,7 @@
 
 \usepackage[procnames]{listings}
 \usepackage{color}
+\usepackage{todonotes}
  
  
 
@@ -64,7 +65,7 @@
 
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
-\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 2: Advanced Text Processing\\Lemmatisation and Part-of-Speech-Tagging}}
+\title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 2: Advanced Text Processing}}%\\Lemmatisation and Part-of-Speech-Tagging}}
 \author{}
 \date{} % delete this line to display the current date
 
@@ -101,9 +102,11 @@ done that and still find the instructions unclear, you are welcome to
 email the course teachers and/or go to office hours to ask for help.
 The assignment is split into 2 sections, one about lexical semantics,
 one about semantic role labelling. Each section is worth 10 points. We
-expect between half a page and a page for each section. Please do not
-submit more than 4 pages overall.  You answers for each section should
-be self-contained.
+expect between half a page and a page for each section, except when
+stated otherwise. Please do not submit more than 4 pages overall.  You
+answers for each section should be self-contained.  \todo[inline,
+color=blue!40]{FC: Right now, the assignment consists of many smaller
+  questions. Can/Should we make them fewer bigger questions?}
 
 \newsec{POS-Tagging}%
 \begin{itemize}
@@ -115,13 +118,13 @@ be self-contained.
   mistagged in the gold standard? \textcolor{UUred}{[ca 1/2 page]}.
 \item What tagsets exist for your native language? List the ones you
   can find (spend not more than 15min on the search) and describe one
-  of them \textcolor{UUred}{[5-10
-    sentences]}. %\\\textbf{\textcolor{blue}{[tagsets $|$
+  of them. \textcolor{UUred}{[5-10
+    sentences]} %\\\textbf{\textcolor{blue}{[tagsets $|$
                             %own web search]}}
 \item Is it neccessary to tokenize text before tagging it? Please
   motivate your answer and give at least one
   example. \textcolor{UUred}{[5-10
-    sentences]}. %\\\textbf{\textcolor{blue}{[Read the book]}}
+    sentences]} %\\\textbf{\textcolor{blue}{[Read the book]}}
 \item In the HMM lab we have investigated key sequences and produced
   words. What do these correspond to when using HMMs for POS-tagging?
   Please give a short motivation for your
@@ -137,8 +140,8 @@ be self-contained.
 \item In Lab 7, you have tuned a lemmatizer. Based on the best version
   of your lemmatizer, you should do a manual analysis of remaining
   errors. Describe at least 5 error types and discuss how they could
-  be tackled in a more sophisticated lemmatizer \textcolor{UUred}{[ca
-    1/2 page]}.
+  be tackled in a more sophisticated lemmatizer. \textcolor{UUred}{[ca
+    1/2 page]}
 \item Lemmatizers are often implemented as finite-state-transducers
   (FSTs). While this kind of implementation is beyond the scope of
   this course, Chapter 3.5 (FSTs for Morphological Parsing) of our
@@ -151,11 +154,29 @@ be self-contained.
   (e.g. xfig or MS Paint) and transform the output into
   \texttt{.pdf}. The drawing must be included in your submission, it
   should \textbf{not} be submitted as a separate file. Please describe
-  your drawing \textcolor{UUred}{[5-10 sentences]}
+  your drawing. \textcolor{UUred}{[5-10 sentences]}
 \item Why is it more difficult to tag morphologically rich languages?
-  Please reflect and motivate your answer \textcolor{UUred}{[min. 10
-    sentences]}.
+  Please reflect and motivate your answer. \textcolor{UUred}{[min. 10
+    sentences]}
 \end{itemize}
+
+\section{Submit the assignment}
+\todo[inline, color=blue!40]{FC: we should decide whether or not we
+  want them to submit in LaTeX}
+\noindent
+Submit your assignment as a pdf file on \textit{studentportalen}
+before Wednesday 29th November 20h00. Later submissions will be
+considered failed submissions and assessed after the final
+re-submission deadline on January 15th. To pass the assignment, you
+must have answered both questions, reached at least 5 points in each
+question and at least 12 overall.  To get VG, you should obtain at
+least 8 in each question and at least 18 points overall.
+\todo[inline, color=blue!40]{FC: maybe say ``must have answered
+  \underbar{all} questions?''. Sometimes, the large questions contain
+  sub-questions.}  \todo[inline, color=blue!40]{FC: I added the
+  re-submission policy here and will add it to the webpage as well.}
+
+
   % \item Reflect on the importance of lemmatisation for your native
 %  language and at least one foreign language you know.\\
 %  \textbf{\textcolor{blue}{$\rightarrow$ [productivity $|$
