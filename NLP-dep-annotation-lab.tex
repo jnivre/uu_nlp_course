@@ -91,7 +91,7 @@
 \newsec{Introduction}{intro}%
 In this lab, we will perform grammatical annotation of English sentences, following the guidelines of the Universal Dependencies (UD) project.\footnote{{\tt http://universaldependencies.org}} The input to annotation will be text that has been tokenized, tagged and lemmatized, so the task will be limited to annotating syntactic structures
 in the form of dependencies. 
-We will use the Brat tool for annotation and the MaltEval tool for comparing annotations. We will also need to consult the UD guidelines for syntactic annotation.\footnote{{\tt http://universaldependencies.org/u/overview/syntax.html}}
+We will use the UD Annotatrix tool for annotation and the MaltEval tool for comparing annotations. We will also need to consult the UD guidelines for syntactic annotation.\footnote{{\tt http://universaldependencies.org/u/overview/syntax.html}}
 
 \newsec{Data}{data}%
 The data to be annotated consists of 10 English sentences, selected from one of the English UD treebanks, stored in the file {\tt en10-anno.conll} 
@@ -118,8 +118,26 @@ The syntactic dependency annotation will consist in adding two more columns:
 However, instead of manipulating the CoNLL-X file directly, which would be theoretically possible but practically difficult and error-prone, we will use the Brat tool 
 that provides a graphical user interface for annotation. 
 
-\newsec{Install Brat}{brat}%
-\fbox{WAITING FOR SAMPO}
+\newsec{Start UD Annotatrix}{brat}%
+UD Annotatrix is a web-based annotation tool available at: 
+\begin{verbatim}
+https://maryszmary.github.io/ud-annotatrix/standalone/annotator.html
+\end{verbatim}
+Load the file {\tt en10-anno.conll} by clicking on ``Choose File" next to ``Load Corpora from file:" and selecting the file. 
+You should now see the first sentence in CoNLL-U format in the text window at the top of the screen. 
+If you scroll down, you should also see a graphical display of the sentence, with words and tags but no dependencies, as shown below.
+\begin{center}
+\fbox{
+\includegraphics[scale=0.6]{pics/annotatrix}
+}
+\end{center}
+You can now annotate dependency trees as follows:
+\begin{enumerate}[topsep=5pt,noitemsep]
+\item To add a dependency arc, click first on the head word and then on the dependent word.
+\item To add a label to an arc, click on the arc and type the label (and hit the return key).
+\item To remove a dependency arc, righ-click to select and then hit the delete or backspace key.
+\end{enumerate}
+Note that the CoNLL-U representation at the top gets modified as well. (In fact, you can also annotate by directly editing the CoNLL-U file, but we do not recommend it, as it is easier to make mistakes.) \paragraph{Important:} When you have finished the annotation, you must use the "Export Corpus" key to download it to your computer. This puts it in the downloads folder, from which you may need to copy it to your working directory for the final comparison. 
 
 \newsec{Annotate sentences}{annotate}%
 When annotating a sentence, start by identifying the main predicate and annotate its core arguments.
