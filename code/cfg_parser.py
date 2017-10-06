@@ -4,7 +4,7 @@
 Parse a sentence (Q to quit): He worked for the BBC for a decade.
 (S
   (S
-    (NP (Pronoun He))
+    (NP (Pron He))
     (VP
       (Verb worked)
       (PP (Prep for) (NP (Det the) (Noun BBC)))
