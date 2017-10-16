@@ -137,7 +137,9 @@ You can now annotate dependency trees as follows:
 \item To add a label to an arc, click on the arc and type the label (and hit the return key).
 \item To remove a dependency arc, right-click to select and then hit the delete or backspace key.
 \end{enumerate}
-Note that the CoNLL-U representation at the top gets modified as well. (In fact, you can also annotate by directly editing the CoNLL-U file, but we do not recommend it, as it is easier to make mistakes.) \paragraph{Important:} When you have finished the annotation, you must use the "Export Corpus" key to download it to your computer. This puts it in the downloads folder, from which you may need to copy it to your working directory for the final comparison. 
+Note that the CoNLL-U representation at the top gets modified as well. In fact, you can also annotate by directly editing the CoNLL-U file. In general, we do not recommend doing this, because it is easier to make mistakes, but you have to use this method to add the root depependency. In other words, after you have added all dependencies between words, you should change the HEAD value to 0 and the DEPREL value to ``root'' for the word that is the root of the dependency tree. 
+
+\paragraph{Important:} When you have finished the annotation, you must use the "Export Corpus" key to download it to your computer. This puts it in the downloads folder, from which you may need to copy it to your working directory for the final comparison. 
 
 \newsec{Annotate sentences}{annotate}%
 When annotating a sentence, start by identifying the main predicate and annotate its core arguments.
