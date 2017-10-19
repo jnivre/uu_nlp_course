@@ -63,6 +63,14 @@
   {\normalfont\normalsize\bfseries}%
 }\makeatother
 
+% taken from MdL
+\newenvironment{titlemize}[1]{%
+    \paragraph{#1}
+    \begin{itemize}
+        \setlength\itemsep{0pt}}
+    {\end{itemize}}
+
+
 %\title{{\LARGE Universal Parser (UP)}\\[-8mm]
 %\includegraphics[height=8mm]{RUPA}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\includegraphics[height=8mm]{RUPA}}
 \title{{\LARGE Natural Language Processing}\\[1.5mm]{\large Assignment 2: Advanced Text Processing}}%\\Lemmatisation and Part-of-Speech-Tagging}}
@@ -164,24 +172,53 @@ color=blue!40]{FC: Right now, the assignment consists of many smaller
     sentences]}
 \end{itemize}
 
+\clearpage
 \section{Grading Criteria}
-tbd
+To pass the assignment, you must meet all the basic criteria on all
+subparts of the assignment.  To get VG, you must in addition meet some
+of the additional criteria for most of subparts.
+
+\begin{titlemize}{Basic Criteria}
+    \item Answers are given in understandable English.
+    \item Answers are stated clearly and coherently.
+    \item Answers are essentially coherent.
+\end{titlemize}
+\begin{titlemize}{Additional Criteria}
+    \item Answers are well motivated.
+    \item Answers are well illustrated.
+    \item Answers reveal extensive knowledge of the textbook chapter(s).
+\end{titlemize}
+
+\begin{titlemize}{Points}
+    \item 1-4: poor on each of the basic criteria
+    \item 5-6: fair on each of the basic criteria
+    \item 7: at least fair on each of the basic criteria and fair on some of
+        the additional criteria
+    \item 8: at least good on each of the basic criteria and at least fair on
+        each of the additional criteria
+    \item 9: at least good on each of the basic criteria and at least fair and
+        most times good or excellent on each of tem the additional criteria
+    \item 10: good or excellent on each of the basic and additional criteria.
+\end{titlemize}
 
 \section{Submit the assignment}
 \todo[inline, color=blue!40]{FC: we should decide whether or not we
   want them to submit in LaTeX}
 \noindent
-Submit your assignment as a pdf file on \textit{studentportalen}
-before Wednesday 29th November 20h00. Later submissions will be
-considered failed submissions and assessed after the final
-re-submission deadline on January 15th. To pass the assignment, you
-must have answered both questions, reached at least 5 points in each
-question and at least 12 overall.  To get VG, you should obtain at
-least 8 in each question and at least 18 points overall.
-\todo[inline, color=blue!40]{FC: maybe say ``must have answered
-  \underbar{all} questions?''. Sometimes, the large questions contain
-  sub-questions.}  \todo[inline, color=blue!40]{FC: I added the
-  re-submission policy here and will add it to the webpage as well.}
+Submit your assignment as a pdf file named
+firstname\_lastname\_assignment\_2.pdf. It should follow the style and
+margins given in the example submission even if not created with
+LaTeX. The submission is due on \textit{studentportalen} before
+Wednesday 29th November 20h00. Later submissions will be considered
+failed submissions and assessed after the final re-submission deadline
+on January 15th. To pass the assignment, you must have answered both
+questions, reached at least 5 points in each question and at least 12
+overall. To get VG, you should obtain at least 8 in each question and
+at least 18 points overall.  \todo[inline, color=blue!40]{FC: maybe
+  say ``must have answered \underbar{all} questions?''. Sometimes, the
+  large questions contain sub-questions.}  \todo[inline,
+color=blue!40]{FC: I added the re-submission policy here and will add
+  it to the webpage as well.}
 
 
   % \item Reflect on the importance of lemmatisation for your native
