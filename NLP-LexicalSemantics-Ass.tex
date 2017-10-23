@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 %\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
-\usepackage[top=20mm,left=20mm,right=20mm,bottom=15mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\usepackage[top=30mm,left=20mm,right=20mm,bottom=30mm,headsep=15pt,footskip=15pt,a4paper]{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 %\geometry{a4paper} % or letter or a5paper or ... etc
 % \geometry{landscape} % rotated page geometry
 \usepackage[round]{natbib}
@@ -223,45 +223,45 @@ You should do the following:
 
 %TODO: move this to the assignment
 %TODO: add exercise about precision and recall to lab
-\newsec{Error analysis }{submit}%
-After analyzing the performance of a classifier, it is useful to
-perform an error analysis. By providing additional arguments to {\tt
-  wsd\_classifier()}, you can get a confusion matrix as well as a
-printout of all the errors.
-\begin{center}
-\fbox{
-\scalebox{0.55}{
-\lstinputlisting{code/error.py}
-}}
-\end{center}
-The relevant arguments are {\tt confusion\_matrix=True} and {\tt
-  log=True}, but note that you must also insert the argument {\tt
-  distance=3} to get the right interpretation. The errors are printed
-to an external file called {\tt errors.txt}. Do an error analysis of
-the best performing classifier for each target word, answering the
-following questions:
-\begin{enumerate}
-\item  Using the confusion matrix, identify which sense is the hardest
-  one for the model to estimate.
-\item  Look in {\tt errors.txt} for examples where that hardest word
-  sense is the correct label.  Do you see any patterns or systematic
-  errors? If so, can you think of a way to adapt the feature
-  representation to improve the model?
-\end{enumerate}
-\newsec{Submit the assignment}{submit}%
-Upload the following to {\it Studentportalen} \textbf{before 20:00h
-  December 16th}. In order to pass you must provide answers to all
-questions and achieve at least 15/20 points.
-\begin{itemize}[noitemsep,topsep=0.2cm]
-\item Submission format: \texttt{.pdf} format written in \LaTeX
-\item Answers to the questions in Section 3 
-\item A table summarizing the results for four classifiers (Section 3
-  and 4: random, majority, bag-of-words, collocation) and three target
-  words (\emph{hard}, \emph{interest}, \emph{serve}).
-\item A short discussion of the results (Section 4, max 1/2 page)
-\item An error analysis for the best classifier for each target word (Section 5)
-\item \textbf{[VG]}: In order to get the grade VG, reach at least 18
-  points in the exercises above.
-\end{itemize}
+% \newsec{Error analysis }{submit}%
+% After analyzing the performance of a classifier, it is useful to
+% perform an error analysis. By providing additional arguments to {\tt
+%   wsd\_classifier()}, you can get a confusion matrix as well as a
+% printout of all the errors.
+% \begin{center}
+% \fbox{
+% \scalebox{0.55}{
+% \lstinputlisting{code/error.py}
+% }}
+% \end{center}
+% The relevant arguments are {\tt confusion\_matrix=True} and {\tt
+%   log=True}, but note that you must also insert the argument {\tt
+%   distance=3} to get the right interpretation. The errors are printed
+% to an external file called {\tt errors.txt}. Do an error analysis of
+% the best performing classifier for each target word, answering the
+% following questions:
+% \begin{enumerate}
+% \item  Using the confusion matrix, identify which sense is the hardest
+%   one for the model to estimate.
+% \item  Look in {\tt errors.txt} for examples where that hardest word
+%   sense is the correct label.  Do you see any patterns or systematic
+%   errors? If so, can you think of a way to adapt the feature
+%   representation to improve the model?
+% \end{enumerate}
+% \newsec{Submit the assignment}{submit}%
+% Upload the following to {\it Studentportalen} \textbf{before 20:00h
+%   December 16th}. In order to pass you must provide answers to all
+% questions and achieve at least 15/20 points.
+% \begin{itemize}[noitemsep,topsep=0.2cm]
+% \item Submission format: \texttt{.pdf} format written in \LaTeX
+% \item Answers to the questions in Section 3 
+% \item A table summarizing the results for four classifiers (Section 3
+%   and 4: random, majority, bag-of-words, collocation) and three target
+%   words (\emph{hard}, \emph{interest}, \emph{serve}).
+% \item A short discussion of the results (Section 4, max 1/2 page)
+% \item An error analysis for the best classifier for each target word (Section 5)
+% \item \textbf{[VG]}: In order to get the grade VG, reach at least 18
+%   points in the exercises above.
+% \end{itemize}
 
 \end{document}
