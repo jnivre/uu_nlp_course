@@ -117,11 +117,11 @@ after the word and tag. It uses three simple methods for lemmatization
 of nouns, verbs and adjectives and otherwise treats the token as its
 own lemma. The program is run as follows:
 \begin{verbatim}
-python3 lemmatizer.py < ewt-dev-wt.txt > ewt-dev-out.txt
+python lemmatizer.py < ewt-dev-wt.txt > ewt-dev-out.txt
 \end{verbatim}
 To evaluate the quality of the lemmatization, you can use {\tt score.py} with the flag {\tt lemma}:
 \begin{verbatim}
-python3 score.py lemma ewt-dev-wtl.txt ewt-dev-out.txt
+python score.py lemma ewt-dev-wtl.txt ewt-dev-out.txt
 \end{verbatim}
 
 \newsec{Improve lemmatization}{improve}%
@@ -135,34 +135,11 @@ the command line:\\
 
 \noindent
 \texttt{diff ewt-dev-wtl.txt ewt-dev-out.txt | less}\\
-\todo{MdL showed the student a different command which they preferred
-  in the end... which was it?}
+or
+\texttt{vimdiff ewt-dev-wtl.txt ewt-dev-out.txt | less}\\
+(see Lab 2 about vimdiff)
 
 \noindent
 The goal is to reach at least 85\% accuracy on the development set.
-
-% \newsec{Submit the assignment}{submit}%
-% Upload the following to {\it Studentportalen}, \textbf{before 20:00h
-%   December 2nd}. In order to pass you must provide answers to all
-% exercises and achieve at least 15/20 points.
-% \begin{itemize}[noitemsep,topsep=0.2cm]
-% \item Code for a lemmatizer that achieves at least 85\% accuracy on
-%   the development set\\ (Section 4, \texttt{firstname.py\footnote{Please
-%       substitute \emph{firstname} by your first name (and only your
-%       first name), e.g. \texttt{fabienne.py}}} format).
-% \item The output-file this lemmatizer produces\\(Section 4,
-%   \texttt{firstname\_output.txt}).
-% \item The ouput of the scoring script for this lemmatizer\\ (Section 4,
-%   \texttt{firstname\_scoring.txt}).
-% \item A discussion of at least 5 remaining error types\\ (Section 5,
-%   ca. 1/2 page, \texttt{firstname\_discussion.pdf} written in
-%   \LaTeX).
-% \item A drawing of how the FST corresponding to the initial lemmatizer
-%   we gave you would look like\\ (Section 6,
-%   \texttt{firstname\_drawing.pdf})
-% \item \textbf{[VG]} In order to get the grade VG, reach at least 18
-%   points in the exercises above and submit a lemmatizer with at least
-%   95\% accurracy. 
-% \end{itemize}
 
 \end{document}
