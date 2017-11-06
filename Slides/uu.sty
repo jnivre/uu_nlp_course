@@ -1,0 +1,68 @@
+% themevxu.sty
+
+% (C) Robert Nyqvist, 2004
+%
+\ProvidesPackage{trial}
+\NeedsTeXFormat{LaTeX2e}
+\def\@subtitle{}
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\def\@email{}
+\def\email#1{\gdef\@email{#1}}
+\def\@homepage{}
+\def\homepage#1{\gdef\@homepage{#1}}
+\setbeamertemplate{title page}{%
+  \begin{center}\vskip1em
+    \color{black}{\Large\bfseries\inserttitle}\vskip1em
+    \color{black}{\large\@subtitle}\vskip2.5em
+    \color{black}{\large\insertauthor}\vskip1em
+    \color{black}{\small\insertinstitute}
+  \end{center}}
+\setbeamertemplate{frametitle}{%
+  \color{black}\Large\bfseries\insertframetitle\par}
+\setbeamercolor{headcolor}{fg=white,bg=red!60!black}
+\setbeamercolor{headrule}{fg=white,bg=gray!70}
+\logo{\includegraphics{UU_logo_sv_60}}
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm,dp=.17cm]{headcolor}
+   ~\insertlogo\hfill\scriptsize\insertsection\makebox[0.25cm]{}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[ht=1.5pt,wd=\paperwidth]{headrule}
+  \end{beamercolorbox}}
+\setbeamercolor{footcolori}{fg=white,bg=gray!70}
+\setbeamercolor{footcolorii}{fg=white,bg=red!60!black}
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.5pt]{footcolori}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.3cm,dp=.17cm]{footcolorii}
+    \makebox[0.25cm]{}\insertshorttitle\hfill
+    \insertframenumber(\inserttotalframenumber)\makebox[0.25cm]{}
+  \end{beamercolorbox}}
+\setbeamersize{sidebar width left=0pt}
+\setbeamersize{sidebar width right=0pt}
+\setbeamertemplate{sidebar left}{}
+\setbeamertemplate{sidebar right}{}
+
+\setbeamercolor{section in toc}{fg=black}
+\setbeamerfont{subsection in toc}{size=\small}
+\setbeamercolor{itemize item}{fg=red!60!black}
+\setbeamercolor{itemize subitem}{fg=red!60!black}
+\setbeamercolor{itemize subsubitem}{fg=red!60!black}
+\setbeamercolor{enumerate item}{fg=red!60!black}
+\setbeamercolor{enumerate subitem}{fg=red!60!black}
+\setbeamercolor{enumerate subsubitem}{fg=red!60!black}
+\setbeamercolor{structure}{fg=gray!120}
+\setbeamercolor{alerted text}{fg=red!60!black}
+
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry journal}{}
+\setbeamertemplate{bibliography entry note}{}
+\setbeamertemplate{bibliography item}[triangle]{}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black!200!black,bg=black}
+\setbeamercolor{bibliography entry journal}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+
+\let\@internalcite\cite
+\def\cite{\def\citename##1{##1 }\@internalcite}
+\def\shortcite{\def\citename##1{}\@internalcite}
+\def\@biblabel#1{\def\citename##1{##1}[#1]\hfill}
