@@ -107,7 +107,9 @@ available as plain text in the file {\tt holmes.txt}. We will start by
 tokenizing the text and segmenting it into sentences.  You could in
 principle use your own tokenizer, but to make sure that everyone has
 the same version of the text it is better to use {\tt tokenizer5.py},
-which takes some special properties of this text into account.
+which uses the tokenizer from NLTK. It is not perfect but we can ignore
+the imperfections.
+
 
 \newsec{Extract bigram frequencies }{bigrams}%
 Estimation of probabilities is always based on frequency data, and we
