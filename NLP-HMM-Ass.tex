@@ -115,15 +115,15 @@ good fit for a Hidden Markov Model. Your first task is to define the
 model structure.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item What are the (hidden) states of the model?
-\item What are the (emitted) signals of the model?
+\item What are the (emitted) signals?
 \end{itemize}
 
 \newsec{Estimate probabilities}{estimate}%
-Once you have defined the model structure (states and symbols), there
+Once you have defined the model structure (states and signals), there
 are two probability distributions that need to be estimated.
 \begin{itemize}[noitemsep,topsep=0.2cm]
 \item How would you estimate the emission probabilities
-  $P(\mbox{symbol}|\mbox{state})$?
+  $P(\mbox{signal}|\mbox{state})$?
 \item How would you estimate the transition probabilities
   $P(\mbox{new state}|\mbox{previous state})$?
 \end{itemize}
