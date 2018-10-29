@@ -25,10 +25,9 @@
 \newcommand{\argmin}{\operatornamewithlimits{argmin}} 
 
 \title{Natural Language Processing} \subtitle{Introduction}
-\author{Fabienne Cap, Miryam de Lhoneux and Joakim Nivre}
+\author{Miryam de Lhoneux and Joakim Nivre}
 \institute{Uppsala University\\Department of Linguistics and
-  Philology\\nlp-course@stp.lingfil.uu.se\\\vspace{0.5cm}Thanks to
-  Joakim Nivre for designing and providing most of these slides!}
+  Philology\\nlp-course@stp.lingfil.uu.se}
 \logo{\includegraphics[height=1.25cm,clip=true,trim=0 30 0
   0]{UU_logo_vit_60}}
 
@@ -227,143 +226,6 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Example week schedule I}
-  \resizebox{0.85\textwidth}{!}{
-    \begin{tabular}{|l|c|c|c|c|c|}
-      \hline
-      Week 1 &  Monday 6.11& Tuesday 7.11 & Wednesday 8.11& Thursday 9.11& Friday 10.11\\
-      \hline
-      \multirow{4}{*}{Morning}  &\cellcolor{Maroon!50} & \cellcolor{Green!50}&\cellcolor{Maroon!50}  & \cellcolor{Yellow!50}&\cellcolor{Green!50} \\
-      
-             &\cellcolor{Maroon!50} & \cellcolor{Green!50}&\cellcolor{Maroon!50}  & \cellcolor{Yellow!50}& \cellcolor{Green!50}\\
-             &\cellcolor{Maroon!50} & \cellcolor{Green!50}&\cellcolor{Maroon!50}  &\cellcolor{Yellow!50} & \cellcolor{Green!50}\\  
-  & \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting} & \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} &\cellcolor{Maroon!50}  \multirow{-4}{*}{Classroom Meeting} & \multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50}& \multirow{-4}{*}{Read Textbook}\cellcolor{Green!50}\\
-  \hline
-\multirow{4}{*}{Afternoon} &\cellcolor{Dandelion!60} & \cellcolor{NavyBlue!50} &\cellcolor{Yellow!50} &\cellcolor{Yellow!50} & \cellcolor{NavyBlue!50}\\
-&\cellcolor{Dandelion!60} &  \cellcolor{NavyBlue!50}&\cellcolor{Yellow!50} &\cellcolor{Yellow!50} & \cellcolor{NavyBlue!50}\\
-&\cellcolor{Dandelion!60} &  \cellcolor{NavyBlue!50}&\cellcolor{Yellow!50} & \cellcolor{Yellow!50}& \cellcolor{NavyBlue!50}\\
-& \cellcolor{Dandelion!60}\multirow{-4}{*}{Complete Lab} & \cellcolor{NavyBlue!50} \multirow{-4}{*}{Watch Lectures}& \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 1} & \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 1}& \multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50}\\
-  \hline
- \multicolumn{1}{c}{} \\
- \multicolumn{1}{c}{}  \\
-\hline
-  Week 2 &  Monday 13.11& Tuesday 14.11 & Wednesday 15.11& Thursday 16.11& Friday 17.11\\
-  \hline
-\multirow{4}{*}{Morning} &\cellcolor{Maroon!50} &\cellcolor{Yellow!50} &\cellcolor{Yellow!50} &\cellcolor{Green!50} & \cellcolor{Maroon!50}\\
-&\cellcolor{Maroon!50} & \cellcolor{Yellow!50}& \cellcolor{Yellow!50}&\cellcolor{Green!50} & \cellcolor{Maroon!50}\\
-&\cellcolor{Maroon!50} & \cellcolor{Yellow!50}&\cellcolor{Yellow!50} &\cellcolor{Green!50} & \cellcolor{Maroon!50}\\  
-  &\cellcolor{Maroon!50} \multirow{-4}{*}{Classroom Meeting} & \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 1} & \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 1} & \multirow{-4}{*}{Read Textbook}\cellcolor{Green!50} & \multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50}\\
-  \hline
-\multirow{4}{*}{Afternoon}&\cellcolor{Yellow!50} &\cellcolor{Yellow!50} &\cellcolor{Yellow!50} & \cellcolor{NavyBlue!50}& \cellcolor{Yellow!50}\\
-&\cellcolor{Yellow!50} &\cellcolor{Yellow!50} & \cellcolor{Yellow!50}& \cellcolor{NavyBlue!50}& \cellcolor{Yellow!50}\\
-&\cellcolor{Yellow!50} & \cellcolor{Yellow!50}& \cellcolor{Yellow!50}& \cellcolor{NavyBlue!50}& \cellcolor{Yellow!50}\\
-&\cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 1} &\cellcolor{Yellow!50} \multirow{-4}{*}{Assignment 1} &\multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50} &\multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50}&\cellcolor{Yellow!50} \multirow{-4}{*}{Assignment 1} \\
-
-\hline
-\end{tabular}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Example week schedule II}
-  \resizebox{0.85\textwidth}{!}{
-    \begin{tabular}{|l|c|c|c|c|c|}
-      \hline
-      Week 3&  Monday 20.11 & Tuesday 21.11 & Wednesday 22.11 & Thursday 23.11 & Friday 24.11\\
-      \hline
-      \multirow{4}{*} {Morning} & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50}  & \cellcolor{NavyBlue!50}  & \cellcolor{Maroon!50}&\cellcolor{Yellow!50}  \\
-            & \cellcolor{NavyBlue!50}& \cellcolor{Maroon!50} &\cellcolor{NavyBlue!50}  & \cellcolor{Maroon!50} & \cellcolor{Yellow!50} \\
-            &\cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} &\cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\
-            & \cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures} &\cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting} &\cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures} & \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting} & \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 2}\\
-      \hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \multirow{4}{*}{Afternoon} &\cellcolor{Yellow!50}  & \cellcolor{Green!50}   & \cellcolor{Yellow!50} & \cellcolor{Green!50} &\cellcolor{Yellow!50}\\
-            & \cellcolor{Yellow!50}\multirow{-2}{*}{Assignment 1} & \cellcolor{Green!50}  & \cellcolor{Yellow!50} &\cellcolor{Green!50} &\cellcolor{Yellow!50} \\
-      \cline{2-2}
-            &\cellcolor{Red} & \cellcolor{Green!50} &\cellcolor{Yellow!50}  & \cellcolor{Green!50} & \cellcolor{Yellow!50}\\
-            &\cellcolor{Red}\multirow{-2}{*}{Submit Assignment 1}& \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook}&\cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 2}&\cellcolor{Green!50}\multirow{-4}{*}{Read Textbook}& \cellcolor{Yellow!50} \multirow{-4}{*}{Assignment 2}\\
-      \hline
-      \multicolumn{1}{c}{} \\
-      \multicolumn{1}{c}{}  \\
-      \hline
-      Week 4 &  Monday 27.11& Tuesday 28.11 & Wednesday 29.11& Thursday 30.11& Friday 1.12\\
-      \hline
-      \multirow{4}{*}{Morning}& \cellcolor{Green!50} & \cellcolor{Maroon!50} & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} &  \cellcolor{Yellow!50}\\
-            & \cellcolor{Green!50}&\cellcolor{Maroon!50} & \cellcolor{NavyBlue!50}& \cellcolor{Maroon!50}& \cellcolor{Yellow!50} \\
-            & \cellcolor{Green!50}&\cellcolor{Maroon!50} &\cellcolor{NavyBlue!50}  &\cellcolor{Maroon!50} &  \cellcolor{Yellow!50}\\  
-            &\cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} &\cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting} &\cellcolor{NavyBlue!50} \multirow{-4}{*}{Watch Lectures}& \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting}&\multirow{-4}{*}{Assignment 3}  \cellcolor{Yellow!50}\\  
-      \hline
-      \multirow{4}{*}{Afternoon}& \cellcolor{NavyBlue!50} &  \cellcolor{Yellow!50} &  \cellcolor{Yellow!50}& \cellcolor{Green!50}&  \cellcolor{Yellow!50} \\
-            & \cellcolor{NavyBlue!50} &  \cellcolor{Yellow!50}&\multirow{-2}{*}{Assignment 2} \cellcolor{Yellow!50} &  \cellcolor{Green!50}& \multirow{-2}{*}{Assignment 3} \cellcolor{Yellow!50}\\
-      \cline{4-4}\cline{6-6}
-            & \cellcolor{NavyBlue!50} & \cellcolor{Yellow!50} &\cellcolor{Red} & \cellcolor{Green!50} &\cellcolor{Red} \\
-            & \multirow{-4}{*}{Watch Lectures} \cellcolor{NavyBlue!50} &\multirow{-4}{*}{Assignment 2} \cellcolor{Yellow!50}& \cellcolor{Red}\multirow{-2}{*}{Submit Assignment 2} &\multirow{-4}{*}{Read Textbook}  \cellcolor{Green!50}& \multirow{-2}{*}{Submit Survey Proposal}\cellcolor{Red}\\
-      \hline
-      \multicolumn{1}{c}{} \\
-    \end{tabular}
-    }
-\end{frame}
-
-\begin{frame}
-  \frametitle{Example week schedule III}
-
-  \resizebox{0.85\textwidth}{!}{
-    \begin{tabular}{|l|c|c|c|c|c|}
-      \hline
-  Week 5 &  Monday 4.12& Tuesday 5.12 & Wednesday 6.12& Thursday 7.12& Friday 8.12\\
-  \hline
-\multirow{4}{*}{Morning}& \cellcolor{Green!50} & \cellcolor{Maroon!50} & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} &\cellcolor{Yellow!50} \\
-       & \cellcolor{Green!50}&\cellcolor{Maroon!50} & \cellcolor{NavyBlue!50}&\cellcolor{Maroon!50} &\cellcolor{Yellow!50} \\
-& \cellcolor{Green!50}&\cellcolor{Maroon!50} &\cellcolor{NavyBlue!50} &\cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\  
-&\multirow{-4}{*}{Read Textbook}\cellcolor{Green!50} & \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting}& \cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures} &\multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50} & \multirow{-4}{*}{Assignment 3}\cellcolor{Yellow!50}\\  
-  \hline
-\multirow{4}{*}{Afternoon}&\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}& \cellcolor{Yellow!50}&\cellcolor{Green!50} &\cellcolor{Yellow!50} \\
-       &\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}& \cellcolor{Yellow!50}& \cellcolor{Green!50}&\cellcolor{Yellow!50}\multirow{-2}{*}{Assignment 3} \\
-  \cline{6-6}
-& \cellcolor{NavyBlue!50} &\cellcolor{Yellow!50}& \cellcolor{Yellow!50} &\cellcolor{green!50} &\cellcolor{Red} \\
-       & \multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 3} &\cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 3} &\cellcolor{Green!50}\multirow{-4}{*}{Read Textbook}& \multirow{-2}{*}{Submit Assignment 3}\cellcolor{Red}\\
-  \hline
- \multicolumn{1}{c}{} \\
- \multicolumn{1}{c}{}  \\
-  \hline
-Week 6 &  Monday 11.12& Tuesday 12.12 & Wednesday 13.12& Thursday 14.12& Friday 15.12\\
-  \hline
-\multirow{4}{*}{Morning}& \cellcolor{Green!50} &\cellcolor{Maroon!50}  & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} &\cellcolor{Yellow!50} \\
-       &\cellcolor{Green!50} & \cellcolor{Maroon!50}&\cellcolor{NavyBlue!50} & \cellcolor{Maroon!50}& \cellcolor{Yellow!50}\\
-& \cellcolor{Green!50}&\cellcolor{Maroon!50} & \cellcolor{NavyBlue!50} &\cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\  
-&\cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} &\cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting} & \cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures}&\multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50} & \multirow{-4}{*}{Assignment 4}\cellcolor{Yellow!50}\\  
-  \hline
-\multirow{4}{*}{Afternoon} &\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}&\cellcolor{Yellow!50} &\cellcolor{Green!50} &\cellcolor{Yellow!50} \\
-       & \cellcolor{NavyBlue!50}& \cellcolor{Yellow!50}&\cellcolor{Yellow!50} &\cellcolor{Green!50} & \cellcolor{Yellow!50}\multirow{-2}{*}{Assignment 4}\\
-  \cline{6-6}
-       &\cellcolor{NavyBlue!50}  &\cellcolor{Yellow!50}& \cellcolor{Yellow!50} &\cellcolor{Green!50} & \cellcolor{Red}\\  
-  &\multirow{-4}{*}{Watch Lectures} \cellcolor{NavyBlue!50}& \multirow{-4}{*}{Assignment 4}\cellcolor{Yellow!50} &\multirow{-4}{*}{Assignment 4} \cellcolor{Yellow!50}&\multirow{-4}{*}{Read Textbook}\cellcolor{Green!50}&\multirow{-2}{*}{Submit Assignment 4}\cellcolor{Red} \\
-  \hline
-\end{tabular}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Submission Policy}
-  \vspace{-0.6cm}
-  \begin{itemize}
-  \item We strongly encourage group work in the labs
-  \item \textbf{But:} \\assignments must be solved and submitted
-    \textbf{\textcolor{red}{individually} (!)}
-  \item You will be assessed and graded based on these submissions
-  \end{itemize}
-
-  \visible<2->{\textbf{What is Plagiarism?}\vspace{0.2cm}\\
-    \emph{\small Plagiarism is the ''wrongful appropriation'' and
-      ''stealing and publication'' of another author's ''language,
-      thoughts, ideas, or expressions'' and the representation of them
-      as one's own original work.}} \visible<3->{(taken from
-    http://www.en.wikipedia.org, 2017-03-24)}\vspace{0.2cm}\\
-  \visible<4->{\href{https://www.roanoke.edu/Documents/AcademicAffairs/Types\_of\_Plagiarism.pdf}{$\rightarrow$ \textcolor{blue}{Examples}}}\vspace{0.2cm}\\
-  \visible<5->{\href{http://www.uu.se/en/students/your\_rights/cheating/}{\textbf{$\rightarrow$ UU's policy and overview of your rights}}
-  }
-\end{frame}
-
-
-
-\begin{frame}
 \frametitle{Examples for Real-World Applications}
 \hfill \includegraphics[scale=0.4]{steam}
 \begin{itemize}
@@ -381,19 +243,157 @@ Week 6 &  Monday 11.12& Tuesday 12.12 & Wednesday 13.12& Thursday 14.12& Friday 
 \end{frame}
 
 \begin{frame}
-\frametitle{Programming}
-\begin{itemize}
-\item Basic programming skills is a prerequisite for the course
-\item For in-class labs we will mainly use \textcolor{blue}{Python}
-\begin{itemize}
-\item You don't need to know Python to take the course
-\item But you need to know how to run a Python program
-\item And you will probably learn some Python in the process
-\end{itemize}
-\item In principle, you can use any programming language you like
-\end{itemize}
+  \frametitle{Example Schedules, Week 1--2}
+  \resizebox{0.85\textwidth}{!}{
+    \begin{tabular}{|l|c|c|c|c|c|}
+      \hline
+      Week 1 &  & Tuesday 6/11 & Wednesday 7/11& Thursday 8/11& Friday 9/11\\
+      \hline
+      \multirow{4}{*}{Morning}  & & \cellcolor{Maroon!50} &\cellcolor{NavyBlue!50}  & \cellcolor{Yellow!50} & \cellcolor{Yellow!50} \\
+      
+             & & \cellcolor{Maroon!50} & \cellcolor{NavyBlue!50}  & \cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\
+             & & \cellcolor{Maroon!50} & \cellcolor{NavyBlue!50}  & \cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\  
+  & & \multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50} & \multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50} & \multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50} & \multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50}\\
+  \hline
+\multirow{4}{*}{Afternoon} & & \cellcolor{Green!50} &\cellcolor{Maroon!50} &\cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\
+& &\cellcolor{Green!50}  &\cellcolor{Maroon!50} & \cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\
+& &\cellcolor{Green!50}  &\cellcolor{Maroon!50} & \cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\
+& & \multirow{-4}{*}{Read Textbook}\cellcolor{Green!50} & \multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50} & \multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50} & \multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50}\\
+  \hline
+ \multicolumn{1}{c}{} \\
+ \multicolumn{1}{c}{}  \\
+\hline
+  Week 2 &  Monday 12/11& Tuesday 13/11 & Wednesday 14/11& Thursday 15/11& Friday 16/11\\
+  \hline
+\multirow{4}{*}{Morning} &\cellcolor{Green!50} &\cellcolor{Maroon!50} &\cellcolor{Green!50} & \cellcolor{Maroon!50} & \cellcolor{Yellow!50} \\
+&\cellcolor{Green!50} & \cellcolor{Maroon!50}& \cellcolor{Green!50} & \cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\
+&\cellcolor{Green!50} & \cellcolor{Maroon!50}&\cellcolor{Green!50} & \cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\  
+  &\cellcolor{Green!50} \multirow{-4}{*}{Read Textbook} & \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting 1} & \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} & \multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50} & \multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50} \\
+  \hline
+\multirow{4}{*}{Afternoon}&\cellcolor{NavyBlue!50} &\cellcolor{Yellow!50} &\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}& \cellcolor{Yellow!50}\\
+&\cellcolor{NavyBlue!50} &\cellcolor{Yellow!50} & \cellcolor{NavyBlue!50} & \cellcolor{Yellow!50} & \multirow{-2}{*}{Assignment 1}\cellcolor{Yellow!50}\\
+&\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50} & \cellcolor{NavyBlue!50} & \cellcolor{Yellow!50} & \cellcolor{Red}\\
+&\cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures} &\cellcolor{Yellow!50} \multirow{-4}{*}{Assignment 1} &\multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50} &\multirow{-4}{*}{Assignment 1}\cellcolor{Yellow!50}&\cellcolor{Red} \multirow{-2}{*}{Submit Assignment 1} \\
 
+\hline
+\end{tabular}}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Example Schedules, Week 3--4}
+  \resizebox{0.85\textwidth}{!}{
+    \begin{tabular}{|l|c|c|c|c|c|}
+      \hline
+  Week 3 &  Monday 19/11& Tuesday 20/11 & Wednesday 21/11& Thursday 22/11& Friday 23/11\\
+  \hline
+\multirow{4}{*}{Morning} &\cellcolor{Green!50} &\cellcolor{Maroon!50} &\cellcolor{Green!50} & \cellcolor{Yellow!50} & \cellcolor{Yellow!50} \\
+&\cellcolor{Green!50} & \cellcolor{Maroon!50}& \cellcolor{Green!50} & \cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\
+&\cellcolor{Green!50} & \cellcolor{Maroon!50}&\cellcolor{Green!50} & \cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\  
+  &\cellcolor{Green!50} \multirow{-4}{*}{Read Textbook} & \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting 1} & \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} & \multirow{-4}{*}{Assignment 2}\cellcolor{Yellow!50} & \multirow{-4}{*}{Assignment 2}\cellcolor{Yellow!50} \\
+  \hline
+\multirow{4}{*}{Afternoon}&\cellcolor{NavyBlue!50} &\cellcolor{Yellow!50} &\cellcolor{NavyBlue!50} & \cellcolor{Maroon!50}& \cellcolor{Yellow!50}\\
+&\cellcolor{NavyBlue!50} &\cellcolor{Yellow!50} & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\
+&\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50} & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} & \cellcolor{Yellow!50}\\
+&\cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures} &\cellcolor{Yellow!50} \multirow{-4}{*}{Assignment 2} &\multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50} &\multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50}&\cellcolor{Yellow!50} \multirow{-4}{*}{Assignment 2} \\
+
+\hline
+      \multicolumn{1}{c}{} \\
+      \multicolumn{1}{c}{}  \\
+      \hline
+      Week 4 &  Monday 26/11& Tuesday 27/11 & Wednesday 28/11& Thursday 29/11& Friday 30/11\\
+      \hline
+      \multirow{4}{*}{Morning}& \cellcolor{Green!50} & \cellcolor{Yellow!50} & \cellcolor{NavyBlue!50} & \cellcolor{Green!50} &  \cellcolor{Yellow!50}\\
+            & \cellcolor{Green!50}&\cellcolor{Yellow!50} & \cellcolor{NavyBlue!50}& \cellcolor{Green!50}& \cellcolor{Yellow!50} \\
+            & \cellcolor{Green!50}&\cellcolor{Yellow!50} &\cellcolor{NavyBlue!50}  &\cellcolor{Green!50} &  \cellcolor{Yellow!50}\\  
+            &\cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} &\cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 2} &\cellcolor{NavyBlue!50} \multirow{-4}{*}{Watch Lectures}& \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook}&\multirow{-4}{*}{Assignment 2}  \cellcolor{Yellow!50}\\  
+      \hline
+      \multirow{4}{*}{Afternoon}& \cellcolor{NavyBlue!50} &  \cellcolor{Maroon!50} &  \cellcolor{Yellow!50}& \cellcolor{Maroon!50}&  \cellcolor{Yellow!50} \\
+            & \cellcolor{NavyBlue!50} &  \cellcolor{Maroon!50}&\multirow{-2}{*}{Assignment 2} \cellcolor{Yellow!50} &  \cellcolor{Maroon!50}& \multirow{-2}{*}{Assignment 3} \cellcolor{Yellow!50}\\
+      \cline{4-4}\cline{6-6}
+            & \cellcolor{NavyBlue!50} & \cellcolor{Maroon!50} &\cellcolor{Red} & \cellcolor{Maroon!50} &\cellcolor{Red} \\
+            & \multirow{-4}{*}{Watch Lectures} \cellcolor{NavyBlue!50} &\multirow{-4}{*}{Classroom Meeting} \cellcolor{Maroon!50}& \cellcolor{Red}\multirow{-2}{*}{Submit Assignment 2} &\multirow{-4}{*}{Classroom Meeting}  \cellcolor{Maroon!50}& \multirow{-2}{*}{Submit Survey Proposal}\cellcolor{Red}\\
+      \hline
+      \multicolumn{1}{c}{} \\
+    \end{tabular}
+    }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example Schedules, Week 5--6}
+
+  \resizebox{0.85\textwidth}{!}{
+    \begin{tabular}{|l|c|c|c|c|c|}
+      \hline
+  Week 5 &  Monday 3/12& Tuesday 4/12 & Wednesday 5/12& Thursday 6/12& Friday 7/12\\
+  \hline
+\multirow{4}{*}{Morning}& \cellcolor{Green!50} & \cellcolor{Maroon!50} & \cellcolor{Green!50} & \cellcolor{Yellow!50} &\cellcolor{Yellow!50} \\
+       & \cellcolor{Green!50}&\cellcolor{Maroon!50} & \cellcolor{Green!50}&\cellcolor{Yellow!50} &\cellcolor{Yellow!50} \\
+& \cellcolor{Green!50}&\cellcolor{Maroon!50} &\cellcolor{Green!50} &\cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\  
+&\multirow{-4}{*}{Read Textbook}\cellcolor{Green!50} & \cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting}& \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} &\multirow{-4}{*}{Assingment 3}\cellcolor{Yellow!50} & \multirow{-4}{*}{Assignment 3}\cellcolor{Yellow!50}\\  
+  \hline
+\multirow{4}{*}{Afternoon}&\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}& \cellcolor{NavyBlue!50}&\cellcolor{Maroon!50} &\cellcolor{Yellow!50} \\
+       &\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}& \cellcolor{NavyBlue!50}& \cellcolor{Maroon!50}&\cellcolor{Yellow!50}\multirow{-2}{*}{Assignment 3} \\
+  \cline{6-6}
+& \cellcolor{NavyBlue!50} &\cellcolor{Yellow!50}& \cellcolor{NavyBlue!50} &\cellcolor{Maroon!50} &\cellcolor{Red} \\
+       & \multirow{-4}{*}{Watch Lectures}\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}\multirow{-4}{*}{Assignment 3} &\cellcolor{NavyBlue!50}\multirow{-4}{*}{Watch Lectures} &\cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting}& \multirow{-2}{*}{Submit Assignment 3}\cellcolor{Red}\\
+  \hline
+ \multicolumn{1}{c}{} \\
+ \multicolumn{1}{c}{}  \\
+  \hline
+Week 6 &  Monday 10/12& Tuesday 11/12 & Wednesday 12/12& Thursday 13/12& Friday 14/12\\
+  \hline
+\multirow{4}{*}{Morning}& \cellcolor{Green!50} &\cellcolor{Maroon!50}  & \cellcolor{Green!50} & \cellcolor{Yellow!50} &\cellcolor{Yellow!50} \\
+       &\cellcolor{Green!50} & \cellcolor{Maroon!50}&\cellcolor{Green!50} & \cellcolor{Yellow!50}& \cellcolor{Yellow!50}\\
+& \cellcolor{Green!50}&\cellcolor{Maroon!50} & \cellcolor{Green!50} &\cellcolor{Yellow!50} & \cellcolor{Yellow!50}\\  
+&\cellcolor{Green!50}\multirow{-4}{*}{Read Textbook} &\cellcolor{Maroon!50}\multirow{-4}{*}{Classroom Meeting} & \cellcolor{Green!50}\multirow{-4}{*}{Read Textbook}&\multirow{-4}{*}{Assignment 4}\cellcolor{Yellow!50} & \multirow{-4}{*}{Assignment 4}\cellcolor{Yellow!50}\\  
+  \hline
+\multirow{4}{*}{Afternoon} &\cellcolor{NavyBlue!50} & \cellcolor{Yellow!50}&\cellcolor{NavyBlue!50} &\cellcolor{Maroon!50} &\cellcolor{Yellow!50} \\
+       & \cellcolor{NavyBlue!50}& \cellcolor{Yellow!50}&\cellcolor{NavyBlue!50} &\cellcolor{Maroon!50} & \cellcolor{Yellow!50}\multirow{-2}{*}{Assignment 4}\\
+  \cline{6-6}
+       &\cellcolor{NavyBlue!50}  &\cellcolor{Yellow!50}& \cellcolor{NavyBlue!50} &\cellcolor{Maroon!50} & \cellcolor{Red}\\  
+  &\multirow{-4}{*}{Watch Lectures} \cellcolor{NavyBlue!50}& \multirow{-4}{*}{Assignment 4}\cellcolor{Yellow!50} &\multirow{-4}{*}{Watch Lectures} \cellcolor{NavyBlue!50}&\multirow{-4}{*}{Classroom Meeting}\cellcolor{Maroon!50}&\multirow{-2}{*}{Submit Assignment 4}\cellcolor{Red} \\
+  \hline
+\end{tabular}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Submission Policy}
+  \vspace{-0.6cm}
+  \begin{itemize}
+  \item We strongly encourage group work in the labs
+  \item \textbf{But:} \\assignments must be solved and submitted
+    \textbf{\textcolor{red}{individually} (!)}
+  \item You will be assessed and graded based on these submissions
+  \end{itemize}
+
+  \visible<2->{\textbf{What is Plagiarism?}\vspace{0.2cm}\\
+    \emph{\small Plagiarism is the ``wrongful appropriation'' and
+      ``stealing and publication'' of another author's ``language,
+      thoughts, ideas, or expressions'' and the representation of them
+      as one's own original work.} 
+    (http://www.en.wikipedia.org, 2017-03-24)}\vspace{0.2cm}\\
+  \visible<3->{\href{https://www.roanoke.edu/Documents/AcademicAffairs/Types\_of\_Plagiarism.pdf}{$\rightarrow$ \textcolor{blue}{Examples}}}\vspace{0.2cm}\\
+  \visible<4->{\href{http://www.uu.se/en/students/your\_rights/cheating/}{\textbf{$\rightarrow$ UU's policy and overview of your rights}}
+  }
+\end{frame}
+
+
+
+
+%\begin{frame}
+%\frametitle{Programming}
+%\begin{itemize}
+%\item Basic programming skills is a prerequisite for the course
+%\item For in-class labs we will mainly use \textcolor{blue}{Python}
+%\begin{itemize}
+%\item You don't need to know Python to take the course
+%\item But you need to know how to run a Python program
+%\item And you will probably learn some Python in the process
+%\end{itemize}
+%\item In principle, you can use any programming language you like
+%\end{itemize}
+%
+%\end{frame}
 
 \begin{frame}
 \begin{center}
