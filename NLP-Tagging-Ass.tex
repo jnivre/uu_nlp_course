@@ -98,9 +98,9 @@ The data sets we are going to use come from the English Web
 Treebank.\footnote{The English Web Treebank
   (https://catalog.ldc.upenn.edu/LDC2012T13) contains syntactically
   annotated texts taken from sources such as weblogs, reviews,
-  question-answers, newsgroups, and email.  We use the version
+  question-answers, newsgroups, and email.  We use a version
   distributed by the Universal Dependencies project
-  (http://universaldependencies.github.io/docs/).} The training set
+  (http://universaldependencies.org).} The training set
 {\tt ewt-train-wt.txt} contains sentences like the following,
 separated by blank lines:
 \begin{quote}
@@ -138,9 +138,12 @@ the Unviersal Dependencies project and listed in the following table.
 	\hline
 	\end{tabular}
 	\end{quote}
-        The development set, which will be used to evaluate the tagger, comes in two versions:\\ {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;\\
-        {\tt ewt-dev-wt.txt} contains both words and tags and will be
+        The development set, which will be used to evaluate the tagger, comes in two versions:
+\begin{itemize}[noitemsep,topsep=3pt]
+\item {\tt ewt-dev-w.txt} contains only words and will be used as input to the tagger;
+\item {\tt ewt-dev-wt.txt} contains both words and tags and will be
         used for comparison when evaluating the output of the tagger.
+\end{itemize}
         All the files needed for the assignment can be found in {\tt
           /local/kurs/nlp/tagging/}.
 
@@ -215,9 +218,9 @@ contextual probabilities. The default is {\tt -t
   $\!\!$2}, which means that we train a trigram model. See what
 happens if you instead use {\tt -t $\!\!$1} or {\tt -t
   $\!\!$3} when training the tagger. This means you copy the
-shellscript into a new file (e.g. using \texttt{cp baseline\_script.sh
-  t1\_script.sh}, rename the experiment in the beginning of the
-shellscript (e.g. 'T1' instead of 'baseline')\footnote{It is most
+shellscript into a new file (e.g., using \texttt{cp baseline\_script.sh
+  t1\_script.sh}), rename the experiment in the beginning of the
+shellscript (e.g., `t1' instead of `baseline')\footnote{It is most
   helpful if you give the script file and the experiment within the
   script the same name and if that name correlated with the parameter
   setting.} and add the parameter \texttt{-t 1} to the training
@@ -225,10 +228,9 @@ command in the script:
 \begin{verbatim}
 hunpos-train $EXP_tagger -t 1 < ewt-train-wt.txt
 \end{verbatim}
-For other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}\\
-For each new parameter setting you try, copy the shellscript, and
-\textbf{(important!)} rename the experiment at the top of the script
-(otherwise old results will be overwritten!).
+For other parameters, consult the HunPoS user manual.\footnote{https://code.google.com/p/hunpos/wiki/UserManualI}
+For each new parameter setting you try, remember to copy the shellscript and
+rename the experiment at the top of the script -- otherwise old results will be overwritten.
 
 
 % \newsec{Submit the assignment}{submit}%

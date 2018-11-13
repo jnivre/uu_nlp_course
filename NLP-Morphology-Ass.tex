@@ -131,15 +131,14 @@ may expand existing methods, add new methods, or modify the main
 program, as you see fit. To get inspiration, you can consult the
 sections on stemming in the textbook. To find out which words your
 lemmatizer still gets wrong, you may use the \texttt{diff} command on
-the command line:\\
-
-\noindent
-\texttt{diff ewt-dev-wtl.txt ewt-dev-out.txt | less}\\
-or
-\texttt{vimdiff ewt-dev-wtl.txt ewt-dev-out.txt}\\
-(see Lab 2 about vimdiff)
-
-\noindent
+the command line:
+\begin{verbatim}
+diff ewt-dev-wtl.txt ewt-dev-out.txt | less
+\end{verbatim}
+or use vimdiff (see Lab 2):
+\begin{verbatim}
+vimdiff ewt-dev-wtl.txt ewt-dev-out.txt
+\end{verbatim}
 The goal is to reach at least 85\% accuracy on the development set.
 
 \end{document}
