@@ -127,6 +127,11 @@ to read the grammar from the text file. You can then start the interactive parse
 \lstinputlisting{code/cfg_parser.py}
 }
 \end{center}
+To make your life easier, you can also run the parser directly in a terminal using a slightly different script: 
+\begin{verbatim}
+python cfg_parser_b.py 
+\end{verbatim}
+The script parses the first sentence. You will need to modify it to parse the other sentences. Note that it produces a tree which is easier to visualize.
 
 \newsec{Discuss Ambiguities}{parse}%
 It is likely that, once you have extended the grammar to cover all sentences, you will get more than one parse tree for some sentences. Check these analyses and discuss with your classmates whether they all correspond to reasonable interpretations of the sentence. Also discuss whether there are sentences that only receive one analysis but should have several because they are ambiguous.
