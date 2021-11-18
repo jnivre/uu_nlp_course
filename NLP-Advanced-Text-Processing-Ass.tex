@@ -104,17 +104,19 @@
 %\vspace{3mm}
 
 \section{Introduction}
-\noindent This assignment involves material from lectures 5, 6 and
-7. You should have watched the relevant videos, read the relevant
-chapters in the textbook and made a serious attempt at completing the
-relevant labs before you attempt this assignment. If you feel you have
-done that and still find the instructions unclear, you are welcome to
-email the course teachers and/or go to office hours to ask for help.
-The assignment is split into 2 sections, one about POS tagging,
-one about Lemmatisation. Each section is worth 10 points. We
-expect between half a page and a page for each section, except when
-stated otherwise. Please do not submit more than 4 pages overall.  Your
-answers for each section should be self-contained.  %\todo[inline,
+\noindent This assignment involves material from lectures 5, 6 and 7. You should
+have watched the relevant videos, read the relevant chapters in the textbook and
+made a serious attempt at completing the relevant labs before you attempt this
+assignment. If you feel you have done that and still find the instructions
+unclear, you are welcome to email the course teachers and/or go to office hours
+to ask for help. The assignment is split into 2 sections, one about POS tagging,
+one about Lemmatisation. Each section is worth 10 points. If you are interested
+in receiving a VG grade, you may complete the \textit{optional} exercise
+available to you, which is related to Hidden Markov Models. Note that the exercise
+must be completed in full in order to receive VG credit. We expect between half
+a page and a page for each section, except when stated otherwise. Please do not
+submit more than 5 pages overall. Your answers for each section should be
+self-contained. %\todo[inline,
 %color=blue!40]{FC: Right now, the assignment consists of many smaller
 %  questions. Can/Should we make them fewer bigger questions?}
 
@@ -172,8 +174,32 @@ What do these correspond to when using HMMs for POS-tagging? Please motivate you
   Please reflect and motivate your answer. %\textcolor{UUred}{[min. 10
 %    sentences]}
 \end{itemize}
-
 \clearpage
+
+\newsec{VG: Hidden Markov Models}
+
+Consider the following \texttt{TRAIN} ``corpus'':
+
+\begin{verbatim}
+she/PRON books/VERB trips/NOUN for/ADP kids/NOUN
+she/PRON kids/VERB you/PRON all/DET the/DET time/NOUN
+kids/NOUN like/VERB books/NOUN like/ADP these/PRON
+\end{verbatim}
+
+\noindent Compute the transition and emission probabilities of a 1st order Hidden Markov
+Model POS-tagger using this data. Show your results in separate tables.
+\\
+\\
+\noindent Now, consider the following \texttt{TEST} sentence:
+
+\begin{verbatim}
+kids like books
+\end{verbatim}
+
+\noindent Report the most likely tag sequence for this sentence, as well as its
+probability given the \texttt{TRAIN} corpus. Show your work by drawing a Viterbi
+trellis. 
+
 \section{Grading Criteria}
 To pass the assignment, you must meet all the basic criteria on all
 subparts of the assignment.  To get VG, you must in addition meet some
