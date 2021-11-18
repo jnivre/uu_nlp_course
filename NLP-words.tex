@@ -96,18 +96,21 @@
 %\vspace{3mm}
 \thispagestyle{empty}
 \section{Introduction}
-\indent This assignment involves material from classroom meetings 1 to
-4. You should have watched the relevant videos, read the relevant
-chapters in the textbook and made a serious attempt at completing the
-relevant labs before you attempt this assignment. If you feel you have
-done that and still find the instructions unclear, you are welcome to
-email the course teachers and/or go to office hours to ask for
-help.  The assignment is split into 2 sections, one about
-tokenization, one about language modelling and probability and
-statistics. Each section is worth 50\% of the points. We expect between half a
-page and a page for each section. Please do not submit more than 4
-pages overall (excluding figures etc.) You answers %
+\indent This assignment involves material from classroom meetings 1 to 4. You
+should have watched the relevant videos, read the relevant chapters in the
+textbook and made a serious attempt at completing the relevant labs before you
+attempt this assignment. If you feel you have done that and still find the
+instructions unclear, you are welcome to email the course teachers and/or go to
+office hours to ask for help. The assignment is split into 2 sections --- one
+about tokenization, one about language modelling and probability. Each section
+is worth 50\% of the points. We expect between half a page and a page for each
+section. If you are interested in receiving a VG grade, you may complete the
+\textit{optional} exercise available to you, which is related to language
+modelling. Note that the exercise must be completed in full in order to receive VG
+credit. Please do not submit more than 5 pages overall (excluding figures etc.) You
+answers %
 for each section should be self-contained.
+
 \section{Tokenization}
 In the videos and the book chapters, you learned about regular
 expressions (if you did not already know all about them before that
@@ -140,6 +143,19 @@ different examples than those we asked you to look at in the labs.)\\
 \indent Describe and compare different smoothing methods.  Illustrate your
 answer with results from experiments you made in the lab. You may use the table
 you produced during the lab.
+
+\section{VG: Calculating Perplexity of a Language Model}
+Consider the following \texttt{TRAIN} and \texttt{TEST} ``corpus'':
+
+\begin{verbatim}
+TRAIN: <s> I would much rather eat pizza than ice cream . </s>
+TEST: <s> I love anchovies on my pizza . </s>
+\end{verbatim}
+
+``Train'' a \textbf{bigram} language model on the \texttt{TRAIN} set and report
+its perplexity on the \texttt{TEST} set. Use \texttt{Laplace smoothing} to
+account for unseen words. Show your work and report the conditional
+probabilities of each bigram, e.g. $P(\mathbf{pizza}|\mathbf{eat}) = ?$.
 
 \section{Grading Criteria}
 \begin{titlemize}{Basic Criteria}
